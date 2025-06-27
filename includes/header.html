@@ -23,10 +23,10 @@
         <!-- 로그인 & 프로필 영역 -->
         <div id="auth-area">
           <!-- 로그인된 사용자용 프로필 (처음엔 숨김) -->
-          <div id="user-profile" style="display:none; position:relative; align-items:center; gap:10px; flex-direction:row; flex-wrap:nowrap;">
-            <img id="user-avatar" src="/default-profile.png" alt="프로필" style="width:36px; height:36px; border-radius:50%; object-fit:cover; background:#eee; margin:0;">
-            <span id="user-nickname" style="cursor:pointer; font-weight:bold; color:#fff; margin:0 0 0 8px; white-space:nowrap;">닉네임</span>
-            <button id="user-notify-btn" style="background:none; border:none; margin:0 0 0 10px; cursor:pointer; display:flex; align-items:center; padding:0;">
+          <div id="user-profile" style="display:none; position:relative; align-items:center; gap:10px; flex-direction:row; flex-wrap:nowrap; height:44px; min-width:0; white-space:nowrap;">
+            <img id="user-avatar" src="/default-profile.png" alt="프로필" style="width:36px; height:36px; border-radius:50%; object-fit:cover; background:#eee; flex-shrink:0; margin:0;">
+            <span id="user-nickname" style="cursor:pointer; font-weight:bold; color:#fff; margin-left:10px; margin-right:10px;">닉네임</span>
+            <button id="user-notify-btn" style="background:none; border:none; margin:0; cursor:pointer; display:flex; align-items:center; padding:0; height:36px; width:36px; justify-content:center;">
               <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v3.586l-.707.707A1 1 0 0 0 5 16h14a1 1 0 0 0 .707-1.707L19 12.586V9a7 7 0 0 0-7-7zm0 18a3 3 0 0 0 2.995-2.824L15 17h-6a3 3 0 0 0 2.824 2.995L12 20z"/></svg>
             </button>
             <div id="user-dropdown" style="display:none; position:absolute; right:0; top:48px; background:#fff; color:#222; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,0.12); min-width:220px; z-index:10; padding:18px 20px 12px 20px;">
