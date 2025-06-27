@@ -43,7 +43,6 @@
       e.preventDefault();
       const email = form.email.value;
       const password = form.password.value;
-      console.log(email, password);
       try {
         await createUserWithEmailAndPassword(auth, email, password);
         messageDiv.textContent = '회원가입 성공!';
