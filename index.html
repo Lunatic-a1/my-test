@@ -8,9 +8,116 @@
 <body>
   <!-- 헤더/푸터는 load-layout.js에서 자동으로 삽입됨 -->
 
-  <main>
-    <h1>환영합니다!</h1>
-    <p>이것은 기본 index.html 파일입니다.</p>
+  <main style="max-width:1200px; margin:40px auto 0 auto; padding:0 16px;">
+    <!-- 이번주 인기작 top 10 -->
+    <section style="margin-bottom:48px;">
+      <h2 style="font-size:2rem; margin-bottom:18px;">이번주 인기작 TOP 10</h2>
+      <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:28px;">
+        <!-- 10개 포스트 -->
+        <!-- 반복문 대체: 실제 데이터 연동 시 JS로 대체 가능 -->
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">인기작 1</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">인기작 2</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">인기작 3</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">인기작 4</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">인기작 5</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">인기작 6</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">인기작 7</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">인기작 8</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">인기작 9</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">인기작 10</div>
+        </div>
+      </div>
+    </section>
+    <!-- 업로드순(최신순, 최대 20개) -->
+    <section style="margin-bottom:48px;">
+      <h2 style="font-size:2rem; margin-bottom:18px;">최신 업로드</h2>
+      <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:28px;">
+        <!-- 20개 포스트 -->
+        <!-- 반복문 대체: 실제 데이터 연동 시 JS로 대체 가능 -->
+        <!-- 최신 20개 -->
+        <!-- 4줄 * 5개 -->
+        <!-- 1~20 -->
+        <!-- 아래는 예시 5개, 실제로는 20개 복제 -->
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">최신작 1</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">최신작 2</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">최신작 3</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">최신작 4</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">최신작 5</div>
+        </div>
+        <!-- ...최신작 6~20 반복... -->
+      </div>
+    </section>
+    <!-- 관심 웹툰(찜) -->
+    <section style="margin-bottom:48px;">
+      <h2 style="font-size:2rem; margin-bottom:18px;">내가 찜한 웹툰</h2>
+      <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:28px;">
+        <!-- 최대 10개 포스트 -->
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">찜한 웹툰 1</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">찜한 웹툰 2</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">찜한 웹툰 3</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">찜한 웹툰 4</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="background:#eee; height:180px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px;">포스터</div>
+          <div style="font-weight:bold;">찜한 웹툰 5</div>
+        </div>
+        <!-- ...찜한 웹툰 6~10 반복... -->
+      </div>
+    </section>
   </main>
 
   <script src="scripts/load-layout.js"></script>
