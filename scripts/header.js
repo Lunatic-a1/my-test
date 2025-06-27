@@ -5,6 +5,29 @@ import { app } from "./firebase-init.js";
 
 const db = getFirestore(app);
 
+function toggleDropdown(userDropdown) {
+  if (!userDropdown) return;
+  const isOpen = userDropdown.style.display === 'block';
+  userDropdown.style.display = isOpen ? 'none' : 'block';
+  if (!isOpen) {
+    // 드롭다운이 열릴 때만 이벤트 등록
+    const outsideClickHandler = (evt) => {
+      if (!evt.target.closest('#user-profile')) {
+        userDropdown.style.display = 'none';
+        document.removeEventListener('click', outsideClickHandler);
+      }
+    };
+    setTimeout(() => {
+      document.addEventListener('click', outsideClickHandler);
+    }, 0);
+    userDropdown._outsideClickHandler = outsideClickHandler;
+  } else if (userDropdown._outsideClickHandler) {
+    // 드롭다운이 닫힐 때 이벤트 해제
+    document.removeEventListener('click', userDropdown._outsideClickHandler);
+    userDropdown._outsideClickHandler = null;
+  }
+}
+
 function bindHeaderAuthEvents() {
   const userProfile = document.getElementById('user-profile');
   const userNickname = document.getElementById('user-nickname');
@@ -14,39 +37,17 @@ function bindHeaderAuthEvents() {
   const logoutBtn = document.getElementById('logout-btn');
   const profileBtn = document.getElementById('profile-btn');
   const loginLink = document.getElementById('login-link');
+  const userNotifyBtn = document.getElementById('user-notify-btn');
 
-  // 드롭다운 토글
+  // 드롭다운 토글 (user-profile 클릭 시에만)
   if (userProfile && userDropdown) {
-    let outsideClickHandler = null;
-    // 드롭다운 토글 함수
-    function toggleDropdown(e) {
+    userProfile.onclick = (e) => {
+      // 알림 버튼 클릭 시에는 드롭다운 토글하지 않음
+      if (e.target.closest('#user-notify-btn')) return;
       if (e.target.closest('#user-dropdown')) return;
       e.stopPropagation();
-      const isOpen = userDropdown.style.display === 'block';
-      userDropdown.style.display = isOpen ? 'none' : 'block';
-      if (!isOpen) {
-        // 드롭다운이 열릴 때만 이벤트 등록
-        outsideClickHandler = (evt) => {
-          if (!evt.target.closest('#user-profile')) {
-            userDropdown.style.display = 'none';
-            document.removeEventListener('click', outsideClickHandler);
-            outsideClickHandler = null;
-          }
-        };
-        setTimeout(() => {
-          document.addEventListener('click', outsideClickHandler);
-        }, 0);
-      } else if (outsideClickHandler) {
-        // 드롭다운이 닫힐 때 이벤트 해제
-        document.removeEventListener('click', outsideClickHandler);
-        outsideClickHandler = null;
-      }
-    }
-    userProfile.onclick = toggleDropdown;
-    const notifyBtn = document.getElementById('user-notify-btn');
-    if (notifyBtn) {
-      notifyBtn.onclick = toggleDropdown;
-    }
+      toggleDropdown(userDropdown);
+    };
   }
 
   onAuthStateChanged(auth, async (user) => {
