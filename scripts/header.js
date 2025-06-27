@@ -17,20 +17,30 @@ function bindHeaderAuthEvents() {
 
   // 드롭다운 토글
   if (userProfile && userDropdown) {
+    let outsideClickHandler = null;
     userProfile.onclick = (e) => {
-      // 드롭다운 내부 클릭 시에는 닫히지 않도록
       if (e.target.closest('#user-dropdown')) return;
       e.stopPropagation();
-      userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
-    };
-    // 바깥 클릭 시 닫기
-    document.addEventListener('click', (e) => {
-      if (userDropdown.style.display === 'block') {
-        // 드롭다운 또는 user-profile 내부 클릭 시에는 닫지 않음
-        if (e.target.closest('#user-profile')) return;
-        userDropdown.style.display = 'none';
+      const isOpen = userDropdown.style.display === 'block';
+      userDropdown.style.display = isOpen ? 'none' : 'block';
+      if (!isOpen) {
+        // 드롭다운이 열릴 때만 이벤트 등록
+        outsideClickHandler = (evt) => {
+          if (!evt.target.closest('#user-profile')) {
+            userDropdown.style.display = 'none';
+            document.removeEventListener('click', outsideClickHandler);
+            outsideClickHandler = null;
+          }
+        };
+        setTimeout(() => {
+          document.addEventListener('click', outsideClickHandler);
+        }, 0);
+      } else if (outsideClickHandler) {
+        // 드롭다운이 닫힐 때 이벤트 해제
+        document.removeEventListener('click', outsideClickHandler);
+        outsideClickHandler = null;
       }
-    });
+    };
   }
 
   onAuthStateChanged(auth, async (user) => {
