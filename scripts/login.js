@@ -11,8 +11,10 @@ form.addEventListener('submit', (e) => {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      messageDiv.textContent = '로그인 성공!';
-      // ...
+      messageDiv.textContent = '로그인 성공! 홈으로 이동합니다.';
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1200);
     })
     .catch((error) => {
       const errorCode = error.code;
