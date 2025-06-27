@@ -40,6 +40,9 @@ createUserWithEmailAndPassword(auth, email, password)
     const errorMessage = error.message;
     // ..
   });
+
+  console.log(hello world);
+  console.log(1);
 </script>
 
 
