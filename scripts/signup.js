@@ -28,8 +28,8 @@ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com
 
   import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
-  document.getElementById("signUpButton").addEventListener("click", (event) => {
-    event.preventDefault();
+  document.getElementById("signup-form").addEventListener("submit", (e) => {
+    e.preventDefault();
     console.log(1)
   })
 
