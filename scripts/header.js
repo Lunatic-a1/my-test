@@ -31,8 +31,8 @@ function bindHeaderAuthEvents() {
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      if (userProfile) userProfile.style.display = 'inline-block';
       if (loginLink) loginLink.style.display = 'none';
+      if (userProfile) userProfile.style.display = 'inline-block';
       // Firestore에서 유저 정보 가져오기
       const userDoc = await getDoc(doc(db, 'users', user.uid));
       if (userDoc.exists()) {
@@ -46,9 +46,9 @@ function bindHeaderAuthEvents() {
         if (userPointSpan) userPointSpan.textContent = '0';
       }
     } else {
+      if (loginLink) loginLink.style.display = '';
       if (userProfile) userProfile.style.display = 'none';
       if (userDropdown) userDropdown.style.display = 'none';
-      if (loginLink) loginLink.style.display = '';
     }
   });
 
