@@ -1,8 +1,8 @@
-import { auth } from "./firebase-init.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+import { app, auth } from "./firebase-init.js";
 import { getFirestore, collection, getDocs, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
-const db = getFirestore();
+const db = getFirestore(app);
 
 // 중복되지 않는 8자리 숫자 ID 생성 함수
 async function generateUniqueUserId() {
