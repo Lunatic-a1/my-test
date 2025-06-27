@@ -1,0 +1,17 @@
+<nav id="sub-header" style="background:#fff; border-bottom:1px solid #eee;">
+  <ul style="display:flex; align-items:center; margin:0; padding:0; list-style:none; height:70px;">
+    <li style="margin:0;">
+      <a href="/index.html" style="display:block; background:#00e07b; color:#fff; font-weight:bold; width:62px; height:70px; line-height:70px; text-align:center; text-decoration:none;">홈</a>
+    </li>
+    <li style="margin-left:40px;"><a href="#" style="color:#111; text-decoration:none; font-size:18px; font-weight:500;">웹툰</a></li>
+    <li style="margin-left:40px;"><a href="#" style="color:#111; text-decoration:none; font-size:18px; font-weight:500;">베스트도전</a></li>
+    <li style="margin-left:40px;"><a href="#" style="color:#111; text-decoration:none; font-size:18px; font-weight:500;">도전만화</a></li>
+    <li style="margin-left:40px;"><a href="#" style="color:#111; text-decoration:none; font-size:18px; font-weight:500;">마이페이지</a></li>
+    <li style="flex:1;"></li>
+    <li style="margin-right:40px;">
+      <a href="#" style="display:inline-block; background:#00e07b; color:#fff; font-weight:bold; font-size:22px; border-radius:6px; padding:0 38px; height:56px; line-height:56px; text-align:center; text-decoration:none; position:relative;">CREATOR'S
+        <span style="position:absolute; top:10px; right:16px; background:#ff2e2e; color:#fff; font-size:13px; font-weight:bold; border-radius:50%; padding:2px 6px;">N</span>
+      </a>
+    </li>
+  </ul>
+</nav> 
