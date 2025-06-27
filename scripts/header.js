@@ -38,6 +38,7 @@ function bindHeaderAuthEvents() {
   const profileBtn = document.getElementById('profile-btn');
   const loginLink = document.getElementById('login-link');
   const userNotifyBtn = document.getElementById('user-notify-btn');
+  const userNotifyPanel = document.getElementById('user-notify-panel');
 
   // 드롭다운 토글 (user-profile 클릭 시에만)
   if (userProfile && userDropdown) {
@@ -47,6 +48,31 @@ function bindHeaderAuthEvents() {
       if (e.target.closest('#user-dropdown')) return;
       e.stopPropagation();
       toggleDropdown(userDropdown);
+    };
+  }
+
+  // 알림 패널 토글 (user-notify-btn 클릭 시)
+  if (userNotifyBtn && userNotifyPanel) {
+    let notifyOutsideHandler = null;
+    userNotifyBtn.onclick = (e) => {
+      e.stopPropagation();
+      const isOpen = userNotifyPanel.style.display === 'block';
+      userNotifyPanel.style.display = isOpen ? 'none' : 'block';
+      if (!isOpen) {
+        notifyOutsideHandler = (evt) => {
+          if (!evt.target.closest('#user-notify-panel') && !evt.target.closest('#user-notify-btn')) {
+            userNotifyPanel.style.display = 'none';
+            document.removeEventListener('click', notifyOutsideHandler);
+            notifyOutsideHandler = null;
+          }
+        };
+        setTimeout(() => {
+          document.addEventListener('click', notifyOutsideHandler);
+        }, 0);
+      } else if (notifyOutsideHandler) {
+        document.removeEventListener('click', notifyOutsideHandler);
+        notifyOutsideHandler = null;
+      }
     };
   }
 
