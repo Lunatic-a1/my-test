@@ -14,28 +14,20 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 function bindHeaderAuthEvents() {
-  const loginBtn = document.getElementById('login-btn');
   const logoutBtn = document.getElementById('logout-btn');
   const userProfile = document.getElementById('user-profile');
   const userName = document.getElementById('user-name');
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      if (loginBtn) loginBtn.style.display = 'none';
       if (userProfile) userProfile.style.display = 'inline-block';
       if (userName) userName.textContent = user.email;
     } else {
-      if (loginBtn) loginBtn.style.display = 'inline-block';
       if (userProfile) userProfile.style.display = 'none';
       if (userName) userName.textContent = '';
     }
   });
 
-  if (loginBtn) {
-    loginBtn.addEventListener('click', function() {
-      window.location.href = '/login.html';
-    });
-  }
   if (logoutBtn) {
     logoutBtn.addEventListener('click', function() {
       signOut(auth);
@@ -47,7 +39,7 @@ function bindHeaderAuthEvents() {
 window.addEventListener('DOMContentLoaded', () => {
   // 헤더가 fetch로 삽입된 뒤 DOM에 반영될 때까지 대기
   const checkHeader = setInterval(() => {
-    if (document.getElementById('login-btn')) {
+    if (document.getElementById('user-profile')) {
       clearInterval(checkHeader);
       bindHeaderAuthEvents();
     }
