@@ -152,10 +152,25 @@
   <script type="module">
     import { auth } from "./scripts/firebase-init.js";
     import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+    import { getFirestore, collection, getDocs, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
     const favSection = document.getElementById('my-favorites-section');
     onAuthStateChanged(auth, (user) => {
       if (favSection) favSection.style.display = user ? '' : 'none';
     });
+
+    async function generateUniqueUserId() {
+      const userIdsSnapshot = await getDocs(collection(db, "users"));
+      const existingIds = new Set();
+      userIdsSnapshot.forEach(doc => {
+        const data = doc.data();
+        if (data.userId) existingIds.add(data.userId);
+      });
+      let newId;
+      do {
+        newId = Math.floor(10000000 + Math.random() * 90000000).toString();
+      } while (existingIds.has(newId));
+      return newId;
+    }
   </script>
 </body>
 </html>
