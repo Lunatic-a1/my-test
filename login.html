@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+</head>
+<body>
+  <h1>로그인</h1>
+  <form id="login-form">
+    <div>
+      <label for="email">이메일:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+      <label for="password">비밀번호:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit">로그인</button>
+  </form>
+  <div id="login-message"></div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAdc-uOw-RkwioP-GFf1BouVu4JBkfGFnU",
+      authDomain: "login-4cb47.firebaseapp.com",
+      projectId: "login-4cb47",
+      storageBucket: "login-4cb47.firebasestorage.app",
+      messagingSenderId: "866437023451",
+      appId: "1:866437023451:web:c41f1a1b07accf50ae2efe",
+      measurementId: "G-EW136C5LGV"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const form = document.getElementById('login-form');
+    const messageDiv = document.getElementById('login-message');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = form.email.value;
+      const password = form.password.value;
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        messageDiv.textContent = '로그인 성공!';
+      } catch (error) {
+        messageDiv.textContent = '로그인 실패: ' + error.message;
+      }
+    });
+  </script>
+</body>
+</html> 
