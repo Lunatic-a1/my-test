@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Test Project</title>
+  <link rel="stylesheet" href="styles/post.css" />
 </head>
 <body>
   <!-- 헤더/푸터는 load-layout.js에서 자동으로 삽입됨 -->
 
-  <main style="max-width:1200px; margin:40px auto 0 auto; padding:0 16px;">
+  <main style="max-width:1400px; margin:40px auto 0 auto; padding:0 16px;">
     <!-- 이번주 인기작 top 10 (슬라이드) -->
     <section style="margin-bottom:48px;">
       <h2 style="font-size:2rem; margin-bottom:18px;">이번주 인기작 TOP 10</h2>
@@ -17,65 +18,45 @@
         <div id="popular-carousel" style="overflow-x:auto; overflow-y:hidden; white-space:nowrap; scroll-behavior:smooth; padding-bottom:8px;">
           <div style="display:inline-block; width:8px;"></div>
           <!-- 10개 포스트 -->
-          <div style="display:inline-block; text-align:center; margin-right:24px; position:relative;">
-            <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px; position:relative;">포스터
-              <span style="position:absolute; left:10px; bottom:10px; font-size:3rem; font-weight:bold; color:#fff; text-shadow:2px 2px 8px #000; opacity:0.9;">1</span>
-            </div>
-            <div style="font-weight:bold; color:#fff;">인기작 1</div>
+          <div class="post-card" style="display:inline-block; margin-right:18px; position:relative;">
+            <div class="poster-box">포스터<span class="poster-rank">1</span></div>
+            <div class="post-title" style="color:#fff;">인기작 1</div>
           </div>
-          <div style="display:inline-block; text-align:center; margin-right:24px; position:relative;">
-            <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px; position:relative;">포스터
-              <span style="position:absolute; left:10px; bottom:10px; font-size:3rem; font-weight:bold; color:#fff; text-shadow:2px 2px 8px #000; opacity:0.9;">2</span>
-            </div>
-            <div style="font-weight:bold; color:#fff;">인기작 2</div>
+          <div class="post-card" style="display:inline-block; margin-right:18px; position:relative;">
+            <div class="poster-box">포스터<span class="poster-rank">2</span></div>
+            <div class="post-title" style="color:#fff;">인기작 2</div>
           </div>
-          <div style="display:inline-block; text-align:center; margin-right:24px; position:relative;">
-            <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px; position:relative;">포스터
-              <span style="position:absolute; left:10px; bottom:10px; font-size:3rem; font-weight:bold; color:#fff; text-shadow:2px 2px 8px #000; opacity:0.9;">3</span>
-            </div>
-            <div style="font-weight:bold; color:#fff;">인기작 3</div>
+          <div class="post-card" style="display:inline-block; margin-right:18px; position:relative;">
+            <div class="poster-box">포스터<span class="poster-rank">3</span></div>
+            <div class="post-title" style="color:#fff;">인기작 3</div>
           </div>
-          <div style="display:inline-block; text-align:center; margin-right:24px; position:relative;">
-            <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px; position:relative;">포스터
-              <span style="position:absolute; left:10px; bottom:10px; font-size:3rem; font-weight:bold; color:#fff; text-shadow:2px 2px 8px #000; opacity:0.9;">4</span>
-            </div>
-            <div style="font-weight:bold; color:#fff;">인기작 4</div>
+          <div class="post-card" style="display:inline-block; margin-right:18px; position:relative;">
+            <div class="poster-box">포스터<span class="poster-rank">4</span></div>
+            <div class="post-title" style="color:#fff;">인기작 4</div>
           </div>
-          <div style="display:inline-block; text-align:center; margin-right:24px; position:relative;">
-            <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px; position:relative;">포스터
-              <span style="position:absolute; left:10px; bottom:10px; font-size:3rem; font-weight:bold; color:#fff; text-shadow:2px 2px 8px #000; opacity:0.9;">5</span>
-            </div>
-            <div style="font-weight:bold; color:#fff;">인기작 5</div>
+          <div class="post-card" style="display:inline-block; margin-right:18px; position:relative;">
+            <div class="poster-box">포스터<span class="poster-rank">5</span></div>
+            <div class="post-title" style="color:#fff;">인기작 5</div>
           </div>
-          <div style="display:inline-block; text-align:center; margin-right:24px; position:relative;">
-            <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px; position:relative;">포스터
-              <span style="position:absolute; left:10px; bottom:10px; font-size:3rem; font-weight:bold; color:#fff; text-shadow:2px 2px 8px #000; opacity:0.9;">6</span>
-            </div>
-            <div style="font-weight:bold; color:#fff;">인기작 6</div>
+          <div class="post-card" style="display:inline-block; margin-right:18px; position:relative;">
+            <div class="poster-box">포스터<span class="poster-rank">6</span></div>
+            <div class="post-title" style="color:#fff;">인기작 6</div>
           </div>
-          <div style="display:inline-block; text-align:center; margin-right:24px; position:relative;">
-            <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px; position:relative;">포스터
-              <span style="position:absolute; left:10px; bottom:10px; font-size:3rem; font-weight:bold; color:#fff; text-shadow:2px 2px 8px #000; opacity:0.9;">7</span>
-            </div>
-            <div style="font-weight:bold; color:#fff;">인기작 7</div>
+          <div class="post-card" style="display:inline-block; margin-right:18px; position:relative;">
+            <div class="poster-box">포스터<span class="poster-rank">7</span></div>
+            <div class="post-title" style="color:#fff;">인기작 7</div>
           </div>
-          <div style="display:inline-block; text-align:center; margin-right:24px; position:relative;">
-            <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px; position:relative;">포스터
-              <span style="position:absolute; left:10px; bottom:10px; font-size:3rem; font-weight:bold; color:#fff; text-shadow:2px 2px 8px #000; opacity:0.9;">8</span>
-            </div>
-            <div style="font-weight:bold; color:#fff;">인기작 8</div>
+          <div class="post-card" style="display:inline-block; margin-right:18px; position:relative;">
+            <div class="poster-box">포스터<span class="poster-rank">8</span></div>
+            <div class="post-title" style="color:#fff;">인기작 8</div>
           </div>
-          <div style="display:inline-block; text-align:center; margin-right:24px; position:relative;">
-            <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px; position:relative;">포스터
-              <span style="position:absolute; left:10px; bottom:10px; font-size:3rem; font-weight:bold; color:#fff; text-shadow:2px 2px 8px #000; opacity:0.9;">9</span>
-            </div>
-            <div style="font-weight:bold; color:#fff;">인기작 9</div>
+          <div class="post-card" style="display:inline-block; margin-right:18px; position:relative;">
+            <div class="poster-box">포스터<span class="poster-rank">9</span></div>
+            <div class="post-title" style="color:#fff;">인기작 9</div>
           </div>
-          <div style="display:inline-block; text-align:center; margin-right:24px; position:relative;">
-            <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin-bottom:10px; position:relative;">포스터
-              <span style="position:absolute; left:10px; bottom:10px; font-size:3rem; font-weight:bold; color:#fff; text-shadow:2px 2px 8px #000; opacity:0.9;">10</span>
-            </div>
-            <div style="font-weight:bold; color:#fff;">인기작 10</div>
+          <div class="post-card" style="display:inline-block; margin-right:18px; position:relative;">
+            <div class="poster-box">포스터<span class="poster-rank">10</span></div>
+            <div class="post-title" style="color:#fff;">인기작 10</div>
           </div>
           <div style="display:inline-block; width:8px;"></div>
         </div>
@@ -84,42 +65,42 @@
       <script>
         const carousel = document.getElementById('popular-carousel');
         document.getElementById('popular-left').onclick = () => {
-          carousel.scrollBy({left: -200, behavior: 'smooth'});
+          carousel.scrollBy({left: -180, behavior: 'smooth'});
         };
         document.getElementById('popular-right').onclick = () => {
-          carousel.scrollBy({left: 200, behavior: 'smooth'});
+          carousel.scrollBy({left: 180, behavior: 'smooth'});
         };
       </script>
     </section>
     <!-- 업로드순(최신순, 최대 20개) -->
     <section style="margin-bottom:48px;">
       <h2 style="font-size:2rem; margin-bottom:18px;">최신 업로드</h2>
-      <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:28px;">
+      <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:18px;">
         <!-- 20개 포스트 -->
         <!-- 반복문 대체: 실제 데이터 연동 시 JS로 대체 가능 -->
         <!-- 최신 20개 -->
         <!-- 4줄 * 5개 -->
         <!-- 1~20 -->
         <!-- 아래는 예시 5개, 실제로는 20개 복제 -->
-        <div style="text-align:center;">
-          <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin:0 auto 10px auto;">포스터</div>
-          <div style="font-weight:bold;">최신작 1</div>
+        <div class="post-card" style="text-align:center;">
+          <div class="poster-box">포스터</div>
+          <div class="post-title" style="font-weight:bold;">최신작 1</div>
         </div>
-        <div style="text-align:center;">
-          <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin:0 auto 10px auto;">포스터</div>
-          <div style="font-weight:bold;">최신작 2</div>
+        <div class="post-card" style="text-align:center;">
+          <div class="poster-box">포스터</div>
+          <div class="post-title" style="font-weight:bold;">최신작 2</div>
         </div>
-        <div style="text-align:center;">
-          <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin:0 auto 10px auto;">포스터</div>
-          <div style="font-weight:bold;">최신작 3</div>
+        <div class="post-card" style="text-align:center;">
+          <div class="poster-box">포스터</div>
+          <div class="post-title" style="font-weight:bold;">최신작 3</div>
         </div>
-        <div style="text-align:center;">
-          <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin:0 auto 10px auto;">포스터</div>
-          <div style="font-weight:bold;">최신작 4</div>
+        <div class="post-card" style="text-align:center;">
+          <div class="poster-box">포스터</div>
+          <div class="post-title" style="font-weight:bold;">최신작 4</div>
         </div>
-        <div style="text-align:center;">
-          <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin:0 auto 10px auto;">포스터</div>
-          <div style="font-weight:bold;">최신작 5</div>
+        <div class="post-card" style="text-align:center;">
+          <div class="poster-box">포스터</div>
+          <div class="post-title" style="font-weight:bold;">최신작 5</div>
         </div>
         <!-- ...최신작 6~20 반복... -->
       </div>
@@ -127,27 +108,27 @@
     <!-- 관심 웹툰(찜) -->
     <section style="margin-bottom:48px;">
       <h2 style="font-size:2rem; margin-bottom:18px;">내가 찜한 웹툰</h2>
-      <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:28px;">
+      <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:18px;">
         <!-- 최대 10개 포스트 -->
-        <div style="text-align:center;">
-          <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin:0 auto 10px auto;">포스터</div>
-          <div style="font-weight:bold;">찜한 웹툰 1</div>
+        <div class="post-card" style="text-align:center;">
+          <div class="poster-box">포스터</div>
+          <div class="post-title" style="font-weight:bold;">찜한 웹툰 1</div>
         </div>
-        <div style="text-align:center;">
-          <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin:0 auto 10px auto;">포스터</div>
-          <div style="font-weight:bold;">찜한 웹툰 2</div>
+        <div class="post-card" style="text-align:center;">
+          <div class="poster-box">포스터</div>
+          <div class="post-title" style="font-weight:bold;">찜한 웹툰 2</div>
         </div>
-        <div style="text-align:center;">
-          <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin:0 auto 10px auto;">포스터</div>
-          <div style="font-weight:bold;">찜한 웹툰 3</div>
+        <div class="post-card" style="text-align:center;">
+          <div class="poster-box">포스터</div>
+          <div class="post-title" style="font-weight:bold;">찜한 웹툰 3</div>
         </div>
-        <div style="text-align:center;">
-          <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin:0 auto 10px auto;">포스터</div>
-          <div style="font-weight:bold;">찜한 웹툰 4</div>
+        <div class="post-card" style="text-align:center;">
+          <div class="poster-box">포스터</div>
+          <div class="post-title" style="font-weight:bold;">찜한 웹툰 4</div>
         </div>
-        <div style="text-align:center;">
-          <div style="background:#eee; width:160px; height:207px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#888; margin:0 auto 10px auto;">포스터</div>
-          <div style="font-weight:bold;">찜한 웹툰 5</div>
+        <div class="post-card" style="text-align:center;">
+          <div class="poster-box">포스터</div>
+          <div class="post-title" style="font-weight:bold;">찜한 웹툰 5</div>
         </div>
         <!-- ...찜한 웹툰 6~10 반복... -->
       </div>
