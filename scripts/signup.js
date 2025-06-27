@@ -1,29 +1,27 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+import { auth } from "./firebase-init.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAdc-uOw-RkwioP-GFf1BouVu4JBkfGFnU",
-  authDomain: "login-4cb47.firebaseapp.com",
-  projectId: "login-4cb47",
-  storageBucket: "login-4cb47.firebasestorage.app",
-  messagingSenderId: "866437023451",
-  appId: "1:866437023451:web:c41f1a1b07accf50ae2efe",
-  measurementId: "G-EW136C5LGV"
-};
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
 const form = document.getElementById('signup-form');
 const messageDiv = document.getElementById('signup-message');
+
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const email = form.email.value;
   const password = form.password.value;
+  const password2 = form.password2.value;
+  const nickname = form.nickname.value;
+  if (password !== password2) {
+    messageDiv.textContent = '비밀번호가 일치하지 않습니다.';
+    return;
+  }
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed up 
+      // Signed up
       const user = userCredential.user;
-      messageDiv.textContent = '회원가입 성공!';
+      messageDiv.textContent = '회원가입 성공! 로그인 페이지로 이동합니다.';
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 1200);
     })
     .catch((error) => {
       const errorCode = error.code;
