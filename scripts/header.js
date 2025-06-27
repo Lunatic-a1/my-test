@@ -18,7 +18,8 @@ function bindHeaderAuthEvents() {
   // 드롭다운 토글
   if (userProfile && userDropdown) {
     let outsideClickHandler = null;
-    userProfile.onclick = (e) => {
+    // 드롭다운 토글 함수
+    function toggleDropdown(e) {
       if (e.target.closest('#user-dropdown')) return;
       e.stopPropagation();
       const isOpen = userDropdown.style.display === 'block';
@@ -40,7 +41,12 @@ function bindHeaderAuthEvents() {
         document.removeEventListener('click', outsideClickHandler);
         outsideClickHandler = null;
       }
-    };
+    }
+    userProfile.onclick = toggleDropdown;
+    const notifyBtn = document.getElementById('user-notify-btn');
+    if (notifyBtn) {
+      notifyBtn.onclick = toggleDropdown;
+    }
   }
 
   onAuthStateChanged(auth, async (user) => {
