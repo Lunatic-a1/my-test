@@ -11,7 +11,10 @@ form.addEventListener('submit', (e) => {
     .then((userCredential) => {
       // Signed up
       const user = userCredential.user;
-      messageDiv.textContent = '회원가입 성공!';
+      messageDiv.textContent = '회원가입 성공! 로그인 페이지로 이동합니다.';
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 1200);
     })
     .catch((error) => {
       const errorCode = error.code;
