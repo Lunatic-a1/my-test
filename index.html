@@ -109,7 +109,7 @@
       </div>
     </section>
     <!-- 관심 웹툰(찜) -->
-    <section style="margin-bottom:48px;">
+    <section id="my-favorites-section" style="margin-bottom:48px;">
       <h2 style="font-size:2rem; margin-bottom:18px;">내가 찜한 웹툰</h2>
       <div style="display:grid; grid-template-columns:repeat(7, 1fr); gap:12px;">
         <!-- 7개 예시 포스트 -->
@@ -149,5 +149,24 @@
   <script src="scripts/load-layout.js"></script>
   <script src="scripts/auth.js"></script>
   <script type="module" src="scripts/header.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyAdc-uOw-RkwioP-GFf1BouVu4JBkfGFnU",
+      authDomain: "login-4cb47.firebaseapp.com",
+      projectId: "login-4cb47",
+      storageBucket: "login-4cb47.firebasestorage.app",
+      messagingSenderId: "866437023451",
+      appId: "1:866437023451:web:c41f1a1b07accf50ae2efe",
+      measurementId: "G-EW136C5LGV"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const favSection = document.getElementById('my-favorites-section');
+    onAuthStateChanged(auth, (user) => {
+      if (favSection) favSection.style.display = user ? '' : 'none';
+    });
+  </script>
 </body>
 </html>
