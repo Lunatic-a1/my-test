@@ -13,6 +13,7 @@ function bindHeaderAuthEvents() {
   const userPointSpan = document.getElementById('user-point');
   const logoutBtn = document.getElementById('logout-btn');
   const profileBtn = document.getElementById('profile-btn');
+  const loginLink = document.getElementById('login-link');
 
   // 드롭다운 토글
   if (userNickname && userDropdown) {
@@ -31,6 +32,7 @@ function bindHeaderAuthEvents() {
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       if (userProfile) userProfile.style.display = 'inline-block';
+      if (loginLink) loginLink.style.display = 'none';
       // Firestore에서 유저 정보 가져오기
       const userDoc = await getDoc(doc(db, 'users', user.uid));
       if (userDoc.exists()) {
@@ -46,6 +48,7 @@ function bindHeaderAuthEvents() {
     } else {
       if (userProfile) userProfile.style.display = 'none';
       if (userDropdown) userDropdown.style.display = 'none';
+      if (loginLink) loginLink.style.display = '';
     }
   });
 
