@@ -2,6 +2,45 @@ import { app, auth } from "./firebase-init.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 import { getFirestore, collection, getDocs, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
+// 동적 스타일 추가
+const signupStyle = `
+  #signup-form button {
+    padding: 8px 18px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    background: #fff;
+    color: #333;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  #signup-form button:hover {
+    background: #f3f3f3;
+  }
+  .signup-link-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    margin-top: 16px;
+  }
+  .signup-link-btn:hover {
+    background: #f3f3f3;
+  }
+  #already-joined-message {
+    margin-top: 12px;
+    color: #d00;
+    font-weight: bold;
+  }
+`;
+const styleTag = document.createElement('style');
+styleTag.innerHTML = signupStyle;
+document.head.appendChild(styleTag);
+
 const db = getFirestore(app);
 
 async function generateUniqueUserId() {
