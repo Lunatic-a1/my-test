@@ -30,7 +30,7 @@ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com
 
   document.getElementById("signup-form").addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(1)
+    console.log(1);
   })
 
 const auth = getAuth();
@@ -51,6 +51,7 @@ createUserWithEmailAndPassword(auth, email, password)
 // 📌 회원가입 폼 제출 처리
 document.getElementById("signup-form").addEventListener("submit", (e) => {
   e.preventDefault();
+  console.log(1);
 
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
