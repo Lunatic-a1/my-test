@@ -28,11 +28,6 @@ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com
 
   import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
-  document.getElementById("signup-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    console.log(1);
-  })
-
 const auth = getAuth();
 createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
