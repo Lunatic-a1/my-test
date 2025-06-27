@@ -16,14 +16,18 @@ function bindHeaderAuthEvents() {
   const loginLink = document.getElementById('login-link');
 
   // 드롭다운 토글
-  if (userNickname && userDropdown) {
-    userNickname.onclick = (e) => {
+  if (userProfile && userDropdown) {
+    userProfile.onclick = (e) => {
+      // 드롭다운 내부 클릭 시에는 닫히지 않도록
+      if (e.target.closest('#user-dropdown')) return;
       e.stopPropagation();
       userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
     };
     // 바깥 클릭 시 닫기
     document.addEventListener('click', (e) => {
       if (userDropdown.style.display === 'block') {
+        // 드롭다운 또는 user-profile 내부 클릭 시에는 닫지 않음
+        if (e.target.closest('#user-profile')) return;
         userDropdown.style.display = 'none';
       }
     });
