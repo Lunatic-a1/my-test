@@ -30,17 +30,6 @@
     <a href="login.html" id="login-btn" class="signup-link-btn">로그인 하기</a>
   </div>
   <div id="already-joined-message" style="margin-top:12px; color:#d00; font-weight:bold; display:none;">이미 가입되어 있습니다. 로그인 하기를 눌러주세요.</div>
-  <script type="module">
-    import { auth } from "./scripts/firebase-init.js";
-    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
-    const form = document.getElementById('signup-form');
-    const alreadyMsg = document.getElementById('already-joined-message');
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        if (form) form.style.display = 'none';
-        if (alreadyMsg) alreadyMsg.style.display = '';
-      }
-    });
-  </script>
+  <script type="module" src="scripts/signup.js"></script>
 </body>
 </html> 
