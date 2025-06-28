@@ -36,10 +36,14 @@ const popularPosts = Array.from({length: 10}, (_, i) => ({
   rank: i+1
 }));
 const latestPosts = Array.from({length: 7}, (_, i) => ({
-  title: `최신작 ${i+1}`
+  title: `최신작 ${i+1}`,
+  rating: (Math.random() * 3 + 7).toFixed(2),
+  views: (Math.floor(Math.random() * 9000) + 1000).toLocaleString()
 }));
 const favoritePosts = Array.from({length: 7}, (_, i) => ({
-  title: `찜한 웹툰 ${i+1}`
+  title: `찜한 웹툰 ${i+1}`,
+  rating: (Math.random() * 3 + 7).toFixed(2),
+  views: (Math.floor(Math.random() * 9000) + 1000).toLocaleString()
 }));
 
 function renderPopularPosts() {
@@ -69,6 +73,16 @@ function renderLatestPosts() {
     card.innerHTML = `
       <div class="poster-box">포스터</div>
       <div class="post-title latest-post-title">${post.title}</div>
+      <div class="post-meta">
+        <span class="meta-icon" aria-label="rating"> 
+          <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" fill="#bbb"/></svg>
+        </span>
+        <span class="meta-value">${post.rating}</span>
+        <span class="meta-icon" aria-label="views">
+          <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 4C4 4 1 10 1 10s3 6 9 6 9-6 9-6-3-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6a2 2 0 100 4 2 2 0 000-4z" fill="#bbb"/></svg>
+        </span>
+        <span class="meta-value">${post.views}</span>
+      </div>
     `;
     grid.appendChild(card);
   });
@@ -84,6 +98,16 @@ function renderFavoritePosts() {
     card.innerHTML = `
       <div class="poster-box">포스터</div>
       <div class="post-title favorites-post-title">${post.title}</div>
+      <div class="post-meta">
+        <span class="meta-icon" aria-label="rating"> 
+          <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" fill="#bbb"/></svg>
+        </span>
+        <span class="meta-value">${post.rating}</span>
+        <span class="meta-icon" aria-label="views">
+          <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 4C4 4 1 10 1 10s3 6 9 6 9-6 9-6-3-6-9-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6a2 2 0 100 4 2 2 0 000-4z" fill="#bbb"/></svg>
+        </span>
+        <span class="meta-value">${post.views}</span>
+      </div>
     `;
     grid.appendChild(card);
   });
