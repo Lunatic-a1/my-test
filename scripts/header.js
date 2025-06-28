@@ -206,11 +206,14 @@ function injectHeaderStyles() {
       background: #f3f3f3;
     }
     #user-profile {
-      display: none;
+      display: flex;
       position: relative;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-direction: row;
+      white-space: nowrap;
+      min-width: 0;
+      display: none;
     }
     #user-avatar {
       width: 36px;
