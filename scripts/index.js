@@ -71,7 +71,7 @@ const favoritePosts = Array.from({length: 7}, (_, i) => ({
 function renderPopularPosts() {
   const carousel = document.getElementById('popular-carousel');
   if (!carousel) return;
-  // Remove all except spacers
+  // 좌측 스페이서 1개만 추가
   carousel.innerHTML = '<div class="popular-card-spacer"></div>';
   popularPosts.forEach(post => {
     const card = document.createElement('div');
@@ -128,6 +128,7 @@ function renderPopularPosts() {
     `;
     carousel.appendChild(card);
   });
+  // 마지막에 스페이서 1개만 추가
   carousel.appendChild(document.createElement('div')).className = 'popular-card-spacer';
 }
 
