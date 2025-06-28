@@ -321,6 +321,20 @@ const headerStyle = `
   background: #f3f3f3;
   color: #111;
 }
+.more-link {
+  color: #757575;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  transition: color 0.2s;
+}
+.more-link:hover {
+  color: #222;
+  text-decoration: underline;
+}
 `;
 
 if (!document.getElementById('header-style')) {
