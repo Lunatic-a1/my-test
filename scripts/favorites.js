@@ -2,7 +2,8 @@
 const favorites = Array.from({length: 10}, (_, i) => ({
   title: `찜한 웹툰 ${i+1}`,
   rating: (Math.random() * 3 + 7).toFixed(2),
-  views: (Math.floor(Math.random() * 9000) + 1000).toLocaleString()
+  views: (Math.floor(Math.random() * 9000) + 1000).toLocaleString(),
+  up: i % 4 === 0 // 4개마다 up 표시
 }));
 
 function renderFavorites() {
@@ -15,7 +16,7 @@ function renderFavorites() {
     card.innerHTML = `
       <div class="poster-box">포스터</div>
       <div class="post-info">
-        <div class="post-title favorites-post-title">${fav.title}</div>
+        <div class="post-title favorites-post-title">${fav.up ? '<span class=\'up-badge\'>UP</span>' : ''}${fav.title}</div>
         <div class="post-meta">
           <span class="meta-icon" aria-label="rating"> 
             <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" fill="#bbb"/></svg>
