@@ -13,6 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
     function updateButtonVisibility() {
       const isAtStart = carousel.scrollLeft === 0;
       const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 1;
+      
       leftBtn.style.display = isAtStart ? 'none' : 'flex';
       rightBtn.style.display = isAtEnd ? 'none' : 'flex';
     }
@@ -36,7 +37,11 @@ window.addEventListener('DOMContentLoaded', () => {
           0
         );
         carousel.scrollTo({ left: scrollTo, behavior: 'smooth' });
-        setTimeout(updateButtonVisibility, 400);
+        setTimeout(() => {
+          updateButtonVisibility();
+          // 스크롤 애니메이션이 끝난 후에도 상태를 한 번 더 체크
+          setTimeout(updateButtonVisibility, 100);
+        }, 400);
       }
     };
   }
