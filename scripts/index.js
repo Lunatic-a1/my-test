@@ -1,44 +1,5 @@
 // 인기작 캐러셀 좌우 스크롤
-window.addEventListener('DOMContentLoaded', () => {
-  const carousel = document.getElementById('popular-carousel');
-  const leftBtn = document.getElementById('popular-left');
-  const rightBtn = document.getElementById('popular-right');
-  
-  if (carousel && leftBtn && rightBtn) {
-    // 초기 상태: 왼쪽 버튼 숨김, 오른쪽 버튼 표시
-    leftBtn.style.display = 'none';
-    rightBtn.style.display = 'flex';
-    carousel.classList.add('no-left-btn', 'has-right-btn');
-    carousel.classList.remove('has-left-btn', 'no-right-btn');
-    
-    // 버튼 상태 업데이트 함수
-    function updateButtonVisibility() {
-      const isAtStart = carousel.scrollLeft === 0;
-      const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 1;
-      
-      leftBtn.style.display = isAtStart ? 'none' : 'flex';
-      rightBtn.style.display = isAtEnd ? 'none' : 'flex';
-      // 캐러셀 패딩 클래스 동기화
-      carousel.classList.toggle('no-left-btn', isAtStart);
-      carousel.classList.toggle('has-left-btn', !isAtStart);
-      carousel.classList.toggle('no-right-btn', isAtEnd);
-      carousel.classList.toggle('has-right-btn', !isAtEnd);
-    }
-    
-    // 스크롤 이벤트 리스너 추가
-    carousel.addEventListener('scroll', updateButtonVisibility);
-    
-    // 왼쪽 버튼 클릭: 처음으로 이동
-    leftBtn.onclick = () => {
-      carousel.scrollTo({left: 0, behavior: 'smooth'});
-    };
-    
-    // 오른쪽 버튼 클릭: 끝으로 이동
-    rightBtn.onclick = () => {
-      carousel.scrollTo({left: carousel.scrollWidth - carousel.clientWidth, behavior: 'smooth'});
-    };
-  }
-});
+// (화살표 버튼 관련 코드 전체 삭제)
 
 // 찜한 웹툰 섹션: 로그인 상태에 따라 표시
 import { auth } from "./firebase-init.js";
@@ -110,7 +71,7 @@ function renderPopularPosts() {
       </span>`;
     } else if (post.rank === 7) {
       rankHtml = `<span class="poster-rank" style="padding:0;"> \
-        <svg width=\"36\" height=\"50\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4.919 46.296h12.847l16.29-32.523v-9.23H1.938v9.26h20.024v.23L4.919 46.297Z\" fill=\"#000\"></path><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"m1.846 48.148 17.166-32.494H.087V2.69h35.822v11.52l-17 33.937H1.847Zm20.116-34.346v.232L4.919 46.296h12.847l16.29-32.523v-9.23H1.94v9.26h20.023Z\" fill=\"#fff\"></path></svg>
+        <svg width=\"36\" height=\"50\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4.919 46.296v.926h12.576V6.226H10.503l-.23.15-8.925 5.811-.42.274v11.826l1.425-.915 7.499-4.809v27.733ZM40.753 48.307c5.199 0 9.484-2.088 12.446-5.905 2.942-3.791 4.52-9.208 4.52-15.8 0-6.647-1.598-12.014-4.555-15.74-2.976-3.75-7.262-5.748-12.411-5.748-5.15 0-9.442 2.006-12.424 5.762-2.963 3.732-4.568 9.106-4.568 15.753 0 6.606 1.585 12.017 4.535 15.798 2.969 3.807 7.26 5.88 12.457 5.88Zm0-10.695c-1 0-2.028-.617-2.855-2.397-.834-1.796-1.372-4.62-1.372-8.586 0-3.981.538-6.76 1.369-8.506.817-1.72 1.837-2.314 2.858-2.314 1.019 0 2.033.592 2.844 2.311.826 1.748 1.358 4.527 1.358 8.51 0 3.967-.532 6.79-1.361 8.587-.822 1.78-1.842 2.395-2.841 2.395Z\" fill=\"#000\" stroke=\"#fff\" stroke-width=\"1.852\"></path></svg>
       </span>`;
     } else if (post.rank === 8) {
       rankHtml = `<span class="poster-rank" style="padding:0;"> \
