@@ -33,19 +33,49 @@
   height: 48px;
 }
 
-.popular-btn:hover {
+/* FlickingList 버튼 스타일 */
+.FlickingList__button--ShlkD {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+}
+
+/* 왼쪽 버튼 (이전) */
+#popular-left {
+  left: -32px;
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'%3E%3Cg filter='url(%23icon_carousel_preview_svg__a)'%3E%3Crect x='4' y='2' width='40' height='40' rx='20' fill='%23fff'%3E%3C/rect%3E%3C/g%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M26.99 28.01a.5.5 0 0 0 0-.707L21.686 22l5.304-5.303a.5.5 0 0 0-.707-.707l-5.657 5.656a.5.5 0 0 0 0 .708l5.656 5.656a.5.5 0 0 0 .708 0Z' fill='%23555'%3E%3C/path%3E%3Cdefs%3E%3Cfilter id='icon_carousel_preview_svg__a' x='0' y='0' width='48' height='48' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'%3E%3C/feFlood%3E%3CfeColorMatrix in='SourceAlpha' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'%3E%3C/feColorMatrix%3E%3CfeOffset dy='2'%3E%3C/feOffset%3E%3CfeGaussianBlur stdDeviation='2'%3E%3C/feGaussianBlur%3E%3CfeComposite in2='hardAlpha' operator='out'%3E%3C/feComposite%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0'%3E%3C/feColorMatrix%3E%3CfeBlend in2='BackgroundImageFix' result='effect1_dropShadow_303_18803'%3E%3C/feBlend%3E%3CfeBlend in='SourceGraphic' in2='effect1_dropShadow_303_18803' result='shape'%3E%3C/feBlend%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* 오른쪽 버튼 (다음) */
+#popular-right {
+  right: -32px;
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' fill='none' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'%3E%3Cg filter='url(%23icon_carousel_next_svg__a)'%3E%3Crect width='40' height='40' rx='20' transform='matrix(-1 0 0 1 44 2)' fill='%23fff'%3E%3C/rect%3E%3C/g%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M21.01 28.01a.5.5 0 0 1 0-.707L26.314 22l-5.304-5.303a.5.5 0 0 1 .707-.707l5.657 5.656a.5.5 0 0 1 0 .708l-5.656 5.656a.5.5 0 0 1-.708 0Z' fill='%23555'%3E%3C/path%3E%3Cdefs%3E%3Cfilter id='icon_carousel_next_svg__a' x='0' y='0' width='48' height='48' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'%3E%3C/feFlood%3E%3CfeColorMatrix in='SourceAlpha' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'%3E%3C/feColorMatrix%3E%3CfeOffset dy='2'%3E%3C/feOffset%3E%3CfeGaussianBlur stdDeviation='2'%3E%3C/feGaussianBlur%3E%3CfeComposite in2='hardAlpha' operator='out'%3E%3C/feComposite%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0'%3E%3C/feColorMatrix%3E%3CfeBlend in2='BackgroundImageFix' result='effect1_dropShadow_303_18808'%3E%3C/feBlend%3E%3CfeBlend in='SourceGraphic' in2='effect1_dropShadow_303_18808' result='shape'%3E%3C/feBlend%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.popular-btn:hover,
+.FlickingList__button--ShlkD:hover {
   opacity: 0.8;
 }
 
-.popular-btn:active {
+.popular-btn:active,
+.FlickingList__button--ShlkD:active {
   opacity: 0.6;
-}
-
-#popular-left {
-  left: -32px;
-}
-#popular-right {
-  right: -32px;
 }
 
 /* 인기작 캐러셀 */
