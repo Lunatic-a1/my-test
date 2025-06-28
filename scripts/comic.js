@@ -5,6 +5,8 @@ const comics = Array.from({length: 20}, (_, i) => ({
   views: Math.floor(100 + Math.random() * 1000)
 }));
 
+const viewIconSvg = `<svg width=\"1em\" height=\"1em\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><ellipse cx=\"10\" cy=\"10\" rx=\"8\" ry=\"5\" stroke=\"#bdbdbd\" stroke-width=\"1.7\" fill=\"none\" opacity=\"0.55\"/></svg>`;
+
 function renderComics() {
   const grid = document.querySelector('.comics-grid');
   if (!grid) return;
@@ -13,11 +15,11 @@ function renderComics() {
     const card = document.createElement('div');
     card.className = 'post-card';
     card.innerHTML = `
-      <div class="poster-box">포스터</div>
-      <div class="post-title">${comic.title}</div>
-      <div class="post-meta">
-        <span class="post-rating"><img class="star-icon-img" src="/includes/star-gray.svg" alt="평점"/> ${comic.rating}</span>
-        <span class="post-views"><img class="view-icon-img" src="/includes/view-gray.svg" alt="조회수"/> ${comic.views.toLocaleString()}</span>
+      <div class=\"poster-box\">포스터</div>
+      <div class=\"post-title\">${comic.title}</div>
+      <div class=\"post-meta\">
+        <span class=\"post-rating\"><img class=\"star-icon-img\" src=\"/includes/star-gray.svg\" alt=\"평점\"/> ${comic.rating}</span>
+        <span class=\"post-views\">${viewIconSvg} ${comic.views.toLocaleString()}</span>
       </div>
     `;
     grid.appendChild(card);
