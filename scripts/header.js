@@ -41,22 +41,26 @@ function bindHeaderAuthEvents() {
   const userNotifyPanel = document.getElementById('user-notify-panel');
 
   // 드롭다운 토글 (user-profile 클릭 시에만)
-  if (userProfile && userDropdown) {
+  if (userProfile && userDropdown && userNotifyPanel) {
     userProfile.onclick = (e) => {
       // 알림 버튼 클릭 시에는 드롭다운 토글하지 않음
       if (e.target.closest('#user-notify-btn')) return;
       if (e.target.closest('#user-dropdown')) return;
       e.stopPropagation();
+      // 알림 패널 닫기
+      userNotifyPanel.style.display = 'none';
       toggleDropdown(userDropdown);
     };
   }
 
   // 알림 패널 토글 (user-notify-btn 클릭 시)
-  if (userNotifyBtn && userNotifyPanel) {
+  if (userNotifyBtn && userNotifyPanel && userDropdown) {
     let notifyOutsideHandler = null;
     userNotifyBtn.onclick = (e) => {
       e.stopPropagation();
       const isOpen = userNotifyPanel.style.display === 'block';
+      // 유저 드롭다운 닫기
+      userDropdown.style.display = 'none';
       userNotifyPanel.style.display = isOpen ? 'none' : 'block';
       if (!isOpen) {
         notifyOutsideHandler = (evt) => {
