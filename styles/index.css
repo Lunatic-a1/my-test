@@ -85,12 +85,12 @@
 
 .popular-card-spacer {
   display: inline-block;
-  width: 12px;
+  width: 24px;
 }
 
 .popular-post-card {
   display: inline-block;
-  margin-right: 12px;
+  margin-right: 24px;
   position: relative;
 }
 .popular-post-card:last-child {
