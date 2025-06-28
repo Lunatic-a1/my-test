@@ -123,14 +123,17 @@ window.addEventListener('DOMContentLoaded', () => {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
     }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 32px;
+    header a {
+      text-decoration: none;
+      color: white;
     }
-    .header-left nav ul {
+    header h1 {
+      margin: 0;
+      margin-right: 30px;
+      display: inline-block;
+    }
+    header nav ul {
       display: flex;
       gap: 32px;
       list-style: none;
@@ -138,7 +141,7 @@ window.addEventListener('DOMContentLoaded', () => {
       padding: 0;
       align-items: center;
     }
-    .header-left nav ul li a {
+    header nav ul li a {
       color: white;
       text-decoration: none;
       font-size: 18px;
@@ -146,7 +149,7 @@ window.addEventListener('DOMContentLoaded', () => {
     .header-right {
       display: flex;
       align-items: center;
-      gap: 0;
+      gap: 16px;
     }
     #search-form {
       display: flex;
@@ -156,12 +159,7 @@ window.addEventListener('DOMContentLoaded', () => {
       background: #fff;
       padding: 0 8px 0 0;
       height: 44px;
-      margin-right: 12px;
-      margin-left: 0;
-      min-width: 0;
-      flex-shrink: 1;
-      flex-grow: 0;
-      max-width: 220px;
+      margin-right: 0;
     }
     #search-input {
       border: none;
@@ -171,9 +169,7 @@ window.addEventListener('DOMContentLoaded', () => {
       height: 40px;
       background: transparent;
       color: #555;
-      width: 150px;
-      min-width: 0;
-      flex-shrink: 1;
+      width: 220px;
     }
     #search-input::placeholder {
       color: #aaa;
@@ -205,14 +201,11 @@ window.addEventListener('DOMContentLoaded', () => {
     #login-link:hover, #logout-btn:hover {
       background: #f3f3f3;
     }
-    #auth-area {
-      /* no extra style needed */
-    }
     #user-profile {
-      display: none;
-      position: relative;
+      display: flex;
       align-items: center;
       gap: 10px;
+      position: relative;
       flex-direction: row;
     }
     #user-avatar {
