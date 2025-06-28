@@ -22,18 +22,41 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
-  background: rgba(0,0,0,0.5);
-  color: #fff;
+  background: transparent;
   border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 2rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  transition: transform 0.2s ease;
 }
+
+.popular-btn:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.popular-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.popular-btn svg {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.popular-btn .blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 #popular-left {
   left: -32px;
 }
