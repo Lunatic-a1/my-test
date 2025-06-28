@@ -17,7 +17,52 @@
 }
 
 /* 인기작 슬라이드 버튼 */
-/* (삭제) .popular-btn, #popular-left, #popular-right, 관련 hover/active, .blind 등 모두 제거 */
+.popular-btn {
+  position: absolute;
+  top: 120px;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.popular-btn:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.popular-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.popular-btn svg {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.popular-btn .blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+#popular-left {
+  left: 0;
+}
+#popular-right {
+  right: 0;
+}
 
 /* 인기작 캐러셀 */
 #popular-carousel {
@@ -27,6 +72,22 @@
   scroll-behavior: smooth;
   padding-bottom: 8px;
   scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: padding 0.2s;
+}
+#popular-carousel.no-left-btn {
+  padding-left: 16px;
+}
+#popular-carousel.no-right-btn {
+  padding-right: 16px;
+}
+#popular-carousel.has-left-btn {
+  padding-left: 0;
+}
+#popular-carousel.has-right-btn {
+  padding-right: 0;
 }
 #popular-carousel::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
