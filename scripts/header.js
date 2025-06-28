@@ -66,13 +66,7 @@ function bindHeaderAuthEvents() {
         userDropdown._outsideClickHandler = null;
       }
       if (!isOpen) {
-        // user-profile 기준으로 top: 48px 맞추기
-        const profileRect = userProfile.getBoundingClientRect();
-        const panel = userNotifyPanel;
-        panel.style.display = 'block';
-        panel.style.position = 'absolute';
-        panel.style.top = (profileRect.top + 48 + window.scrollY) + 'px';
-        panel.style.left = (btnRect.right + window.scrollX - panel.offsetWidth) + 'px';
+        userNotifyPanel.style.display = 'block';
       } else {
         userNotifyPanel.style.display = 'none';
       }
