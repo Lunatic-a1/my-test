@@ -16,8 +16,8 @@ function renderFavorites() {
       <div class="poster-box">포스터</div>
       <div class="post-title favorites-post-title">${fav.title}</div>
       <div class="post-meta">
-        <span class="post-rating"><span class="star-icon">★</span> ${fav.rating}</span>
-        <span class="post-views"><span class="view-icon">👁️</span> ${fav.views.toLocaleString()}</span>
+        <span class="post-rating"><img class="star-icon-img" src="/includes/star-gray.svg" alt="평점"/> ${fav.rating}</span>
+        <span class="post-views"><img class="view-icon-img" src="/includes/view-gray.svg" alt="조회수"/> ${fav.views.toLocaleString()}</span>
       </div>
     `;
     grid.appendChild(card);
