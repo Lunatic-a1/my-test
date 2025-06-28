@@ -60,7 +60,7 @@ function renderPopularPosts() {
       <div class="poster-box">포스터<span class="poster-rank">${post.rank}</span></div>
       <div class="post-title popular-post-title">${post.title}</div>
       <div class="post-meta">
-        <span class="post-rating"><span class="star-icon">★</span> ${post.rating}</span>
+        <span class="post-rating"><img class="star-icon-img" src="/includes/star-gray.svg" alt="평점"/> ${post.rating}</span>
         <span class="post-views"><img class="view-icon-img" src="/includes/view-gray.svg" alt="조회수"/> ${post.views.toLocaleString()}</span>
       </div>
     `;
@@ -80,7 +80,7 @@ function renderLatestPosts() {
       <div class="poster-box">포스터</div>
       <div class="post-title latest-post-title">${post.title}</div>
       <div class="post-meta">
-        <span class="post-rating"><span class="star-icon">★</span> ${post.rating}</span>
+        <span class="post-rating"><img class="star-icon-img" src="/includes/star-gray.svg" alt="평점"/> ${post.rating}</span>
         <span class="post-views"><img class="view-icon-img" src="/includes/view-gray.svg" alt="조회수"/> ${post.views.toLocaleString()}</span>
       </div>
     `;
@@ -99,7 +99,7 @@ function renderFavoritePosts() {
       <div class="poster-box">포스터</div>
       <div class="post-title favorites-post-title">${post.title}</div>
       <div class="post-meta">
-        <span class="post-rating"><span class="star-icon">★</span> ${post.rating}</span>
+        <span class="post-rating"><img class="star-icon-img" src="/includes/star-gray.svg" alt="평점"/> ${post.rating}</span>
         <span class="post-views"><img class="view-icon-img" src="/includes/view-gray.svg" alt="조회수"/> ${post.views.toLocaleString()}</span>
       </div>
     `;
