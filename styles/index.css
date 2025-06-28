@@ -127,4 +127,10 @@
   text-decoration: underline;
 }
 
-/* .comics-grid 스타일은 comic.css로 이동 */ 
+/* .comics-grid 스타일은 comic.css로 이동 */
+
+.carousel-wrapper {
+  padding: 0 16px;
+  box-sizing: border-box;
+  position: relative;
+} 
