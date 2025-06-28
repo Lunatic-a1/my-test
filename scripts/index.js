@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // 버튼 상태 업데이트 함수
     function updateButtonVisibility() {
       const isAtStart = carousel.scrollLeft === 0;
-      const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 1;
+      const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 4;
       
       leftBtn.style.display = isAtStart ? 'none' : 'flex';
       rightBtn.style.display = isAtEnd ? 'none' : 'flex';
@@ -36,7 +36,6 @@ window.addEventListener('DOMContentLoaded', () => {
           lastCard.offsetLeft + lastCard.offsetWidth - carousel.clientWidth,
           0
         );
-        // 스크롤 이벤트가 끝난 후에도 버튼 상태가 정확히 반영되도록
         let scrollEndTimer;
         const onScrollEnd = () => {
           clearTimeout(scrollEndTimer);
@@ -47,7 +46,10 @@ window.addEventListener('DOMContentLoaded', () => {
         };
         carousel.addEventListener('scroll', onScrollEnd);
         carousel.scrollTo({ left: scrollTo, behavior: 'smooth' });
-        // 혹시 스크롤 이벤트가 발생하지 않을 때도 대비
+        // 스크롤 후 requestAnimationFrame으로 한 번 더 체크
+        requestAnimationFrame(() => {
+          setTimeout(updateButtonVisibility, 0);
+        });
         setTimeout(updateButtonVisibility, 500);
       }
     };
