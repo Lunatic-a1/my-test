@@ -206,14 +206,14 @@ function injectHeaderStyles() {
       background: #f3f3f3;
     }
     #user-profile {
-      display: flex;
+      display: none;
       position: relative;
       align-items: center;
       gap: 8px;
       flex-direction: row;
       white-space: nowrap;
       min-width: 0;
-      display: none;
+      max-width: 100%;
     }
     #user-avatar {
       width: 36px;
@@ -221,12 +221,21 @@ function injectHeaderStyles() {
       border-radius: 50%;
       object-fit: cover;
       background: #eee;
+      flex-shrink: 0;
     }
     #user-nickname {
       cursor: pointer;
       font-weight: bold;
       color: #fff;
       margin-left: 6px;
+      margin-right: 6px;
+      white-space: nowrap;
+      flex-shrink: 1;
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      vertical-align: middle;
     }
     #user-notify-btn {
       background: none;
@@ -235,12 +244,14 @@ function injectHeaderStyles() {
       cursor: pointer;
       display: flex;
       align-items: center;
+      flex-shrink: 0;
     }
     #user-dropdown {
       display: none;
       position: absolute;
-      right: 0;
+      left: 50%;
       top: 48px;
+      transform: translateX(-50%);
       background: #fff;
       color: #222;
       border-radius: 8px;
@@ -302,6 +313,9 @@ function injectHeaderStyles() {
       }
       #search-input {
         width: 120px;
+      }
+      #user-nickname {
+        max-width: 60px;
       }
     }
   `;
