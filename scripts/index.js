@@ -37,13 +37,13 @@ const popularPosts = Array.from({length: 10}, (_, i) => ({
 }));
 const latestPosts = Array.from({length: 7}, (_, i) => ({
   title: `최신작 ${i+1}`,
-  rating: (9.5 + Math.random() * 0.5).toFixed(2),
-  views: Math.floor(500 + Math.random() * 1000)
+  rating: (Math.random() * 4 + 6).toFixed(2),
+  views: (Math.floor(Math.random() * 10000) + 1000).toLocaleString()
 }));
 const favoritePosts = Array.from({length: 7}, (_, i) => ({
   title: `찜한 웹툰 ${i+1}`,
-  rating: (9.5 + Math.random() * 0.5).toFixed(2),
-  views: Math.floor(500 + Math.random() * 1000)
+  rating: (Math.random() * 4 + 6).toFixed(2),
+  views: (Math.floor(Math.random() * 10000) + 1000).toLocaleString()
 }));
 
 function renderPopularPosts() {
@@ -74,8 +74,12 @@ function renderLatestPosts() {
       <div class="poster-box">포스터</div>
       <div class="post-title latest-post-title">${post.title}</div>
       <div class="post-meta">
-        <span class="post-rating"><svg class="icon-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>${post.rating}</span>
-        <span class="post-views"><svg class="icon-eye" viewBox="0 0 24 24"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8a3 3 0 100 6 3 3 0 000-6z"/></svg>${post.views}</span>
+        <span class="post-meta-item">
+          <span class="post-meta-icon" aria-label="rating">★</span>${post.rating}
+        </span>
+        <span class="post-meta-item">
+          <span class="post-meta-icon" aria-label="views">👁️</span>${post.views}
+        </span>
       </div>
     `;
     grid.appendChild(card);
@@ -93,8 +97,12 @@ function renderFavoritePosts() {
       <div class="poster-box">포스터</div>
       <div class="post-title favorites-post-title">${post.title}</div>
       <div class="post-meta">
-        <span class="post-rating"><svg class="icon-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>${post.rating}</span>
-        <span class="post-views"><svg class="icon-eye" viewBox="0 0 24 24"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8a3 3 0 100 6 3 3 0 000-6z"/></svg>${post.views}</span>
+        <span class="post-meta-item">
+          <span class="post-meta-icon" aria-label="rating">★</span>${post.rating}
+        </span>
+        <span class="post-meta-item">
+          <span class="post-meta-icon" aria-label="views">👁️</span>${post.views}
+        </span>
       </div>
     `;
     grid.appendChild(card);
