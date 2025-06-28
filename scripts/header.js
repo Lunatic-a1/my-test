@@ -119,21 +119,18 @@ window.addEventListener('DOMContentLoaded', () => {
       color: white;
       padding: 15px;
     }
-    header > div {
+    .header-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      width: 100%;
     }
-    header a {
-      text-decoration: none;
-      color: white;
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 32px;
     }
-    header h1 {
-      margin: 0;
-      margin-right: 30px;
-      display: inline-block;
-    }
-    header nav ul {
+    .header-left nav ul {
       display: flex;
       gap: 32px;
       list-style: none;
@@ -141,10 +138,15 @@ window.addEventListener('DOMContentLoaded', () => {
       padding: 0;
       align-items: center;
     }
-    header nav ul li a {
+    .header-left nav ul li a {
       color: white;
       text-decoration: none;
       font-size: 18px;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 0;
     }
     #search-form {
       display: flex;
