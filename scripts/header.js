@@ -65,7 +65,17 @@ function bindHeaderAuthEvents() {
         document.removeEventListener('click', userDropdown._outsideClickHandler);
         userDropdown._outsideClickHandler = null;
       }
-      userNotifyPanel.style.display = isOpen ? 'none' : 'block';
+      if (!isOpen) {
+        // 위치 bell 아이콘 기준으로 맞추기
+        const btnRect = userNotifyBtn.getBoundingClientRect();
+        const panel = userNotifyPanel;
+        panel.style.position = 'absolute';
+        panel.style.top = btnRect.bottom + window.scrollY + 8 + 'px';
+        panel.style.left = btnRect.left + window.scrollX - (panel.offsetWidth - userNotifyBtn.offsetWidth) + 'px';
+        panel.style.display = 'block';
+      } else {
+        userNotifyPanel.style.display = 'none';
+      }
       if (!isOpen) {
         notifyOutsideHandler = (evt) => {
           if (!evt.target.closest('#user-notify-panel') && !evt.target.closest('#user-notify-btn')) {
