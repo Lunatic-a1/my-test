@@ -19,22 +19,6 @@
   position: relative;
 }
 
-/* 순위 넘버 */
-.poster-rank {
-  position: absolute;
-  left: 8px;
-  bottom: -28px;
-  font-size: 3.6rem;
-  font-family: 'Arial Black', 'Arial', 'Malgun Gothic', 'Gulim', sans-serif;
-  font-weight: 900;
-  -webkit-text-stroke: 2px #fff;
-  text-stroke: 2px #fff;
-  color: #111;
-  opacity: 1;
-  z-index: 2;
-  line-height: 1;
-}
-
 /* 포스트 타이틀 */
 .post-title {
   font-weight: bold;
