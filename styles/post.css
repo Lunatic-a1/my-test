@@ -45,14 +45,14 @@
   gap: 16px;
   margin-top: 6px;
   color: #888;
-  font-size: 1.13rem;
+  font-size: 0.98rem;
 }
 .post-meta .meta-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1.15em;
   height: 1.15em;
-  margin-right: 1.5px;
+  margin-right: 1px;
 }
 .post-meta .meta-value {
   vertical-align: middle;
