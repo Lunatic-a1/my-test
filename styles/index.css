@@ -31,14 +31,6 @@
   padding: 0;
   width: 48px;
   height: 48px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.popular-btn.visible {
-  opacity: 1;
-  visibility: visible;
 }
 
 .popular-btn:hover {
