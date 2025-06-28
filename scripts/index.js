@@ -102,7 +102,7 @@ function renderPopularPosts() {
   const carousel = document.getElementById('popular-carousel');
   if (!carousel) return;
   // Remove all except spacers
-  carousel.innerHTML = '';
+  carousel.innerHTML = '<div class="popular-card-spacer"></div>';
   popularPosts.forEach(post => {
     const card = document.createElement('div');
     card.className = 'post-card popular-post-card';
@@ -158,6 +158,7 @@ function renderPopularPosts() {
     `;
     carousel.appendChild(card);
   });
+  carousel.appendChild(document.createElement('div')).className = 'popular-card-spacer';
 }
 
 function renderLatestPosts() {
