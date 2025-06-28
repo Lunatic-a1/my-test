@@ -12,8 +12,15 @@ window.addEventListener('DOMContentLoaded', () => {
     // 버튼 상태 업데이트 함수
     function updateButtonVisibility() {
       const isAtStart = carousel.scrollLeft === 0;
-      const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 4;
-      
+      // 마지막 카드가 완전히 보이면 다음 버튼 숨김
+      const cards = carousel.querySelectorAll('.popular-post-card');
+      let isAtEnd = false;
+      if (cards.length > 0) {
+        const lastCard = cards[cards.length - 1];
+        const lastCardRight = lastCard.offsetLeft + lastCard.offsetWidth;
+        const carouselRight = carousel.scrollLeft + carousel.clientWidth;
+        isAtEnd = lastCardRight <= carouselRight + 2; // 2px 오차 허용
+      }
       leftBtn.style.display = isAtStart ? 'none' : 'flex';
       rightBtn.style.display = isAtEnd ? 'none' : 'flex';
     }
