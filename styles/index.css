@@ -1,0 +1,103 @@
+/* 메인 레이아웃 */
+.main-container {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  padding: 0 16px;
+}
+
+/* 섹션 공통 마진 */
+.section {
+  margin-bottom: 48px;
+}
+
+/* 섹션 타이틀 */
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 18px;
+}
+
+/* 인기작 슬라이드 버튼 */
+.popular-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#popular-left {
+  left: -32px;
+}
+#popular-right {
+  right: -32px;
+}
+
+/* 인기작 캐러셀 */
+#popular-carousel {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
+}
+
+.popular-card-spacer {
+  display: inline-block;
+  width: 8px;
+}
+
+.popular-post-card {
+  display: inline-block;
+  margin-right: 12px;
+  position: relative;
+}
+.popular-post-card:last-child {
+  margin-right: 0;
+}
+
+.popular-post-title {
+  color: #fff;
+}
+
+/* 최신 업로드/찜한 웹툰 그리드 */
+.latest-grid, .favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+.latest-post-card, .favorites-post-card {
+  text-align: center;
+}
+
+.latest-post-title, .favorites-post-title {
+  font-weight: bold;
+}
+
+/* 최신 업로드 섹션 헤더 */
+.latest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#latest-more-btn {
+  color: #888;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: color 0.2s;
+}
+#latest-more-btn:hover {
+  color: #222;
+} 
