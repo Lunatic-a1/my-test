@@ -18,7 +18,27 @@
 
 /* 인기작 슬라이드 버튼 */
 .popular-btn {
-  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#popular-left {
+  left: -32px;
+}
+#popular-right {
+  right: -32px;
 }
 
 /* 인기작 캐러셀 */
@@ -28,6 +48,10 @@
   white-space: nowrap;
   scroll-behavior: smooth;
   padding-bottom: 8px;
+  scrollbar-width: none; /* Firefox */
+}
+#popular-carousel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .popular-card-spacer {
