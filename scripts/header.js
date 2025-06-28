@@ -69,10 +69,10 @@ function bindHeaderAuthEvents() {
         // 위치 bell 아이콘 기준으로 맞추기
         const btnRect = userNotifyBtn.getBoundingClientRect();
         const panel = userNotifyPanel;
+        panel.style.display = 'block'; // 먼저 보여주고
         panel.style.position = 'absolute';
         panel.style.top = btnRect.bottom + window.scrollY + 8 + 'px';
         panel.style.left = (btnRect.right + window.scrollX - panel.offsetWidth) + 'px';
-        panel.style.display = 'block';
       } else {
         userNotifyPanel.style.display = 'none';
       }
