@@ -2,4 +2,53 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 12px;
+}
+
+.comic-subnav {
+  background: #fff;
+  border-bottom: 1.5px solid #eee;
+  margin-bottom: 0;
+}
+.comic-subnav-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 24px;
+  height: 48px;
+  font-size: 1.13rem;
+  font-weight: 500;
+}
+.comic-subnav-list li {
+  color: #222;
+  cursor: pointer;
+  padding: 0 8px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: color 0.2s;
+}
+.comic-subnav-list li.active {
+  color: #00c13b;
+  font-weight: 700;
+}
+.comic-subnav-list li.active::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: #00c13b;
+  border-radius: 2px 2px 0 0;
+}
+.comic-subnav-list li:not(:last-child) {
+  margin-right: 8px;
+}
+.comic-subnav-list li:not(.active):hover {
+  color: #00c13b;
 } 
