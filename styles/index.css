@@ -78,11 +78,13 @@
   scroll-behavior: smooth;
   padding-bottom: 8px;
   scrollbar-width: none; /* Firefox */
-  padding-left: 40px;
-  padding-right: 40px;
 }
 #popular-carousel::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+.popular-card-spacer:first-child {
+  width: 0;
 }
 
 .popular-card-spacer {
