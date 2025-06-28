@@ -1,6 +1,6 @@
 /* 포스트 카드 전체 */
 .post-card {
-  text-align: center;
+  text-align: left;
 }
 
 /* 포스터 박스 */
@@ -34,6 +34,7 @@
 .post-title {
   font-weight: bold;
   color: #222;
+  text-align: left;
 }
 
 /* 평점/조회수 영역 */
