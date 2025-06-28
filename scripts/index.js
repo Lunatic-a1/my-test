@@ -18,9 +18,6 @@ window.addEventListener('DOMContentLoaded', () => {
       rightBtn.style.display = isAtEnd ? 'none' : 'flex';
     }
     
-    // 초기 상태: 버튼 상태를 렌더 후에도 반영
-    setTimeout(updateButtonVisibility, 0);
-    
     // 스크롤 이벤트 리스너 추가
     carousel.addEventListener('scroll', updateButtonVisibility);
     
@@ -39,12 +36,19 @@ window.addEventListener('DOMContentLoaded', () => {
           lastCard.offsetLeft + lastCard.offsetWidth - carousel.clientWidth,
           0
         );
+        // 스크롤 이벤트가 끝난 후에도 버튼 상태가 정확히 반영되도록
+        let scrollEndTimer;
+        const onScrollEnd = () => {
+          clearTimeout(scrollEndTimer);
+          scrollEndTimer = setTimeout(() => {
+            updateButtonVisibility();
+            carousel.removeEventListener('scroll', onScrollEnd);
+          }, 80);
+        };
+        carousel.addEventListener('scroll', onScrollEnd);
         carousel.scrollTo({ left: scrollTo, behavior: 'smooth' });
-        setTimeout(() => {
-          updateButtonVisibility();
-          // 스크롤 애니메이션이 끝난 후에도 상태를 한 번 더 체크
-          setTimeout(updateButtonVisibility, 100);
-        }, 400);
+        // 혹시 스크롤 이벤트가 발생하지 않을 때도 대비
+        setTimeout(updateButtonVisibility, 500);
       }
     };
   }
