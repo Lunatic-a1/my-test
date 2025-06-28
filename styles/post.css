@@ -52,12 +52,17 @@
   vertical-align: middle;
   width: 1.15em;
   height: 1.15em;
-  margin-right: 1px;
+  margin-right: 0;
 }
 .post-meta .meta-value {
   vertical-align: middle;
   font-size: 1em;
   font-weight: 500;
+}
+
+/* 평점 숫자와 조회수 아이콘 사이 여백 */
+.meta-value + .meta-icon {
+  margin-left: 16px;
 }
 
 /* 포스트 카드 정보 래퍼 */
