@@ -109,31 +109,36 @@ function bindHeaderAuthEvents() {
   }
 }
 
-// 헤더가 동적으로 삽입된 후 실행
-window.addEventListener('DOMContentLoaded', () => {
-  // Inject header styles
+// Inject header styles dynamically
+function injectHeaderStyles() {
+  if (document.getElementById('header-style')) return;
   const style = document.createElement('style');
+  style.id = 'header-style';
   style.textContent = `
     header {
       background: #333;
       color: white;
       padding: 15px;
     }
-    .header-inner {
+    .header-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 28px;
+      width: 100%;
     }
-    header a {
-      text-decoration: none;
-      color: white;
-    }
-    header h1 {
+    .header-logo h1 {
       margin: 0;
       margin-right: 30px;
       display: inline-block;
+      font-size: 2rem;
+      color: white;
     }
-    header nav ul {
+    .header-logo {
+      text-decoration: none;
+      color: white;
+      margin-right: 10px;
+    }
+    .header-nav ul {
       display: flex;
       gap: 32px;
       list-style: none;
@@ -141,15 +146,14 @@ window.addEventListener('DOMContentLoaded', () => {
       padding: 0;
       align-items: center;
     }
-    header nav ul li a {
+    .header-nav a {
       color: white;
       text-decoration: none;
       font-size: 18px;
+      transition: color 0.2s;
     }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+    .header-nav a:hover {
+      color: #ffd700;
     }
     #search-form {
       display: flex;
@@ -159,7 +163,7 @@ window.addEventListener('DOMContentLoaded', () => {
       background: #fff;
       padding: 0 8px 0 0;
       height: 44px;
-      margin-right: 0;
+      margin-right: 8px;
     }
     #search-input {
       border: none;
@@ -202,10 +206,10 @@ window.addEventListener('DOMContentLoaded', () => {
       background: #f3f3f3;
     }
     #user-profile {
-      display: flex;
+      display: none;
+      position: relative;
       align-items: center;
       gap: 10px;
-      position: relative;
       flex-direction: row;
     }
     #user-avatar {
@@ -288,9 +292,22 @@ window.addEventListener('DOMContentLoaded', () => {
       font-size: 15px;
       color: #444;
     }
+    @media (max-width: 900px) {
+      .header-row {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      #search-input {
+        width: 120px;
+      }
+    }
   `;
   document.head.appendChild(style);
+}
 
+// 헤더가 동적으로 삽입된 후 실행
+window.addEventListener('DOMContentLoaded', () => {
+  injectHeaderStyles();
   const checkHeader = setInterval(() => {
     if (document.getElementById('user-profile')) {
       clearInterval(checkHeader);
