@@ -1,44 +1,40 @@
 // 인기작 캐러셀 좌우 스크롤
+let updatePopularButtonVisibility;
 window.addEventListener('DOMContentLoaded', () => {
   const carousel = document.getElementById('popular-carousel');
   const leftBtn = document.getElementById('popular-left');
   const rightBtn = document.getElementById('popular-right');
   
   if (carousel && leftBtn && rightBtn) {
-    // 초기 버튼 상태 설정
-    updateButtonVisibility();
-    
-    leftBtn.onclick = () => {
-      carousel.scrollBy({left: -200, behavior: 'smooth'});
-    };
-    rightBtn.onclick = () => {
-      carousel.scrollBy({left: 200, behavior: 'smooth'});
-    };
-    
-    // 스크롤 이벤트 리스너 추가
-    carousel.addEventListener('scroll', updateButtonVisibility);
-    
-    // 버튼 표시/숨김 함수
-    function updateButtonVisibility() {
+    // 버튼 표시/숨김 함수 (전역)
+    updatePopularButtonVisibility = function() {
       const scrollLeft = carousel.scrollLeft;
       const scrollWidth = carousel.scrollWidth;
       const clientWidth = carousel.clientWidth;
       const maxScrollLeft = scrollWidth - clientWidth;
-      
       // 이전 버튼: 스크롤이 맨 왼쪽에 있으면 숨김
       if (scrollLeft <= 0) {
         leftBtn.style.display = 'none';
       } else {
         leftBtn.style.display = 'flex';
       }
-      
       // 다음 버튼: 스크롤이 맨 오른쪽에 있으면 숨김
-      if (scrollLeft >= maxScrollLeft) {
+      if (scrollLeft >= maxScrollLeft - 1) {
         rightBtn.style.display = 'none';
       } else {
         rightBtn.style.display = 'flex';
       }
-    }
+    };
+    // 초기 버튼 상태 설정
+    updatePopularButtonVisibility();
+    leftBtn.onclick = () => {
+      carousel.scrollBy({left: -200, behavior: 'smooth'});
+    };
+    rightBtn.onclick = () => {
+      carousel.scrollBy({left: 200, behavior: 'smooth'});
+    };
+    // 스크롤 이벤트 리스너 추가
+    carousel.addEventListener('scroll', updatePopularButtonVisibility);
   }
 });
 
@@ -138,6 +134,10 @@ function renderPopularPosts() {
     carousel.appendChild(card);
   });
   carousel.appendChild(document.createElement('div')).className = 'popular-card-spacer';
+  // 카드 렌더링 후 버튼 상태 재계산
+  if (typeof updatePopularButtonVisibility === 'function') {
+    setTimeout(updatePopularButtonVisibility, 0);
+  }
 }
 
 function renderLatestPosts() {
