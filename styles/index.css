@@ -61,6 +61,7 @@
 
 .popular-carousel-wrapper {
   position: relative;
+  padding-left: 16px;
 }
 #popular-left {
   left: 12px;
