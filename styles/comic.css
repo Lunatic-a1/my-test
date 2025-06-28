@@ -60,6 +60,9 @@
   flex-wrap: wrap;
   gap: 10px 12px;
   margin: 18px 0 0 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 0 16px;
 }
 .genre-tag {
