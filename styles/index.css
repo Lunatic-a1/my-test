@@ -68,10 +68,6 @@
   margin-right: 0;
 }
 
-.popular-post-title {
-  color: #fff;
-}
-
 /* 최신 업로드/찜한 웹툰 그리드 */
 .latest-grid, .favorites-grid {
   display: grid;
