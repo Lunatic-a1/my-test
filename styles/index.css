@@ -27,8 +27,6 @@
   scroll-behavior: smooth;
   padding-bottom: 8px;
   scrollbar-width: none; /* Firefox */
-  padding-left: 16px;
-  padding-right: 16px;
 }
 #popular-carousel::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
