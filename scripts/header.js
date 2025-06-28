@@ -71,7 +71,7 @@ function bindHeaderAuthEvents() {
         const panel = userNotifyPanel;
         panel.style.position = 'absolute';
         panel.style.top = btnRect.bottom + window.scrollY + 8 + 'px';
-        panel.style.left = btnRect.left + window.scrollX - (panel.offsetWidth - userNotifyBtn.offsetWidth) + 'px';
+        panel.style.left = (btnRect.right + window.scrollX - panel.offsetWidth) + 'px';
         panel.style.display = 'block';
       } else {
         userNotifyPanel.style.display = 'none';
