@@ -12,31 +12,25 @@
           </ul>
         </nav>
       </div>
-      <div style="display: flex; align-items: center; gap: 0;">
+      <div>
         <form id="search-form">
           <input type="text" id="search-input" placeholder="제목/작가로 검색할 수 있습니다." />
           <button type="submit">
             <svg width="22" height="22" fill="#888" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="#888" stroke-width="2" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#888" stroke-width="2"/></svg>
           </button>
         </form>
-        <!-- 로그인 & 프로필 영역 (동일 flex row 내에 위치) -->
         <a href="/login.html" id="login-link">로그인</a>
-        <div id="auth-area" style="display: flex; align-items: center;">
+        <!-- 로그인 & 프로필 영역 -->
+        <div id="auth-area">
+          <!-- 로그인된 사용자용 프로필 (처음엔 숨김) -->
           <div id="user-profile">
             <img id="user-avatar" src="/default-profile.png" alt="프로필">
             <span id="user-nickname">닉네임</span>
-            <button id="user-notify-btn">
-              <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v3.586l-.707.707A1 1 0 0 0 5 16h14a1 1 0 0 0 .707-1.707L19 12.586V9a7 7 0 0 0-7-7zm0 18a3 3 0 0 0 2.995-2.824L15 17h-6a3 3 0 0 0 2.824 2.995L12 20z"/></svg>
-            </button>
             <div id="user-dropdown">
               <div>ID: <span id="user-id">--------</span></div>
               <div>코인: <span id="user-point">0</span></div>
               <button id="profile-btn">회원정보</button>
               <button id="logout-btn">로그아웃</button>
-              <div id="user-notify-panel">
-                <div>알림</div>
-                <div id="notify-list">알림이 없습니다.</div>
-              </div>
             </div>
           </div>
         </div>
