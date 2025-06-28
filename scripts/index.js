@@ -13,7 +13,6 @@ window.addEventListener('DOMContentLoaded', () => {
     function updateButtonVisibility() {
       const isAtStart = carousel.scrollLeft === 0;
       const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 1;
-      
       leftBtn.style.display = isAtStart ? 'none' : 'flex';
       rightBtn.style.display = isAtEnd ? 'none' : 'flex';
     }
