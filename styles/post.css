@@ -1,6 +1,7 @@
 /* 포스트 카드 전체 */
 .post-card {
   text-align: left;
+  margin-bottom: 32px;
 }
 
 /* 포스터 박스 */
