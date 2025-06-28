@@ -32,7 +32,11 @@ window.addEventListener('DOMContentLoaded', () => {
       const cards = carousel.querySelectorAll('.popular-post-card');
       if (cards.length > 0) {
         const lastCard = cards[cards.length - 1];
-        carousel.scrollTo({ left: lastCard.offsetLeft, behavior: 'smooth' });
+        const scrollTo = Math.max(
+          lastCard.offsetLeft + lastCard.offsetWidth - carousel.clientWidth,
+          0
+        );
+        carousel.scrollTo({ left: scrollTo, behavior: 'smooth' });
         setTimeout(updateButtonVisibility, 400);
       }
     };
