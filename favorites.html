@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>찜한 웹툰</title>
+  <link rel="stylesheet" href="styles/post.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/favorites.css" />
+</head>
+<body>
+  <!-- 헤더/푸터는 load-layout.js에서 자동으로 삽입됨 -->
+  <main class="main-container">
+    <section class="section">
+      <h2 class="section-title">찜한 웹툰</h2>
+      <div class="favorites-grid"><!-- post-card들이 JS로 동적 생성 --></div>
+    </section>
+  </main>
+  <script src="scripts/load-layout.js"></script>
+  <script type="module" src="scripts/header.js"></script>
+  <script type="module" src="scripts/favorites.js"></script>
+</body>
+</html> 
