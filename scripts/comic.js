@@ -31,4 +31,60 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+});
+
+const genres = [
+  '로맨스', '판타지', '액션', '일상', '스릴러', '개그', '무협/사극', '드라마', '감성', '스포츠',
+  '연도별웹툰', '브랜드웹툰', '드라마&영화 원작웹툰', '먼치킨',
+  '학원로맨스', '로판', '게임판타지', '사이다', '프리퀄', '후회남',
+  '슈퍼스트링', '고자극스릴러', '후회물', '격투기', '캠퍼스', '구원서사', '인플루언서', '환생'
+];
+
+function renderGenreList(activeIdx = 0) {
+  const container = document.getElementById('genre-list-container');
+  if (!container) return;
+  container.innerHTML = '';
+  genres.forEach((genre, idx) => {
+    const tag = document.createElement('span');
+    tag.className = 'genre-tag' + (idx === activeIdx ? ' active' : '');
+    tag.textContent = `#${genre}`;
+    tag.onclick = () => {
+      container.querySelectorAll('.genre-tag').forEach(t => t.classList.remove('active'));
+      tag.classList.add('active');
+    };
+    container.appendChild(tag);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const genreTabBtn = document.getElementById('genre-tab-btn');
+  const genreListContainer = document.getElementById('genre-list-container');
+  const subnav = document.querySelector('.comic-subnav-list');
+  let genreListVisible = false;
+  if (genreTabBtn && genreListContainer) {
+    genreTabBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      genreListVisible = !genreListVisible;
+      genreListContainer.style.display = genreListVisible ? 'flex' : 'none';
+      if (genreListVisible) {
+        renderGenreList(0);
+      }
+    });
+    // 다른 서브네비 클릭 시 장르 닫기
+    if (subnav) {
+      subnav.addEventListener('click', (e) => {
+        if (e.target !== genreTabBtn) {
+          genreListContainer.style.display = 'none';
+          genreListVisible = false;
+        }
+      });
+    }
+    // 바깥 클릭 시 닫기
+    document.addEventListener('click', (e) => {
+      if (genreListVisible && !genreListContainer.contains(e.target) && e.target !== genreTabBtn) {
+        genreListContainer.style.display = 'none';
+        genreListVisible = false;
+      }
+    });
+  }
 }); 
