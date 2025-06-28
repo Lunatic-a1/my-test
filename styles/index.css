@@ -32,6 +32,10 @@
   padding: 0;
   border-radius: 50%;
   transition: background 0.2s, box-shadow 0.2s;
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  min-height: 64px;
 }
 
 .popular-btn:hover {
@@ -43,8 +47,8 @@
 }
 
 .popular-btn svg {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
