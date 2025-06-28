@@ -32,10 +32,6 @@
   padding: 0;
   border-radius: 50%;
   transition: background 0.2s, box-shadow 0.2s;
-  width: 64px;
-  height: 64px;
-  min-width: 64px;
-  min-height: 64px;
 }
 
 .popular-btn:hover {
@@ -47,8 +43,8 @@
 }
 
 .popular-btn svg {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
@@ -67,10 +63,10 @@
   position: relative;
 }
 #popular-left {
-  left: 12px;
+  left: -24px;
 }
 #popular-right {
-  right: 12px;
+  right: -24px;
 }
 
 /* 인기작 캐러셀 */
