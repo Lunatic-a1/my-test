@@ -103,4 +103,12 @@
   font-size: 1rem;
   font-weight: 700;
   text-align: left;
+}
+
+.poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
 } 
