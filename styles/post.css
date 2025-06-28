@@ -34,4 +34,27 @@
 .post-title {
   font-weight: bold;
   color: #222;
+}
+
+/* 평점/조회수 영역 */
+.post-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-top: 6px;
+  color: #888;
+  font-size: 1.13rem;
+}
+.post-meta .meta-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 3px;
+}
+.post-meta .meta-value {
+  vertical-align: middle;
+  font-size: 1em;
+  font-weight: 500;
 } 
