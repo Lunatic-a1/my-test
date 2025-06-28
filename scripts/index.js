@@ -36,14 +36,10 @@ const popularPosts = Array.from({length: 10}, (_, i) => ({
   rank: i+1
 }));
 const latestPosts = Array.from({length: 7}, (_, i) => ({
-  title: `최신작 ${i+1}`,
-  rating: (Math.random() * 4 + 6).toFixed(2),
-  views: (Math.floor(Math.random() * 10000) + 1000).toLocaleString()
+  title: `최신작 ${i+1}`
 }));
 const favoritePosts = Array.from({length: 7}, (_, i) => ({
-  title: `찜한 웹툰 ${i+1}`,
-  rating: (Math.random() * 4 + 6).toFixed(2),
-  views: (Math.floor(Math.random() * 10000) + 1000).toLocaleString()
+  title: `찜한 웹툰 ${i+1}`
 }));
 
 function renderPopularPosts() {
@@ -73,14 +69,6 @@ function renderLatestPosts() {
     card.innerHTML = `
       <div class="poster-box">포스터</div>
       <div class="post-title latest-post-title">${post.title}</div>
-      <div class="post-meta">
-        <span class="post-meta-item">
-          <span class="post-meta-icon" aria-label="rating">★</span>${post.rating}
-        </span>
-        <span class="post-meta-item">
-          <span class="post-meta-icon" aria-label="views">👁️</span>${post.views}
-        </span>
-      </div>
     `;
     grid.appendChild(card);
   });
@@ -96,14 +84,6 @@ function renderFavoritePosts() {
     card.innerHTML = `
       <div class="poster-box">포스터</div>
       <div class="post-title favorites-post-title">${post.title}</div>
-      <div class="post-meta">
-        <span class="post-meta-item">
-          <span class="post-meta-icon" aria-label="rating">★</span>${post.rating}
-        </span>
-        <span class="post-meta-item">
-          <span class="post-meta-icon" aria-label="views">👁️</span>${post.views}
-        </span>
-      </div>
     `;
     grid.appendChild(card);
   });
