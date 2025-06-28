@@ -33,13 +33,19 @@ document.addEventListener('DOMContentLoaded', () => {
 // 예시 데이터
 const popularPosts = Array.from({length: 10}, (_, i) => ({
   title: `인기작 ${i+1}`,
-  rank: i+1
+  rank: i+1,
+  rating: (9.5 + Math.random() * 0.5).toFixed(2),
+  views: Math.floor(100 + Math.random() * 1000)
 }));
 const latestPosts = Array.from({length: 7}, (_, i) => ({
-  title: `최신작 ${i+1}`
+  title: `최신작 ${i+1}`,
+  rating: (9.5 + Math.random() * 0.5).toFixed(2),
+  views: Math.floor(100 + Math.random() * 1000)
 }));
 const favoritePosts = Array.from({length: 7}, (_, i) => ({
-  title: `찜한 웹툰 ${i+1}`
+  title: `찜한 웹툰 ${i+1}`,
+  rating: (9.5 + Math.random() * 0.5).toFixed(2),
+  views: Math.floor(100 + Math.random() * 1000)
 }));
 
 function renderPopularPosts() {
@@ -53,6 +59,10 @@ function renderPopularPosts() {
     card.innerHTML = `
       <div class="poster-box">포스터<span class="poster-rank">${post.rank}</span></div>
       <div class="post-title popular-post-title">${post.title}</div>
+      <div class="post-meta">
+        <span class="post-rating"><span class="star-icon">★</span> ${post.rating}</span>
+        <span class="post-views"><img class="view-icon-img" src="/includes/view-gray.svg" alt="조회수"/> ${post.views.toLocaleString()}</span>
+      </div>
     `;
     carousel.appendChild(card);
   });
@@ -69,6 +79,10 @@ function renderLatestPosts() {
     card.innerHTML = `
       <div class="poster-box">포스터</div>
       <div class="post-title latest-post-title">${post.title}</div>
+      <div class="post-meta">
+        <span class="post-rating"><span class="star-icon">★</span> ${post.rating}</span>
+        <span class="post-views"><img class="view-icon-img" src="/includes/view-gray.svg" alt="조회수"/> ${post.views.toLocaleString()}</span>
+      </div>
     `;
     grid.appendChild(card);
   });
@@ -84,6 +98,10 @@ function renderFavoritePosts() {
     card.innerHTML = `
       <div class="poster-box">포스터</div>
       <div class="post-title favorites-post-title">${post.title}</div>
+      <div class="post-meta">
+        <span class="post-rating"><span class="star-icon">★</span> ${post.rating}</span>
+        <span class="post-views"><img class="view-icon-img" src="/includes/view-gray.svg" alt="조회수"/> ${post.views.toLocaleString()}</span>
+      </div>
     `;
     grid.appendChild(card);
   });
