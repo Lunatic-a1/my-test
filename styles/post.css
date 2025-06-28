@@ -34,26 +34,4 @@
 .post-title {
   font-weight: bold;
   color: #222;
-}
-
-.post-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  justify-content: flex-start;
-  margin-top: 4px;
-  color: #888;
-  font-size: 1.1rem;
-}
-.post-meta-item {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.post-meta-icon {
-  display: inline-block;
-  height: 1em;
-  width: 1.1em;
-  vertical-align: middle;
-  margin-right: 2px;
 } 
