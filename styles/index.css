@@ -19,7 +19,7 @@
 /* 인기작 슬라이드 버튼 */
 .popular-btn {
   position: absolute;
-  top: 120px; /* 포스터 높이(240px)의 중앙 */
+  top: 120px;
   transform: translateY(-50%);
   z-index: 2;
   background: transparent;
@@ -59,11 +59,9 @@
 
 #popular-left {
   left: 0;
-  transform: translate(-50%, -50%);
 }
 #popular-right {
   right: 0;
-  transform: translate(50%, -50%);
 }
 
 /* 인기작 캐러셀 */
@@ -72,21 +70,37 @@
   overflow-y: hidden;
   white-space: nowrap;
   scroll-behavior: smooth;
-  padding: 0 16px;
-  scrollbar-width: none;
-  position: relative;
+  padding-bottom: 8px;
+  scrollbar-width: none; /* Firefox */
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: padding 0.2s;
+}
+#popular-carousel.no-left-btn {
+  padding-left: 16px;
+}
+#popular-carousel.no-right-btn {
+  padding-right: 16px;
+}
+#popular-carousel.has-left-btn {
+  padding-left: 0;
+}
+#popular-carousel.has-right-btn {
+  padding-right: 0;
 }
 #popular-carousel::-webkit-scrollbar {
-  display: none;
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.popular-card-spacer {
+  display: inline-block;
+  width: 8px;
 }
 
 .popular-post-card {
   display: inline-block;
   margin-right: 12px;
   position: relative;
-}
-.popular-post-card:first-child {
-  margin-left: 0;
 }
 .popular-post-card:last-child {
   margin-right: 0;
