@@ -90,7 +90,7 @@
 
 .popular-post-card {
   display: inline-block;
-  margin-right: 0;
+  margin-right: 12px;
   position: relative;
 }
 .popular-post-card:last-child {
