@@ -100,4 +100,16 @@
 }
 #latest-more-btn:hover {
   color: #222;
+}
+
+#favorites-more-btn {
+  color: #888;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: color 0.2s;
+}
+#favorites-more-btn:hover {
+  color: #222;
 } 
