@@ -19,4 +19,13 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/fi
 const favSection = document.getElementById('my-favorites-section');
 onAuthStateChanged(auth, (user) => {
   if (favSection) favSection.style.display = user ? '' : 'none';
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const latestMoreBtn = document.getElementById('latest-more-btn');
+  if (latestMoreBtn) {
+    latestMoreBtn.addEventListener('click', () => {
+      window.location.href = 'comics.html';
+    });
+  }
 }); 
