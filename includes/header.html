@@ -1,24 +1,23 @@
 <header>
-  <div class="header-inner">
-    <div>
-      <a href="/index.html">
-        <h1>📚 MyToon</h1>
-      </a>
-      <nav>
-        <ul>
-          <li><a href="/index.html">홈</a></li>
-          <li><a href="/webtoon.html">웹툰</a></li>
-          <li><a href="/creators.html">CREATORS</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="header-right">
-      <form id="search-form">
-        <input type="text" id="search-input" placeholder="제목/작가로 검색할 수 있습니다." />
-        <button type="submit">
-          <svg width="22" height="22" fill="#888" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="#888" stroke-width="2" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#888" stroke-width="2"/></svg>
-        </button>
-      </form>
+  <div class="header-row">
+    <a href="/index.html" class="header-logo">
+      <h1>📚 MyToon</h1>
+    </a>
+    <nav class="header-nav">
+      <ul>
+        <li><a href="/index.html">홈</a></li>
+        <li><a href="/webtoon.html">웹툰</a></li>
+        <li><a href="/creators.html">CREATORS</a></li>
+      </ul>
+    </nav>
+    <form id="search-form">
+      <input type="text" id="search-input" placeholder="제목/작가로 검색할 수 있습니다." />
+      <button type="submit">
+        <svg width="22" height="22" fill="#888" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="#888" stroke-width="2" fill="none"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#888" stroke-width="2"/></svg>
+      </button>
+    </form>
+    <a href="/login.html" id="login-link">로그인</a>
+    <div id="auth-area">
       <div id="user-profile">
         <img id="user-avatar" src="/default-profile.png" alt="프로필">
         <span id="user-nickname">닉네임</span>
@@ -36,7 +35,6 @@
           </div>
         </div>
       </div>
-      <a href="/login.html" id="login-link">로그인</a>
     </div>
   </div>
 </header>
