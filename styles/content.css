@@ -122,6 +122,17 @@
   text-align: left;
 }
 
+.rank-number {
+  position: absolute;
+  left: 12px;
+  bottom: 8px;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #111;
+  z-index: 1;
+  pointer-events: none;
+}
+
 <svg width="56" height="48" viewBox="0 0 56 48" fill="none" xmlns="http://www.w3.org/2000/svg">
   <text x="50%" y="80%" text-anchor="middle" font-family="Arial Black, Malgun Gothic, Arial, sans-serif" font-size="40" font-weight="900" fill="white" stroke="red" stroke-width="3">10</text>
 </svg> 
