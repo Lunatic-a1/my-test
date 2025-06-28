@@ -64,4 +64,8 @@
 .post-info {
   width: 160px;
   margin: 0 auto;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  padding: 0;
+  box-sizing: border-box;
 } 
