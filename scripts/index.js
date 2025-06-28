@@ -3,12 +3,32 @@ window.addEventListener('DOMContentLoaded', () => {
   const carousel = document.getElementById('popular-carousel');
   const leftBtn = document.getElementById('popular-left');
   const rightBtn = document.getElementById('popular-right');
+  
   if (carousel && leftBtn && rightBtn) {
+    // 초기 상태: 왼쪽 버튼 숨김, 오른쪽 버튼 표시
+    leftBtn.style.display = 'none';
+    rightBtn.style.display = 'flex';
+    
+    // 버튼 상태 업데이트 함수
+    function updateButtonVisibility() {
+      const isAtStart = carousel.scrollLeft === 0;
+      const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 1;
+      
+      leftBtn.style.display = isAtStart ? 'none' : 'flex';
+      rightBtn.style.display = isAtEnd ? 'none' : 'flex';
+    }
+    
+    // 스크롤 이벤트 리스너 추가
+    carousel.addEventListener('scroll', updateButtonVisibility);
+    
+    // 왼쪽 버튼 클릭: 처음으로 이동
     leftBtn.onclick = () => {
-      carousel.scrollBy({left: -200, behavior: 'smooth'});
+      carousel.scrollTo({left: 0, behavior: 'smooth'});
     };
+    
+    // 오른쪽 버튼 클릭: 끝으로 이동
     rightBtn.onclick = () => {
-      carousel.scrollBy({left: 200, behavior: 'smooth'});
+      carousel.scrollTo({left: carousel.scrollWidth - carousel.clientWidth, behavior: 'smooth'});
     };
   }
 });
