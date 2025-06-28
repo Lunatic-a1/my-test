@@ -1,0 +1,92 @@
+/* 콘텐츠 카드 전체 */
+.content-card {
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+/* 포스터 박스 */
+.poster-box {
+  width: 160px;
+  height: 240px;
+  background: #eee;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #888;
+  margin: 0 auto 10px auto;
+  position: relative;
+}
+
+
+
+/* 콘텐츠 타이틀 */
+.content-title {
+  font-weight: bold;
+  color: #222;
+  text-align: left;
+}
+
+/* 평점/조회수 영역 */
+.content-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  margin-top: 0px;
+  color: #888;
+  font-size: 0.88rem;
+}
+.content-meta .meta-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 0;
+}
+.content-meta .meta-value {
+  vertical-align: middle;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+/* 평점 숫자와 조회수 아이콘 사이 여백 */
+.meta-value + .meta-icon {
+  margin-left: 16px;
+}
+
+/* 콘텐츠 카드 정보 래퍼 */
+.content-info {
+  width: 160px;
+  margin: 0 auto;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.up-badge {
+  display: inline-block;
+  border: 2px solid #ff3b30;
+  color: #ff3b30;
+  font-size: 0.7em;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 1px 3px;
+  margin-right: 6px;
+  line-height: 1;
+  vertical-align: middle;
+  background: #fff;
+  letter-spacing: -0.5px;
+  position: relative;
+  top: -2px;
+}
+
+.popular-content-title {
+  color: #111;
+  margin-top: 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+} 
