@@ -19,22 +19,23 @@
 /* 인기작 슬라이드 버튼 */
 .popular-btn {
   position: absolute;
-  top: 120px;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 2;
-  background: transparent;
+  background: rgba(255,255,255,0.85);
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  transition: transform 0.2s ease;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  pointer-events: auto;
+  transition: background 0.2s, box-shadow 0.2s;
 }
 
 .popular-btn:hover {
-  transform: translateY(-50%) scale(1.05);
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 
 .popular-btn:active {
@@ -60,12 +61,18 @@
 
 .popular-carousel-wrapper {
   position: relative;
-  padding-left: 0;
-  padding-right: 0;
+  /* padding-left: 56px; */
+  /* padding-right: 56px; */
+}
+#popular-left {
+  left: -24px;
+}
+#popular-right {
+  right: -24px;
 }
 
+/* 인기작 캐러셀 */
 #popular-carousel {
-  position: relative;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -128,10 +135,3 @@
 }
 
 /* .comics-grid 스타일은 comic.css로 이동 */ 
-
-#popular-left {
-  left: 0;
-}
-#popular-right {
-  right: 0;
-} 
