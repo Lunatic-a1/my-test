@@ -48,6 +48,10 @@
   white-space: nowrap;
   scroll-behavior: smooth;
   padding-bottom: 8px;
+  scrollbar-width: none; /* Firefox */
+}
+#popular-carousel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .popular-card-spacer {
