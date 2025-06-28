@@ -59,14 +59,19 @@
 
 .popular-carousel-wrapper {
   position: relative;
-  padding-left: 56px;
-  padding-right: 56px;
+  padding: 0;
+}
+#popular-left, #popular-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
 }
 #popular-left {
-  left: 0;
+  left: 8px;
 }
 #popular-right {
-  right: 0;
+  right: 8px;
 }
 
 /* 인기작 캐러셀 */
