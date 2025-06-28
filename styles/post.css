@@ -52,7 +52,7 @@
 }
 .star-icon {
   color: #bdbdbd;
-  font-size: 1.1em;
+  font-size: 1em;
   margin-right: 2px;
 }
 .view-icon {
@@ -61,8 +61,8 @@
   margin-right: 2px;
 }
 .view-icon-img {
-  width: 1.1em;
-  height: 1.1em;
+  width: 1em;
+  height: 1em;
   vertical-align: middle;
   margin-right: 2px;
   opacity: 1;
