@@ -79,7 +79,7 @@
 
 .popular-card-spacer {
   display: inline-block;
-  width: 16px;
+  width: 8px;
 }
 
 .popular-post-card {
@@ -127,10 +127,4 @@
   text-decoration: underline;
 }
 
-/* .comics-grid 스타일은 comic.css로 이동 */
-
-.carousel-wrapper {
-  padding: 0 16px;
-  box-sizing: border-box;
-  position: relative;
-} 
+/* .comics-grid 스타일은 comic.css로 이동 */ 
