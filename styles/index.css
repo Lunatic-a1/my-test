@@ -102,4 +102,6 @@
 #latest-more-btn:hover, #favorites-more-btn:hover {
   color: #222;
   text-decoration: underline;
-} 
+}
+
+/* .comics-grid 스타일은 comic.css로 이동 */ 
