@@ -27,12 +27,7 @@
   font-size: 3.6rem;
   font-weight: 900;
   color: #111;
-  -webkit-text-stroke: 4px #fff;
-  text-stroke: 4px #fff;
-  text-shadow:
-    0 0 2px #fff,
-    0 0 4px #fff,
-    0 0 8px #fff;
+  text-shadow: 0 2px 8px #fff, 2px 0 8px #fff;
   opacity: 1;
   z-index: 2;
   line-height: 1;
