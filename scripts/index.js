@@ -3,40 +3,13 @@ window.addEventListener('DOMContentLoaded', () => {
   const carousel = document.getElementById('popular-carousel');
   const leftBtn = document.getElementById('popular-left');
   const rightBtn = document.getElementById('popular-right');
-  
   if (carousel && leftBtn && rightBtn) {
-    // 초기 상태 설정 (왼쪽 버튼 숨김, 오른쪽 버튼 표시)
-    leftBtn.style.display = 'none';
-    rightBtn.style.display = 'flex';
-    
-    // 버튼 상태 업데이트 함수
-    function updateButtonVisibility() {
-      const scrollLeft = carousel.scrollLeft;
-      const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-      
-      // 왼쪽 버튼: 맨 왼쪽에 있으면 숨김, 아니면 표시
-      leftBtn.style.display = scrollLeft <= 0 ? 'none' : 'flex';
-      
-      // 오른쪽 버튼: 맨 오른쪽에 있으면 숨김, 아니면 표시
-      rightBtn.style.display = scrollLeft >= maxScrollLeft ? 'none' : 'flex';
-    }
-    
-    // 스크롤 이벤트 리스너 추가
-    carousel.addEventListener('scroll', updateButtonVisibility);
-    
-    // 왼쪽 버튼 클릭: 맨 왼쪽으로 이동
     leftBtn.onclick = () => {
-      carousel.scrollTo({left: 0, behavior: 'smooth'});
+      carousel.scrollBy({left: -200, behavior: 'smooth'});
     };
-    
-    // 오른쪽 버튼 클릭: 맨 오른쪽으로 이동
     rightBtn.onclick = () => {
-      const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-      carousel.scrollTo({left: maxScrollLeft, behavior: 'smooth'});
+      carousel.scrollBy({left: 200, behavior: 'smooth'});
     };
-    
-    // 초기 버튼 상태 설정
-    updateButtonVisibility();
   }
 });
 
