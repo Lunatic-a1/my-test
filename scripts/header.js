@@ -79,7 +79,7 @@ function bindHeaderAuthEvents() {
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       if (loginLink) loginLink.style.display = 'none';
-      if (userProfile) userProfile.style.display = 'inline-block';
+      if (userProfile) userProfile.style.display = 'flex';
       // Firestore에서 유저 정보 가져오기
       const userDoc = await getDoc(doc(db, 'users', user.uid));
       if (userDoc.exists()) {
@@ -214,7 +214,7 @@ const headerStyle = `
   background: #f3f3f3;
 }
 .user-profile {
-  display: none;
+  display: flex;
   position: relative;
   align-items: center;
   gap: 10px;
