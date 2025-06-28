@@ -36,25 +36,24 @@
   color: #222;
 }
 
-/* 포스트 카드 평점/조회수 */
 .post-meta {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 4px;
-  color: #999;
-  font-size: 1.08rem;
+  gap: 16px;
   justify-content: flex-start;
+  margin-top: 4px;
+  color: #888;
+  font-size: 1.1rem;
 }
-.post-rating, .post-views {
+.post-meta-item {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
 }
-.icon-star, .icon-eye {
-  width: 18px;
-  height: 18px;
+.post-meta-icon {
+  display: inline-block;
+  height: 1em;
+  width: 1.1em;
   vertical-align: middle;
-  fill: #bbb;
   margin-right: 2px;
 } 
