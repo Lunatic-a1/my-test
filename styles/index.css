@@ -19,7 +19,7 @@
 /* 인기작 슬라이드 버튼 */
 .popular-btn {
   position: absolute;
-  top: 120px;
+  top: 120px; /* 포스터 높이(240px)의 중앙 */
   transform: translateY(-50%);
   z-index: 2;
   background: transparent;
@@ -57,6 +57,11 @@
   border: 0;
 }
 
+.popular-carousel-wrapper {
+  position: relative;
+  padding-left: 56px;
+  padding-right: 56px;
+}
 #popular-left {
   left: 0;
 }
@@ -72,21 +77,6 @@
   scroll-behavior: smooth;
   padding-bottom: 8px;
   scrollbar-width: none; /* Firefox */
-  padding-left: 16px;
-  padding-right: 16px;
-  transition: padding 0.2s;
-}
-#popular-carousel.no-left-btn {
-  padding-left: 16px;
-}
-#popular-carousel.no-right-btn {
-  padding-right: 16px;
-}
-#popular-carousel.has-left-btn {
-  padding-left: 0;
-}
-#popular-carousel.has-right-btn {
-  padding-right: 0;
 }
 #popular-carousel::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
