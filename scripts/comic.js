@@ -16,7 +16,7 @@ function renderComics() {
       <div class="poster-box">포스터</div>
       <div class="post-title">${comic.title}</div>
       <div class="post-meta">
-        <span class="post-rating"><span class="star-icon">★</span> ${comic.rating}</span>
+        <span class="post-rating"><img class="star-icon-img" src="/includes/star-gray.svg" alt="평점"/> ${comic.rating}</span>
         <span class="post-views"><img class="view-icon-img" src="/includes/view-gray.svg" alt="조회수"/> ${comic.views.toLocaleString()}</span>
       </div>
     `;
