@@ -3,13 +3,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const carousel = document.getElementById('popular-carousel');
   const leftBtn = document.getElementById('popular-left');
   const rightBtn = document.getElementById('popular-right');
+  const wrapper = document.querySelector('.popular-carousel-wrapper');
   
-  if (carousel && leftBtn && rightBtn) {
+  if (carousel && leftBtn && rightBtn && wrapper) {
     // 초기 상태: 왼쪽 버튼 숨김, 오른쪽 버튼 표시
     leftBtn.style.display = 'none';
     rightBtn.style.display = 'flex';
-    carousel.classList.add('no-left-btn', 'has-right-btn');
-    carousel.classList.remove('has-left-btn', 'no-right-btn');
+    wrapper.style.paddingLeft = '0';
+    wrapper.style.paddingRight = '56px';
     
     // 버튼 상태 업데이트 함수
     function updateButtonVisibility() {
@@ -18,11 +19,8 @@ window.addEventListener('DOMContentLoaded', () => {
       
       leftBtn.style.display = isAtStart ? 'none' : 'flex';
       rightBtn.style.display = isAtEnd ? 'none' : 'flex';
-      // 캐러셀 패딩 클래스 동기화
-      carousel.classList.toggle('no-left-btn', isAtStart);
-      carousel.classList.toggle('has-left-btn', !isAtStart);
-      carousel.classList.toggle('no-right-btn', isAtEnd);
-      carousel.classList.toggle('has-right-btn', !isAtEnd);
+      wrapper.style.paddingLeft = isAtStart ? '0' : '56px';
+      wrapper.style.paddingRight = isAtEnd ? '0' : '56px';
     }
     
     // 스크롤 이벤트 리스너 추가
@@ -31,11 +29,13 @@ window.addEventListener('DOMContentLoaded', () => {
     // 왼쪽 버튼 클릭: 처음으로 이동
     leftBtn.onclick = () => {
       carousel.scrollTo({left: 0, behavior: 'smooth'});
+      setTimeout(updateButtonVisibility, 400);
     };
     
     // 오른쪽 버튼 클릭: 끝으로 이동
     rightBtn.onclick = () => {
       carousel.scrollTo({left: carousel.scrollWidth - carousel.clientWidth, behavior: 'smooth'});
+      setTimeout(updateButtonVisibility, 400);
     };
   }
 });
