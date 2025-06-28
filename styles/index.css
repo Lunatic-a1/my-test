@@ -24,6 +24,7 @@
   z-index: 10;
   background: rgba(255,255,255,0.95);
   border: none;
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.10), 0 1.5px 4px 0 rgba(0,0,0,0.08);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -44,6 +45,7 @@
 .popular-btn svg {
   width: 48px;
   height: 48px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .popular-btn .blind {
