@@ -53,4 +53,28 @@
 }
 .comic-subnav-list li:not(.active):hover {
   color: #00c13b;
+}
+
+.genre-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin: 18px 0 0 0;
+  padding: 0 0 0 2px;
+}
+.genre-tag {
+  display: inline-block;
+  background: #f3f3f3;
+  color: #444;
+  border-radius: 7px;
+  padding: 7px 18px 7px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  user-select: none;
+}
+.genre-tag.active {
+  background: #00c13b;
+  color: #fff;
 } 
