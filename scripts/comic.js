@@ -1,8 +1,6 @@
 // 예시 데이터 (실제 데이터로 교체 가능)
 const comics = Array.from({length: 20}, (_, i) => ({
-  title: `웹툰 ${i+1}`,
-  rating: (Math.random() * 4 + 6).toFixed(2),
-  views: (Math.floor(Math.random() * 10000) + 1000).toLocaleString()
+  title: `웹툰 ${i+1}`
 }));
 
 function renderComics() {
@@ -15,14 +13,6 @@ function renderComics() {
     card.innerHTML = `
       <div class="poster-box">포스터</div>
       <div class="post-title">${comic.title}</div>
-      <div class="post-meta">
-        <span class="post-meta-item">
-          <span class="post-meta-icon" aria-label="rating">★</span>${comic.rating}
-        </span>
-        <span class="post-meta-item">
-          <span class="post-meta-icon" aria-label="views">👁️</span>${comic.views}
-        </span>
-      </div>
     `;
     grid.appendChild(card);
   });
