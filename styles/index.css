@@ -58,10 +58,12 @@
 }
 
 #popular-left {
-  left: -32px;
+  left: 0;
+  transform: translate(-50%, -50%);
 }
 #popular-right {
-  right: -32px;
+  right: 0;
+  transform: translate(50%, -50%);
 }
 
 /* 인기작 캐러셀 */
@@ -70,22 +72,21 @@
   overflow-y: hidden;
   white-space: nowrap;
   scroll-behavior: smooth;
-  padding-bottom: 8px;
-  scrollbar-width: none; /* Firefox */
+  padding: 0 16px;
+  scrollbar-width: none;
+  position: relative;
 }
 #popular-carousel::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
-
-.popular-card-spacer {
-  display: inline-block;
-  width: 8px;
+  display: none;
 }
 
 .popular-post-card {
   display: inline-block;
   margin-right: 12px;
   position: relative;
+}
+.popular-post-card:first-child {
+  margin-left: 0;
 }
 .popular-post-card:last-child {
   margin-right: 0;
