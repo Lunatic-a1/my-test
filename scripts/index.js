@@ -56,8 +56,16 @@ function renderPopularPosts() {
   popularPosts.forEach(post => {
     const card = document.createElement('div');
     card.className = 'post-card popular-post-card';
+    let rankHtml = '';
+    if (post.rank === 1) {
+      rankHtml = `<span class="poster-rank" style="padding:0;"> \
+        <svg width=\"36\" height=\"50\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\"><path d=\"M13.788 45.296H25.29V6.152H13.787l-9.82 6.565v9.63L13.57 16h.217v29.297Z\" fill=\"#000\"></path><path d=\"M13.788 45.296h-1.852v1.852h1.852v-1.852Zm11.502 0v1.852h1.851v-1.852H25.29Zm0-39.144h1.851V4.301H25.29v1.851Zm-11.502 0V4.301h-.562l-.467.312 1.029 1.54Zm-9.82 6.565-1.03-1.54-.822.55v.99h1.852Zm0 9.63H2.116v3.444l2.873-1.9-1.021-1.544ZM13.57 16v-1.851h-.557l-.464.307 1.02 1.544Zm.217 0h1.852v-1.851h-1.852v1.851Zm0 31.15H25.29v-3.705H13.787v3.704Zm13.353-1.853V6.152h-3.703v39.144h3.703ZM25.29 4.301H13.787v3.703H25.29V4.301Zm-12.531.312-9.82 6.565 2.058 3.079 9.82-6.565-2.058-3.08ZM2.116 12.717v9.63H5.82v-9.63H2.116ZM4.99 23.892l9.603-6.348-2.042-3.09-9.603 6.348 2.042 3.09Zm8.582-6.04h.217v-3.704h-.217v3.703Zm-1.635-1.853v29.297h3.704V16h-3.704Z\" fill=\"#fff\"></path><path d=\"M13.788 45.296h11.501V6.152H13.788l-9.82 6.565v9.63L13.57 16h.217v29.297Z\" fill=\"#000\"></path><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M11.936 47.148V19.3l-9.82 6.491V11.727l11.11-7.426h13.915v42.847H11.937ZM13.571 16h.217v29.297H25.29V6.152H13.788l-9.82 6.565v9.63L13.571 16Z\" fill=\"#fff\"></path></svg>
+      </span>`;
+    } else {
+      rankHtml = `<span class="poster-rank">${post.rank}</span>`;
+    }
     card.innerHTML = `
-      <div class="poster-box">포스터<span class="poster-rank">${post.rank}</span></div>
+      <div class="poster-box">포스터${rankHtml}</div>
       <div class="post-info">
         <div class="post-title popular-post-title">${post.title}</div>
       </div>
