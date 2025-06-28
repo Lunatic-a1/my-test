@@ -300,41 +300,6 @@ const headerStyle = `
   font-size: 15px;
   color: #444;
 }
-.latest-upload-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-}
-.more-btn {
-  background: #fff;
-  color: #333;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 15px;
-  padding: 7px 18px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  font-weight: 500;
-}
-.more-btn:hover {
-  background: #f3f3f3;
-  color: #111;
-}
-.more-link {
-  color: #757575;
-  font-size: 18px;
-  text-decoration: none;
-  font-weight: 400;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  transition: color 0.2s;
-}
-.more-link:hover {
-  color: #222;
-  text-decoration: underline;
-}
 `;
 
 if (!document.getElementById('header-style')) {
