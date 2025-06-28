@@ -3,14 +3,11 @@ window.addEventListener('DOMContentLoaded', () => {
   const carousel = document.getElementById('popular-carousel');
   const leftBtn = document.getElementById('popular-left');
   const rightBtn = document.getElementById('popular-right');
-  // const wrapper = document.querySelector('.popular-carousel-wrapper');
   
   if (carousel && leftBtn && rightBtn) {
     // 초기 상태: 왼쪽 버튼 숨김, 오른쪽 버튼 표시
     leftBtn.style.display = 'none';
     rightBtn.style.display = 'flex';
-    // wrapper.style.paddingLeft = '0';
-    // wrapper.style.paddingRight = '56px';
     
     // 버튼 상태 업데이트 함수
     function updateButtonVisibility() {
@@ -19,8 +16,6 @@ window.addEventListener('DOMContentLoaded', () => {
       
       leftBtn.style.display = isAtStart ? 'none' : 'flex';
       rightBtn.style.display = isAtEnd ? 'none' : 'flex';
-      // wrapper.style.paddingLeft = isAtStart ? '0' : '56px';
-      // wrapper.style.paddingRight = isAtEnd ? '0' : '56px';
     }
     
     // 스크롤 이벤트 리스너 추가
