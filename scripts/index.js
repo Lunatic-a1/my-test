@@ -33,22 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // 예시 데이터
 const popularPosts = Array.from({length: 10}, (_, i) => ({
   title: `인기작 ${i+1}`,
-  rank: i+1,
-  rating: (9.5 + Math.random() * 0.5).toFixed(2),
-  views: Math.floor(100 + Math.random() * 1000)
+  rank: i+1
 }));
 const latestPosts = Array.from({length: 7}, (_, i) => ({
-  title: `최신작 ${i+1}`,
-  rating: (9.5 + Math.random() * 0.5).toFixed(2),
-  views: Math.floor(100 + Math.random() * 1000)
+  title: `최신작 ${i+1}`
 }));
 const favoritePosts = Array.from({length: 7}, (_, i) => ({
-  title: `찜한 웹툰 ${i+1}`,
-  rating: (9.5 + Math.random() * 0.5).toFixed(2),
-  views: Math.floor(100 + Math.random() * 1000)
+  title: `찜한 웹툰 ${i+1}`
 }));
-
-const viewIconSvg = `<svg width=\"1em\" height=\"1em\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><ellipse cx=\"10\" cy=\"10\" rx=\"8\" ry=\"5\" stroke=\"#bdbdbd\" stroke-width=\"1.7\" fill=\"none\" opacity=\"0.55\"/></svg>`;
 
 function renderPopularPosts() {
   const carousel = document.getElementById('popular-carousel');
@@ -59,12 +51,8 @@ function renderPopularPosts() {
     const card = document.createElement('div');
     card.className = 'post-card popular-post-card';
     card.innerHTML = `
-      <div class=\"poster-box\">포스터<span class=\"poster-rank\">${post.rank}</span></div>
-      <div class=\"post-title popular-post-title\">${post.title}</div>
-      <div class=\"post-meta\">
-        <span class=\"post-rating\"><img class=\"star-icon-img\" src=\"/includes/star-gray.svg\" alt=\"평점\"/> ${post.rating}</span>
-        <span class=\"post-views\">${viewIconSvg} ${post.views.toLocaleString()}</span>
-      </div>
+      <div class="poster-box">포스터<span class="poster-rank">${post.rank}</span></div>
+      <div class="post-title popular-post-title">${post.title}</div>
     `;
     carousel.appendChild(card);
   });
@@ -79,12 +67,8 @@ function renderLatestPosts() {
     const card = document.createElement('div');
     card.className = 'post-card latest-post-card';
     card.innerHTML = `
-      <div class=\"poster-box\">포스터</div>
-      <div class=\"post-title latest-post-title\">${post.title}</div>
-      <div class=\"post-meta\">
-        <span class=\"post-rating\"><img class=\"star-icon-img\" src=\"/includes/star-gray.svg\" alt=\"평점\"/> ${post.rating}</span>
-        <span class=\"post-views\">${viewIconSvg} ${post.views.toLocaleString()}</span>
-      </div>
+      <div class="poster-box">포스터</div>
+      <div class="post-title latest-post-title">${post.title}</div>
     `;
     grid.appendChild(card);
   });
@@ -98,12 +82,8 @@ function renderFavoritePosts() {
     const card = document.createElement('div');
     card.className = 'post-card favorites-post-card';
     card.innerHTML = `
-      <div class=\"poster-box\">포스터</div>
-      <div class=\"post-title favorites-post-title\">${post.title}</div>
-      <div class=\"post-meta\">
-        <span class=\"post-rating\"><img class=\"star-icon-img\" src=\"/includes/star-gray.svg\" alt=\"평점\"/> ${post.rating}</span>
-        <span class=\"post-views\">${viewIconSvg} ${post.views.toLocaleString()}</span>
-      </div>
+      <div class="poster-box">포스터</div>
+      <div class="post-title favorites-post-title">${post.title}</div>
     `;
     grid.appendChild(card);
   });
