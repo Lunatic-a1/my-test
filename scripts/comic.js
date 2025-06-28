@@ -18,4 +18,17 @@ function renderComics() {
   });
 }
 
-window.addEventListener('DOMContentLoaded', renderComics); 
+window.addEventListener('DOMContentLoaded', renderComics);
+
+// 서브네비 메뉴 활성화 토글
+window.addEventListener('DOMContentLoaded', () => {
+  const subnav = document.querySelector('.comic-subnav-list');
+  if (subnav) {
+    subnav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'LI') {
+        subnav.querySelectorAll('li').forEach(li => li.classList.remove('active'));
+        e.target.classList.add('active');
+      }
+    });
+  }
+}); 
