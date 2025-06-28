@@ -19,15 +19,15 @@
 /* 인기작 슬라이드 버튼 */
 .popular-btn {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
   z-index: 10;
   background: rgba(255,255,255,0.95);
   border: none;
   box-shadow: 0 4px 16px 0 rgba(0,0,0,0.10), 0 1.5px 4px 0 rgba(0,0,0,0.08);
   cursor: pointer;
-  display: flex;
-  align-items: center;
   justify-content: center;
   padding: 0;
   border-radius: 50%;
