@@ -159,14 +159,12 @@
 .user-notify-panel {
   display: none;
   position: absolute;
-  right: 0;
-  top: 0;
+  min-width: 320px;
+  z-index: 20;
   background: #fff;
   color: #222;
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  min-width: 320px;
-  z-index: 20;
   padding: 18px 20px 12px 20px;
 }
 .notify-title {
