@@ -66,12 +66,12 @@ function bindHeaderAuthEvents() {
         userDropdown._outsideClickHandler = null;
       }
       if (!isOpen) {
-        // 위치 bell 아이콘 기준으로 맞추기
-        const btnRect = userNotifyBtn.getBoundingClientRect();
+        // user-profile 기준으로 top: 48px 맞추기
+        const profileRect = userProfile.getBoundingClientRect();
         const panel = userNotifyPanel;
-        panel.style.display = 'block'; // 먼저 보여주고
+        panel.style.display = 'block';
         panel.style.position = 'absolute';
-        panel.style.top = btnRect.bottom + window.scrollY + 8 + 'px';
+        panel.style.top = (profileRect.top + 48 + window.scrollY) + 'px';
         panel.style.left = (btnRect.right + window.scrollX - panel.offsetWidth) + 'px';
       } else {
         userNotifyPanel.style.display = 'none';
