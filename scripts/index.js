@@ -3,13 +3,46 @@ window.addEventListener('DOMContentLoaded', () => {
   const carousel = document.getElementById('popular-carousel');
   const leftBtn = document.getElementById('popular-left');
   const rightBtn = document.getElementById('popular-right');
+  
   if (carousel && leftBtn && rightBtn) {
+    // 초기 버튼 상태 설정
+    updateButtonVisibility();
+    
     leftBtn.onclick = () => {
       carousel.scrollBy({left: -200, behavior: 'smooth'});
     };
     rightBtn.onclick = () => {
       carousel.scrollBy({left: 200, behavior: 'smooth'});
     };
+    
+    // 스크롤 이벤트 리스너 추가
+    carousel.addEventListener('scroll', updateButtonVisibility);
+    
+    // 윈도우 리사이즈 시에도 버튼 상태 업데이트
+    window.addEventListener('resize', updateButtonVisibility);
+  }
+  
+  function updateButtonVisibility() {
+    if (!carousel || !leftBtn || !rightBtn) return;
+    
+    const scrollLeft = carousel.scrollLeft;
+    const scrollWidth = carousel.scrollWidth;
+    const clientWidth = carousel.clientWidth;
+    const maxScrollLeft = scrollWidth - clientWidth;
+    
+    // 왼쪽 버튼: 스크롤이 맨 왼쪽이 아니면 보임
+    if (scrollLeft > 0) {
+      leftBtn.classList.add('visible');
+    } else {
+      leftBtn.classList.remove('visible');
+    }
+    
+    // 오른쪽 버튼: 스크롤이 맨 오른쪽이 아니면 보임
+    if (scrollLeft < maxScrollLeft - 1) { // 1px 여유 추가
+      rightBtn.classList.add('visible');
+    } else {
+      rightBtn.classList.remove('visible');
+    }
   }
 });
 
