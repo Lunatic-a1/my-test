@@ -3,7 +3,26 @@ window.addEventListener('DOMContentLoaded', () => {
   const carousel = document.getElementById('popular-carousel');
   const leftBtn = document.getElementById('popular-left');
   const rightBtn = document.getElementById('popular-right');
-  
+  const leftSpacer = carousel?.querySelector('.popular-card-spacer:first-child');
+  const rightSpacer = carousel?.querySelector('.popular-card-spacer:last-child');
+  const containerPadding = 16; // .main-container의 padding 값(px)
+
+  function updateSpacers() {
+    if (!carousel || !leftSpacer || !rightSpacer) return;
+    const isAtStart = carousel.scrollLeft === 0;
+    const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 1;
+    if (isAtStart) {
+      leftSpacer.style.width = containerPadding + 'px';
+      rightSpacer.style.width = '0px';
+    } else if (isAtEnd) {
+      leftSpacer.style.width = '0px';
+      rightSpacer.style.width = containerPadding + 'px';
+    } else {
+      leftSpacer.style.width = '0px';
+      rightSpacer.style.width = '0px';
+    }
+  }
+
   if (carousel && leftBtn && rightBtn) {
     // 초기 상태: 왼쪽 버튼 숨김, 오른쪽 버튼 표시
     leftBtn.style.display = 'none';
@@ -16,6 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
       
       leftBtn.style.display = isAtStart ? 'none' : 'flex';
       rightBtn.style.display = isAtEnd ? 'none' : 'flex';
+      updateSpacers();
     }
     
     // 스크롤 이벤트 리스너 추가
@@ -30,6 +50,8 @@ window.addEventListener('DOMContentLoaded', () => {
     rightBtn.onclick = () => {
       carousel.scrollTo({left: carousel.scrollWidth - carousel.clientWidth, behavior: 'smooth'});
     };
+    // 최초 진입 시 spacer 세팅
+    setTimeout(updateButtonVisibility, 0);
   }
 });
 
