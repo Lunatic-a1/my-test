@@ -80,13 +80,13 @@
   display: inline-block;
   border: 2px solid #ff3b30;
   color: #ff3b30;
-  font-size: 0.7em;
+  font-size: inherit;
   font-weight: 700;
   border-radius: 5px;
-  padding: 0 4px;
+  padding: 0 5px;
   margin-right: 6px;
-  line-height: 1;
-  vertical-align: baseline;
+  line-height: inherit;
+  vertical-align: inherit;
   background: #fff;
   letter-spacing: -0.5px;
 } 
