@@ -19,38 +19,7 @@
   position: relative;
 }
 
-/* 18세 이상 뱃지 */
-.age-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  z-index: 2;
-  background: #F4831F;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
 
-.age-badge svg {
-  width: 16px;
-  height: 16px;
-}
-
-.age-badge .blind {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
 
 /* 콘텐츠 타이틀 */
 .content-title {
@@ -120,17 +89,6 @@
   font-size: 1rem;
   font-weight: 700;
   text-align: left;
-}
-
-.rank-number {
-  position: absolute;
-  left: 12px;
-  bottom: 8px;
-  font-size: 3.5rem;
-  font-weight: 900;
-  color: #111;
-  z-index: 1;
-  pointer-events: none;
 }
 
 <svg width="56" height="48" viewBox="0 0 56 48" fill="none" xmlns="http://www.w3.org/2000/svg">
