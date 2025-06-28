@@ -58,4 +58,10 @@
   vertical-align: middle;
   font-size: 1em;
   font-weight: 500;
+}
+
+/* 포스트 카드 정보 래퍼 */
+.post-info {
+  width: 160px;
+  margin: 0 auto;
 } 
