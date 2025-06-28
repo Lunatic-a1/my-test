@@ -4,10 +4,11 @@
   gap: 12px;
 }
 .favorites-post-card {
-  text-align: center;
+  text-align: left;
 }
 .favorites-post-title {
   font-weight: bold;
+  text-align: left;
 }
 .main-container {
   max-width: 1200px;
