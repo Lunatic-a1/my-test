@@ -28,4 +28,69 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = 'comics.html';
     });
   }
+});
+
+// 예시 데이터
+const popularPosts = Array.from({length: 10}, (_, i) => ({
+  title: `인기작 ${i+1}`,
+  rank: i+1
+}));
+const latestPosts = Array.from({length: 7}, (_, i) => ({
+  title: `최신작 ${i+1}`
+}));
+const favoritePosts = Array.from({length: 7}, (_, i) => ({
+  title: `찜한 웹툰 ${i+1}`
+}));
+
+function renderPopularPosts() {
+  const carousel = document.getElementById('popular-carousel');
+  if (!carousel) return;
+  // Remove all except spacers
+  carousel.innerHTML = '<div class="popular-card-spacer"></div>';
+  popularPosts.forEach(post => {
+    const card = document.createElement('div');
+    card.className = 'post-card popular-post-card';
+    card.innerHTML = `
+      <div class="poster-box">포스터<span class="poster-rank">${post.rank}</span></div>
+      <div class="post-title popular-post-title">${post.title}</div>
+    `;
+    carousel.appendChild(card);
+  });
+  carousel.appendChild(document.createElement('div')).className = 'popular-card-spacer';
+}
+
+function renderLatestPosts() {
+  const grid = document.querySelector('.latest-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  latestPosts.forEach(post => {
+    const card = document.createElement('div');
+    card.className = 'post-card latest-post-card';
+    card.innerHTML = `
+      <div class="poster-box">포스터</div>
+      <div class="post-title latest-post-title">${post.title}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderFavoritePosts() {
+  const grid = document.querySelector('.favorites-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  favoritePosts.forEach(post => {
+    const card = document.createElement('div');
+    card.className = 'post-card favorites-post-card';
+    card.innerHTML = `
+      <div class="poster-box">포스터</div>
+      <div class="post-title favorites-post-title">${post.title}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  renderPopularPosts();
+  renderLatestPosts();
+  renderFavoritePosts();
 }); 
