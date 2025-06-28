@@ -1,3 +1,9 @@
+/* 메인 레이아웃 (홈과 동일) */
+.main-container {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  padding: 0 16px;
+}
 .favorites-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
