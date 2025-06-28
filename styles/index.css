@@ -58,10 +58,10 @@
 }
 
 #popular-left {
-  left: -16px;
+  left: -32px;
 }
 #popular-right {
-  right: -16px;
+  right: -32px;
 }
 
 /* 인기작 캐러셀 */
@@ -70,7 +70,7 @@
   overflow-y: hidden;
   white-space: nowrap;
   scroll-behavior: smooth;
-  padding: 0 16px 8px 16px;
+  padding-bottom: 8px;
   scrollbar-width: none; /* Firefox */
 }
 #popular-carousel::-webkit-scrollbar {
