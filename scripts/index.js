@@ -28,10 +28,11 @@ window.addEventListener('DOMContentLoaded', () => {
     // 초기 버튼 상태 설정
     updatePopularButtonVisibility();
     leftBtn.onclick = () => {
-      carousel.scrollBy({left: -200, behavior: 'smooth'});
+      carousel.scrollTo({left: 0, behavior: 'smooth'});
     };
     rightBtn.onclick = () => {
-      carousel.scrollBy({left: 200, behavior: 'smooth'});
+      const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+      carousel.scrollTo({left: maxScrollLeft, behavior: 'smooth'});
     };
     // 스크롤 이벤트 리스너 추가
     carousel.addEventListener('scroll', updatePopularButtonVisibility);
