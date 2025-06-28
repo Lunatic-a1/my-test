@@ -59,8 +59,12 @@ function bindHeaderAuthEvents() {
     userNotifyBtn.onclick = (e) => {
       e.stopPropagation();
       const isOpen = userNotifyPanel.style.display === 'block';
-      // 유저 드롭다운 닫기
+      // 유저 드롭다운 닫기 및 outsideClickHandler 해제
       userDropdown.style.display = 'none';
+      if (userDropdown._outsideClickHandler) {
+        document.removeEventListener('click', userDropdown._outsideClickHandler);
+        userDropdown._outsideClickHandler = null;
+      }
       userNotifyPanel.style.display = isOpen ? 'none' : 'block';
       if (!isOpen) {
         notifyOutsideHandler = (evt) => {
