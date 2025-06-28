@@ -300,6 +300,27 @@ const headerStyle = `
   font-size: 15px;
   color: #444;
 }
+.latest-upload-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.more-btn {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 15px;
+  padding: 7px 18px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 500;
+}
+.more-btn:hover {
+  background: #f3f3f3;
+  color: #111;
+}
 `;
 
 if (!document.getElementById('header-style')) {
