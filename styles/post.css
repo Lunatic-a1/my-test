@@ -59,4 +59,11 @@
   color: #bdbdbd;
   font-size: 1.1em;
   margin-right: 2px;
+}
+.view-icon-img {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 2px;
+  opacity: 0.55;
 } 
