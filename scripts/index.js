@@ -89,15 +89,13 @@ const latestContents = Array.from({length: 21}, (_, i) => ({
   title: `최신작 ${i+1}`,
   rating: (Math.random() * 3 + 7).toFixed(2),
   views: (Math.floor(Math.random() * 9000) + 1000).toLocaleString(),
-  up: i % 3 === 0, // 3개마다 up 표시
-  createdAt: Date.now() - (Math.floor(Math.random() * 1000*60*60*24*30)) // 최근 한달 이내 등록
+  up: i % 3 === 0 // 3개마다 up 표시
 }));
 const favoriteContents = Array.from({length: 7}, (_, i) => ({
   title: `찜한 웹툰 ${i+1}`,
   rating: (Math.random() * 3 + 7).toFixed(2),
   views: (Math.floor(Math.random() * 9000) + 1000).toLocaleString(),
-  up: i % 4 === 0, // 4개마다 up 표시
-  createdAt: Date.now() - (Math.floor(Math.random() * 1000*60*60*24*30)) // 최근 한달 이내 등록
+  up: i % 4 === 0 // 4개마다 up 표시
 }));
 
 function renderPopularContents() {
@@ -154,8 +152,8 @@ function renderPopularContents() {
     }
     card.innerHTML = `
       <div class="content-poster-box">
-        ${(content.isAdult ? `<span class=\"age-badge\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><g><path d=\"M12 1.5 L22.5 4.5 V12 C22.5 18 12 22.5 12 22.5 C12 22.5 1.5 18 1.5 12 V4.5 Z\" fill=\"#F7931A\"/><circle cx=\"12\" cy=\"9\" r=\"3.75\" fill=\"#fff\"/><path d=\"M12 13.5c-3 0-5.25 1.5-5.25 3v1.5h10.5v-1.5c0-1.5-2.25-3-5.25-3z\" fill=\"#fff\"/></g></svg></span>` : '') +
-        ((Date.now() - content.createdAt) < 1000*60*60*24*30 ? '<span class=\"new-badge\">Шинэ</span>' : '')}
+        ${content.isAdult ? `<span class=\"age-badge\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><g><path d=\"M12 1.5 L22.5 4.5 V12 C22.5 18 12 22.5 12 22.5 C12 22.5 1.5 18 1.5 12 V4.5 Z\" fill=\"#F7931A\"/><circle cx=\"12\" cy=\"9\" r=\"3.75\" fill=\"#fff\"/><path d=\"M12 13.5c-3 0-5.25 1.5-5.25 3v1.5h10.5v-1.5c0-1.5-2.25-3-5.25-3z\" fill=\"#fff\"/></g></svg></span>` : ''}
+        ${(Date.now() - new Date(content.createdAt)) < 1000*60*60*24*30 ? '<span class=\"new-badge\">Шинэ</span>' : ''}
         ${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'콘텐츠\' />' : '콘텐츠'}
       </div>
       ${rankHtml}
@@ -176,9 +174,13 @@ function renderLatestContents() {
     const card = document.createElement('div');
     card.className = 'content-card content-latest-card';
     card.innerHTML = `
-      <div class="content-poster-box">${content.isAdult ? `<span class=\"age-badge\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><g><path d=\"M12 1.5 L22.5 4.5 V12 C22.5 18 12 22.5 12 22.5 C12 22.5 1.5 18 1.5 12 V4.5 Z\" fill=\"#F7931A\"/><circle cx=\"12\" cy=\"9\" r=\"3.75\" fill=\"#fff\"/><path d=\"M12 13.5c-3 0-5.25 1.5-5.25 3v1.5h10.5v-1.5c0-1.5-2.25-3-5.25-3z\" fill=\"#fff\"/></g></svg></span>` : ''}${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'콘텐츠\' />' : '콘텐츠'}</div>
+      <div class="content-poster-box">
+        ${content.isAdult ? `<span class=\"age-badge\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><g><path d=\"M12 1.5 L22.5 4.5 V12 C22.5 18 12 22.5 12 22.5 C12 22.5 1.5 18 1.5 12 V4.5 Z\" fill=\"#F7931A\"/><circle cx=\"12\" cy=\"9\" r=\"3.75\" fill=\"#fff\"/><path d=\"M12 13.5c-3 0-5.25 1.5-5.25 3v1.5h10.5v-1.5c0-1.5-2.25-3-5.25-3z\" fill=\"#fff\"/></g></svg></span>` : ''}
+        ${content.up ? '<span class=\'up-badge\'>UP</span>' : ''}
+        ${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'콘텐츠\' />' : '콘텐츠'}
+      </div>
       <div class="content-info">
-        <div class="content-title content-latest-title">${content.up ? '<span class=\'up-badge\'>UP</span>' : ''}${content.title}</div>
+        <div class="content-title content-latest-title">${content.title}</div>
         <div class="content-meta">
           <span class="content-icon" aria-label="rating"> 
             <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none"><path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" fill="#bbb"/></svg>
@@ -203,9 +205,13 @@ function renderFavoriteContents() {
     const card = document.createElement('div');
     card.className = 'content-card content-favorites-card';
     card.innerHTML = `
-      <div class="content-poster-box">${content.isAdult ? `<span class=\"age-badge\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><g><path d=\"M12 1.5 L22.5 4.5 V12 C22.5 18 12 22.5 12 22.5 C12 22.5 1.5 18 1.5 12 V4.5 Z\" fill=\"#F7931A\"/><circle cx=\"12\" cy=\"9\" r=\"3.75\" fill=\"#fff\"/><path d=\"M12 13.5c-3 0-5.25 1.5-5.25 3v1.5h10.5v-1.5c0-1.5-2.25-3-5.25-3z\" fill=\"#fff\"/></g></svg></span>` : ''}${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'콘텐츠\' />' : '콘텐츠'}</div>
+      <div class="content-poster-box">
+        ${content.isAdult ? `<span class=\"age-badge\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><g><path d=\"M12 1.5 L22.5 4.5 V12 C22.5 18 12 22.5 12 22.5 C12 22.5 1.5 18 1.5 12 V4.5 Z\" fill=\"#F7931A\"/><circle cx=\"12\" cy=\"9\" r=\"3.75\" fill=\"#fff\"/><path d=\"M12 13.5c-3 0-5.25 1.5-5.25 3v1.5h10.5v-1.5c0-1.5-2.25-3-5.25-3z\" fill=\"#fff\"/></g></svg></span>` : ''}
+        ${content.up ? '<span class=\'up-badge\'>UP</span>' : ''}
+        ${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'콘텐츠\' />' : '콘텐츠'}
+      </div>
       <div class="content-info">
-        <div class="content-title content-favorites-title">${content.up ? '<span class=\'up-badge\'>UP</span>' : ''}${content.title}</div>
+        <div class="content-title content-favorites-title">${content.title}</div>
         <div class="content-meta">
           <span class="content-icon" aria-label="rating"> 
             <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none"><path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" fill="#bbb"/></svg>
