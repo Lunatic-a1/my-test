@@ -80,4 +80,27 @@
 .genre-tag.active {
   background: #00c13b;
   color: #fff;
+}
+
+.comic-sort-tabs {
+  display: flex;
+  gap: 12px;
+}
+.comic-sort-tab {
+  font-size: 1.08rem;
+  color: #888;
+  padding: 4px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  font-weight: 500;
+}
+.comic-sort-tab.active {
+  background: #f2f2f2;
+  color: #1976d2;
+  font-weight: 700;
+}
+.comic-sort-tab:hover:not(.active) {
+  background: #e3e3e3;
+  color: #1976d2;
 } 
