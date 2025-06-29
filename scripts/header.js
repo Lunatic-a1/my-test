@@ -90,7 +90,7 @@ function bindHeaderAuthEvents() {
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      if (loginLink) loginLink.style.display = 'none';
+      if (loginLink) loginLink.remove();
       if (userProfile) userProfile.style.display = 'flex';
       // Firestore에서 유저 정보 가져오기
       const userDoc = await getDoc(doc(db, 'users', user.uid));
