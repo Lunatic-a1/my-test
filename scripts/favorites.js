@@ -5,7 +5,7 @@ const favorites = Array.from({length: 100}, (_, i) => ({
   views: (Math.floor(Math.random() * 9000) + 1000).toLocaleString(),
   up: i % 4 === 0, // 4개마다 up 표시
   isAdult: false, // 추가된 속성
-  createdAt: Date.now() - (Math.floor(Math.random() * 1000*60*60*24*30)) // 추가된 속성
+  createdAt: new Date().toISOString() // 추가된 속성
 }));
 
 const PAGE_SIZE = 35;
@@ -23,8 +23,8 @@ function renderFavorites(page = 1) {
     card.className = 'content-card content-favorites-card';
     card.innerHTML = `
       <div class="content-poster-box">
-        ${(fav.isAdult ? `<span class=\"age-badge\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><g><path d=\"M12 1.5 L22.5 4.5 V12 C22.5 18 12 22.5 12 22.5 C12 22.5 1.5 18 1.5 12 V4.5 Z\" fill=\"#F7931A\"/><circle cx=\"12\" cy=\"9\" r=\"3.75\" fill=\"#fff\"/><path d=\"M12 13.5c-3 0-5.25 1.5-5.25 3v1.5h10.5v-1.5c0-1.5-2.25-3-5.25-3z\" fill=\"#fff\"/></g></svg></span>` : '') +
-        ((Date.now() - fav.createdAt) < 1000*60*60*24*30 ? '<span class=\"new-badge\">Шинэ</span>' : '')}
+        ${fav.isAdult ? `<span class=\"age-badge\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><g><path d=\"M12 1.5 L22.5 4.5 V12 C22.5 18 12 22.5 12 22.5 C12 22.5 1.5 18 1.5 12 V4.5 Z\" fill=\"#F7931A\"/><circle cx=\"12\" cy=\"9\" r=\"3.75\" fill=\"#fff\"/><path d=\"M12 13.5c-3 0-5.25 1.5-5.25 3v1.5h10.5v-1.5c0-1.5-2.25-3-5.25-3z\" fill=\"#fff\"/></g></svg></span>` : ''}
+        ${(Date.now() - new Date(fav.createdAt)) < 1000*60*60*24*30 ? '<span class=\"new-badge\">Шинэ</span>' : ''}
         콘텐츠
       </div>
       <div class="content-info">
