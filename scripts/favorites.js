@@ -18,11 +18,11 @@ function renderFavorites(page = 1) {
   const pageFavorites = favorites.slice(startIdx, endIdx);
   pageFavorites.forEach(fav => {
     const card = document.createElement('div');
-    card.className = 'content-card favorites-content-card';
+    card.className = 'content-card content-favorites-card';
     card.innerHTML = `
       <div class="content-poster-box">포스터</div>
       <div class="content-info">
-        <div class="content-title favorites-content-title">${fav.up ? '<span class=\'up-badge\'>UP</span>' : ''}${fav.title}</div>
+        <div class="content-title content-favorites-title">${fav.up ? '<span class=\'up-badge\'>UP</span>' : ''}${fav.title}</div>
         <div class="content-meta">
           <span class="content-icon" aria-label="rating"> 
             <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none"><path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" fill="#bbb"/></svg>
