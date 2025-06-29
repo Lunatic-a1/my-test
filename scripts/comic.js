@@ -51,7 +51,7 @@ function renderComics(page = 1) {
     const card = document.createElement('div');
     card.className = 'content-card';
     card.innerHTML = `
-      <div class="content-poster-box">포스터</div>
+      <div class="content-poster-box">콘텐츠</div>
       <div class="content-info">
         <div class="content-title">${comic.up ? '<span class=\'up-badge\'>UP</span>' : ''}${comic.title}</div>
         <div class="content-meta">
