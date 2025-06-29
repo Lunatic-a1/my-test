@@ -151,8 +151,7 @@ function renderPopularPosts() {
       rankHtml = `<span class="poster-rank">${post.rank}</span>`;
     }
     card.innerHTML = `
-      <div class="poster-box">포스터</div>
-      ${rankHtml}
+      <div class="poster-box">포스터${rankHtml}</div>
       <div class="post-info">
         <div class="post-title popular-post-title">${post.title}</div>
       </div>
