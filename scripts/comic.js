@@ -18,13 +18,12 @@ function getSortedComics() {
     case '인기순':
       arr.sort((a, b) => parseInt(b.views.replace(/,/g, '')) - parseInt(a.views.replace(/,/g, '')));
       break;
-    case '업데이트순':
-      arr.sort((a, b) => {
-        if (b.up && !a.up) return 1;
-        if (a.up && !b.up) return -1;
-        return b.createdAt - a.createdAt;
-      });
+    case '업데이트순': {
+      const upArr = arr.filter(c => c.up).sort((a, b) => b.createdAt - a.createdAt);
+      const nonUpArr = arr.filter(c => !c.up).sort((a, b) => b.createdAt - a.createdAt);
+      arr = upArr.concat(nonUpArr);
       break;
+    }
     case '신작순':
       arr.sort((a, b) => b.createdAt - a.createdAt);
       break;
