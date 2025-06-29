@@ -182,7 +182,7 @@ window.addEventListener('DOMContentLoaded', () => {
         renderGenreList(0);
       }
     });
-    // 다른 서브네비 클릭 시 장르 닫기
+    // subnav의 다른 버튼 클릭 시 장르 닫기
     if (subnav) {
       subnav.addEventListener('click', (e) => {
         if (e.target !== genreTabBtn) {
@@ -191,12 +191,5 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
-    // 바깥 클릭 시 닫기
-    document.addEventListener('click', (e) => {
-      if (genreListVisible && !genreListContainer.contains(e.target) && e.target !== genreTabBtn) {
-        genreListContainer.style.display = 'none';
-        genreListVisible = false;
-      }
-    });
   }
 }); 
