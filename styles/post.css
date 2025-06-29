@@ -2,6 +2,7 @@
 .post-card {
   text-align: left;
   margin-bottom: 32px;
+  position: relative; /* post-rank 오버레이용 */
 }
 
 /* 포스터 박스 */
@@ -20,11 +21,11 @@
   overflow: hidden;
 }
 
-/* 순위 넘버 */
-.poster-rank {
+/* 랭크 넘버 오버레이 */
+.post-rank {
   position: absolute;
   left: 8px;
-  bottom: -28px;
+  bottom: 12px;
   font-size: 3.6rem;
   font-family: 'Arial Black', 'Arial', 'Malgun Gothic', 'Gulim', sans-serif;
   font-weight: 900;
@@ -34,6 +35,7 @@
   opacity: 1;
   z-index: 2;
   line-height: 1;
+  pointer-events: none;
 }
 
 /* 포스트 타이틀 */
