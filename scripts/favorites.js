@@ -16,11 +16,11 @@ function renderFavorites(page = 1) {
   const startIdx = (page - 1) * PAGE_SIZE;
   const endIdx = startIdx + PAGE_SIZE;
   const pageFavorites = favorites.slice(startIdx, endIdx);
-  pageFavorites.forEach((fav, idx) => {
+  pageFavorites.forEach(fav => {
     const card = document.createElement('div');
     card.className = 'post-card favorites-post-card';
     card.innerHTML = `
-      <div class="poster-box">$${idx === 0 ? `<img src='https://i.imgur.com/0y8Ftya.png' alt='테스트 포스터'/>` : '포스터'}</div>
+      <div class="poster-box">포스터</div>
       <div class="post-info">
         <div class="post-title favorites-post-title">${fav.up ? '<span class=\'up-badge\'>UP</span>' : ''}${fav.title}</div>
         <div class="post-meta">
