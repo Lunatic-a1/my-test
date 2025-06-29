@@ -90,7 +90,7 @@ function bindHeaderAuthEvents() {
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      if (loginLink) loginLink.remove();
+      if (loginLink) loginLink.style.display = 'none';
       if (userProfile) userProfile.style.display = 'flex';
       // Firestore에서 유저 정보 가져오기
       const userDoc = await getDoc(doc(db, 'users', user.uid));
@@ -123,6 +123,9 @@ function bindHeaderAuthEvents() {
 
 // 헤더가 동적으로 삽입된 후 실행
 window.addEventListener('DOMContentLoaded', () => {
+  // 로그인 버튼을 기본적으로 숨김
+  const loginLink = document.getElementById('login-link');
+  if (loginLink) loginLink.style.display = 'none';
   const checkHeader = setInterval(() => {
     if (document.getElementById('user-profile')) {
       clearInterval(checkHeader);
