@@ -116,17 +116,4 @@
 .poster-box:hover img {
   transform: scale(1.08);
   z-index: 1;
-}
-
-/* 인기작 순위 넘버 (카드 하단, 가운데 정렬, 크게) */
-.popular-post-card .poster-rank {
-  display: block;
-  text-align: center;
-  font-size: 2.8rem;
-  font-family: 'Arial Black', 'Arial', 'Malgun Gothic', 'Gulim', sans-serif;
-  font-weight: 900;
-  color: #111;
-  margin-top: 2px;
-  margin-bottom: 0;
-  line-height: 1;
 } 
