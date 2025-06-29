@@ -84,31 +84,37 @@
 
 .comic-sort-tabs {
   display: flex;
-  gap: 6px;
+  gap: 0;
 }
 .comic-sort-tab {
   font-size: 0.98rem;
   color: #888;
-  padding: 2px 10px;
-  /* border-radius: 16px; */
+  padding: 0 8px;
+  border-radius: 0;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s;
+  transition: color 0.18s;
   font-weight: 500;
+  background: none;
   border: none;
-  outline: none;
+  box-shadow: none;
+  position: relative;
+}
+.comic-sort-tab:not(:first-child)::before {
+  content: '·';
+  color: #bbb;
+  margin-right: 8px;
+  font-size: 1.1em;
+  position: relative;
+  top: -1px;
 }
 .comic-sort-tab.active {
-  background: #f2f2f2;
-  color: #1976d2;
+  color: #00c13b;
   font-weight: 700;
-  border: none;
-  outline: none;
+  background: none;
 }
 .comic-sort-tab:hover:not(.active) {
-  background: #e3e3e3;
-  color: #1976d2;
-  border: none;
-  outline: none;
+  color: #222;
+  background: none;
 }
 
 .comic-section-header {
