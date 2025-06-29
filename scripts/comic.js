@@ -3,19 +3,51 @@ const comics = Array.from({length: 100}, (_, i) => ({
   title: `웹툰 ${i+1}`,
   rating: (Math.random() * 3 + 7).toFixed(2),
   views: (Math.floor(Math.random() * 9000) + 1000).toLocaleString(),
-  up: i % 5 === 0 // 5개마다 up 표시
+  up: i % 5 === 0, // 5개마다 up 표시
+  comments: Math.floor(Math.random() * 500), // 댓글수
+  createdAt: Date.now() - i * 1000 * 60 * 60 * 24 // 신작순용 (최근일수록 값이 큼)
 }));
 
 const PAGE_SIZE = 35;
 let currentPage = 1;
+let currentSort = '인기순';
+
+function getSortedComics() {
+  let arr = [...comics];
+  switch (currentSort) {
+    case '업데이트순':
+      // 예시: createdAt 내림차순 (최신순)
+      arr.sort((a, b) => b.createdAt - a.createdAt);
+      break;
+    case '신작순':
+      // createdAt 내림차순 (최신순)
+      arr.sort((a, b) => b.createdAt - a.createdAt);
+      break;
+    case '별점순':
+      arr.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
+      break;
+    case '댓글순':
+      arr.sort((a, b) => b.comments - a.comments);
+      break;
+    case '조회순':
+      arr.sort((a, b) => parseInt(b.views.replace(/,/g, '')) - parseInt(a.views.replace(/,/g, '')));
+      break;
+    case '인기순':
+    default:
+      // 기본: 원본 순서(랜덤/기본)
+      break;
+  }
+  return arr;
+}
 
 function renderComics(page = 1) {
   const grid = document.querySelector('.comics-grid');
   if (!grid) return;
   grid.innerHTML = '';
+  const sorted = getSortedComics();
   const startIdx = (page - 1) * PAGE_SIZE;
   const endIdx = startIdx + PAGE_SIZE;
-  const pageComics = comics.slice(startIdx, endIdx);
+  const pageComics = sorted.slice(startIdx, endIdx);
   pageComics.forEach(comic => {
     const card = document.createElement('div');
     card.className = 'post-card';
@@ -192,4 +224,18 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
+});
+
+// 탭 클릭 이벤트 및 active 토글
+window.addEventListener('DOMContentLoaded', () => {
+  const sortTabs = document.querySelectorAll('.comic-sort-tab');
+  sortTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      sortTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentSort = tab.textContent.trim();
+      currentPage = 1;
+      renderComics(1);
+    });
+  });
 }); 
