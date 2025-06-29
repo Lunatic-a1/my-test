@@ -159,4 +159,10 @@
 .new-badge--bottom {
   bottom: 8px;
   left: 8px;
+}
+
+.new-badge--below {
+  top: 40px;
+  left: 8px;
+  bottom: auto;
 } 
