@@ -127,7 +127,7 @@
 
 .age-badge {
   position: absolute;
-  top: 36px;
+  top: 8px;
   left: 8px;
   z-index: 3;
   width: 24px;
@@ -141,8 +141,6 @@
 
 .new-badge {
   position: absolute;
-  top: 8px;
-  left: 8px;
   z-index: 2;
   width: 24px;
   height: 24px;
@@ -151,4 +149,14 @@
   justify-content: center;
   background: none;
   pointer-events: none;
+}
+
+.new-badge--top {
+  top: 8px;
+  left: 8px;
+}
+
+.new-badge--bottom {
+  bottom: 8px;
+  left: 8px;
 } 
