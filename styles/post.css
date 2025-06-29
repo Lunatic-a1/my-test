@@ -17,6 +17,7 @@
   color: #888;
   margin: 0 auto 10px auto;
   position: relative;
+  overflow: hidden;
 }
 
 /* 순위 넘버 */
