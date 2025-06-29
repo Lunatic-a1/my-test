@@ -2,7 +2,7 @@
 .content-card {
   text-align: left;
   margin-bottom: 32px;
-  position: relative; /* post-rank 오버레이용 */
+  position: relative; /* content-rank 오버레이용 */
 }
 
 /* 포스터 박스 */
