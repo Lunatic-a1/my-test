@@ -52,7 +52,7 @@ function renderComics(page = 1) {
     const card = document.createElement('div');
     card.className = 'content-card';
     card.innerHTML = `
-      <div class="content-poster-box">${comic.isAdult ? `<span class=\"age-badge\"><svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\"><g><path d=\"M16 2 L30 6 V16 C30 24 16 30 16 30 C16 30 2 24 2 16 V6 Z\" fill=\"#F7931A\"/><circle cx=\"16\" cy=\"12\" r=\"5\" fill=\"#fff\"/><path d=\"M16 18c-4 0-7 2-7 4v2h14v-2c0-2-3-4-7-4z\" fill=\"#fff\"/></g></svg></span>` : ''}콘텐츠</div>
+      <div class="content-poster-box">${comic.isAdult ? `<span class=\"age-badge\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><g><path d=\"M12 1.5 L22.5 4.5 V12 C22.5 18 12 22.5 12 22.5 C12 22.5 1.5 18 1.5 12 V4.5 Z\" fill=\"#F7931A\"/><circle cx=\"12\" cy=\"9\" r=\"3.75\" fill=\"#fff\"/><path d=\"M12 13.5c-3 0-5.25 1.5-5.25 3v1.5h10.5v-1.5c0-1.5-2.25-3-5.25-3z\" fill=\"#fff\"/></g></svg></span>` : ''}콘텐츠</div>
       <div class="content-info">
         <div class="content-title">${comic.up ? '<span class=\'up-badge\'>UP</span>' : ''}${comic.title}</div>
         <div class="content-meta">
