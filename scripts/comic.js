@@ -15,12 +15,13 @@ let currentSort = '인기순';
 function getSortedComics() {
   let arr = [...comics];
   switch (currentSort) {
+    case '인기순':
+      arr.sort((a, b) => parseInt(b.views.replace(/,/g, '')) - parseInt(a.views.replace(/,/g, '')));
+      break;
     case '업데이트순':
-      // 예시: createdAt 내림차순 (최신순)
       arr.sort((a, b) => b.createdAt - a.createdAt);
       break;
     case '신작순':
-      // createdAt 내림차순 (최신순)
       arr.sort((a, b) => b.createdAt - a.createdAt);
       break;
     case '별점순':
@@ -29,12 +30,7 @@ function getSortedComics() {
     case '댓글순':
       arr.sort((a, b) => b.comments - a.comments);
       break;
-    case '조회순':
-      arr.sort((a, b) => parseInt(b.views.replace(/,/g, '')) - parseInt(a.views.replace(/,/g, '')));
-      break;
-    case '인기순':
     default:
-      // 기본: 원본 순서(랜덤/기본)
       break;
   }
   return arr;
