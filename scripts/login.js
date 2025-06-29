@@ -37,22 +37,21 @@ document.head.appendChild(styleTag);
 
 const form = document.getElementById('login-form');
 const messageDiv = document.getElementById('login-message');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = form.email.value;
-  const password = form.password.value;
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = form.email.value;
+    const password = form.password.value;
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
       messageDiv.textContent = '로그인 성공! 홈으로 이동합니다.';
       setTimeout(() => {
         window.location.href = 'index.html';
       }, 1200);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      messageDiv.textContent = '로그인 실패: ' + errorMessage;
-    });
-}); 
+    } catch (error) {
+      messageDiv.textContent = '로그인 실패: ' + (error.message || '알 수 없는 오류');
+    }
+  });
+} else {
+  console.error('login-form not found');
+} 
