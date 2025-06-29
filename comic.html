@@ -29,7 +29,16 @@
   <div id="genre-list-container" class="genre-list-container" style="display:none;"></div>
   <main class="main-container">
     <section class="section">
-      <h2 class="section-title">전체 웹툰</h2>
+      <div class="comic-section-header" style="display:flex; align-items:center; justify-content:space-between; gap:24px;">
+        <h2 class="section-title" style="margin-bottom:0;">전체 웹툰</h2>
+        <div class="comic-sort-tabs">
+          <span class="comic-sort-tab active">인기순</span>
+          <span class="comic-sort-tab">업데이트순</span>
+          <span class="comic-sort-tab">신작순</span>
+          <span class="comic-sort-tab">별점순</span>
+          <span class="comic-sort-tab">댓글순</span>
+        </div>
+      </div>
       <div class="comics-grid"><!-- post-card들이 JS로 동적 생성 --></div>
     </section>
   </main>
