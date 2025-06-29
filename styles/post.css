@@ -2,7 +2,6 @@
 .post-card {
   text-align: left;
   margin-bottom: 32px;
-  position: relative; /* poster-rank absolute 기준 */
 }
 
 /* 포스터 박스 */
@@ -18,7 +17,6 @@
   color: #888;
   margin: 0 auto 10px auto;
   position: relative;
-  overflow: hidden;
 }
 
 /* 순위 넘버 */
@@ -35,7 +33,6 @@
   opacity: 1;
   z-index: 2;
   line-height: 1;
-  pointer-events: none;
 }
 
 /* 포스트 타이틀 */
