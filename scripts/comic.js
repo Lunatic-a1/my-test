@@ -41,13 +41,7 @@ function renderComics(page = 1) {
 }
 
 function renderPagination(page) {
-  let pagination = document.getElementById('pagination');
-  if (!pagination) {
-    pagination = document.createElement('div');
-    pagination.id = 'pagination';
-    pagination.className = 'pagination';
-    document.querySelector('.section').appendChild(pagination);
-  }
+  const pagination = document.getElementById('pagination');
   const totalPages = Math.ceil(comics.length / PAGE_SIZE);
   let html = '';
 
@@ -76,13 +70,30 @@ function renderPagination(page) {
     html += `<span class="page-next">다음 <svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z' fill='#222'/></svg></span>`;
   }
   pagination.innerHTML = html.trim();
+}
 
-  // 이벤트 바인딩
-  const prevBtn = pagination.querySelector('.page-prev');
-  if (prevBtn) {
-    prevBtn.onclick = () => {
+window.addEventListener('DOMContentLoaded', () => {
+  renderComics(1);
+  // 페이지네이션 이벤트 위임 방식으로 한 번만 바인딩
+  const pagination = document.getElementById('pagination');
+  pagination.onclick = function(e) {
+    const target = e.target.closest('span');
+    if (!target) return;
+    const totalPages = Math.ceil(comics.length / PAGE_SIZE);
+    const groupSize = 10;
+    const page = currentPage;
+    const groupStart = Math.floor((page - 1) / groupSize) * groupSize + 1;
+    let groupEnd = groupStart + groupSize - 1;
+    if (groupEnd > totalPages) groupEnd = totalPages;
+    if (target.classList.contains('page-num')) {
+      const num = parseInt(target.textContent);
+      if (currentPage !== num) {
+        currentPage = num;
+        renderComics(num);
+        window.scrollTo({top:0, behavior:'smooth'});
+      }
+    } else if (target.classList.contains('page-prev')) {
       if (page > 1) {
-        // 그룹의 첫 페이지에서 이전을 누르면 이전 그룹의 마지막 페이지로 이동
         if (page === groupStart) {
           const prevGroupLast = groupStart - 1;
           currentPage = prevGroupLast;
@@ -93,21 +104,8 @@ function renderPagination(page) {
         }
         window.scrollTo({top:0, behavior:'smooth'});
       }
-    };
-  }
-  pagination.querySelectorAll('.page-num').forEach(el => {
-    el.onclick = () => {
-      const num = parseInt(el.textContent);
-      currentPage = num;
-      renderComics(num);
-      window.scrollTo({top:0, behavior:'smooth'});
-    };
-  });
-  const nextBtn = pagination.querySelector('.page-next');
-  if (nextBtn) {
-    nextBtn.onclick = () => {
+    } else if (target.classList.contains('page-next')) {
       if (page < totalPages) {
-        // 그룹의 마지막 페이지에서 다음을 누르면 다음 그룹의 첫 페이지로 이동
         if (page === groupEnd) {
           const nextGroupFirst = groupEnd + 1;
           currentPage = nextGroupFirst;
@@ -118,12 +116,8 @@ function renderPagination(page) {
         }
         window.scrollTo({top:0, behavior:'smooth'});
       }
-    };
-  }
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  renderComics(1);
+    }
+  };
 });
 
 // 서브네비 메뉴 활성화 토글
