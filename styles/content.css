@@ -5,7 +5,7 @@
   position: relative; /* content-rank 오버레이용 */
 }
 
-/* 포스터 박스 */
+/* 콘텐츠 박스 */
 .content-poster-box {
   width: 160px;
   height: 240px;
