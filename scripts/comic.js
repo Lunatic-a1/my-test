@@ -59,15 +59,15 @@ function renderPagination(page) {
 
   // 이전 버튼
   if (page > 1) {
-    html += `<span class="page-prev"><svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6z' fill='#222'/></svg> 이전</span>`;
+    html += `<span class="page-prev"><svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6z' fill='#222'/></svg> 이전</span> `;
   }
 
   // 페이지 번호
   for (let i = groupStart; i <= groupEnd; i++) {
     if (i === page) {
-      html += `<span class="page-num active">${i}</span>`;
+      html += `<span class="page-num active">${i}</span> `;
     } else {
-      html += `<span class="page-num">${i}</span>`;
+      html += `<span class="page-num">${i}</span> `;
     }
   }
 
@@ -75,7 +75,7 @@ function renderPagination(page) {
   if (page < totalPages) {
     html += `<span class="page-next">다음 <svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z' fill='#222'/></svg></span>`;
   }
-  pagination.innerHTML = html;
+  pagination.innerHTML = html.trim();
 
   // 이벤트 바인딩
   const prevBtn = pagination.querySelector('.page-prev');
