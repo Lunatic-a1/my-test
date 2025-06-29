@@ -103,12 +103,12 @@
   content: '·';
   color: #bbb;
   margin-right: 4px;
-  font-size: 1.1em;
+  font-size: 0.98rem;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: baseline;
   line-height: 1;
   position: relative;
-  top: 0;
+  top: 0.04em;
 }
 .comic-sort-tab.active {
   color: #00c13b;
