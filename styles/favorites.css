@@ -3,10 +3,10 @@
   grid-template-columns: repeat(7, 1fr);
   gap: 12px;
 }
-.favorites-post-card {
+.content-favorites-card {
   text-align: left;
 }
-.favorites-post-title {
+.content-favorites-title {
   font-weight: bold;
   text-align: left;
 }
