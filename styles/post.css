@@ -118,4 +118,12 @@
 .poster-box:hover img {
   transform: scale(1.08);
   z-index: 1;
+}
+
+.post-title:hover,
+.latest-post-title:hover,
+.favorites-post-title:hover,
+.popular-post-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
 } 
