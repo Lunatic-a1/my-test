@@ -103,7 +103,7 @@ function renderPopularPosts() {
   if (!carousel) return;
   // Remove all except spacers
   carousel.innerHTML = '<div class="popular-card-spacer"></div>';
-  popularPosts.forEach((post, idx) => {
+  popularPosts.forEach(post => {
     const card = document.createElement('div');
     card.className = 'post-card popular-post-card';
     let rankHtml = '';
@@ -150,14 +150,8 @@ function renderPopularPosts() {
     } else {
       rankHtml = `<span class="poster-rank">${post.rank}</span>`;
     }
-    let posterBoxHtml = '';
-    if (idx === 0) {
-      posterBoxHtml = `<img src="includes/test-poster.png" alt="포스터" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" />${rankHtml}`;
-    } else {
-      posterBoxHtml = `포스터${rankHtml}`;
-    }
     card.innerHTML = `
-      <div class="poster-box">${posterBoxHtml}</div>
+      <div class="poster-box">포스터${rankHtml}</div>
       <div class="post-info">
         <div class="post-title popular-post-title">${post.title}</div>
       </div>
@@ -171,17 +165,11 @@ function renderLatestPosts() {
   const grid = document.querySelector('.latest-grid');
   if (!grid) return;
   grid.innerHTML = '';
-  latestPosts.forEach((post, idx) => {
+  latestPosts.forEach(post => {
     const card = document.createElement('div');
     card.className = 'post-card latest-post-card';
-    let posterBoxHtml = '';
-    if (idx === 0) {
-      posterBoxHtml = `<img src="includes/test-poster.png" alt="포스터" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" />`;
-    } else {
-      posterBoxHtml = '포스터';
-    }
     card.innerHTML = `
-      <div class="poster-box">${posterBoxHtml}</div>
+      <div class="poster-box">포스터</div>
       <div class="post-info">
         <div class="post-title latest-post-title">${post.up ? '<span class=\'up-badge\'>UP</span>' : ''}${post.title}</div>
         <div class="post-meta">
@@ -204,17 +192,11 @@ function renderFavoritePosts() {
   const grid = document.querySelector('.favorites-grid');
   if (!grid) return;
   grid.innerHTML = '';
-  favoritePosts.forEach((post, idx) => {
+  favoritePosts.forEach(post => {
     const card = document.createElement('div');
     card.className = 'post-card favorites-post-card';
-    let posterBoxHtml = '';
-    if (idx === 0) {
-      posterBoxHtml = `<img src="includes/test-poster.png" alt="포스터" style="width:100%;height:100%;object-fit:cover;border-radius:10px;" />`;
-    } else {
-      posterBoxHtml = '포스터';
-    }
     card.innerHTML = `
-      <div class="poster-box">${posterBoxHtml}</div>
+      <div class="poster-box">포스터</div>
       <div class="post-info">
         <div class="post-title favorites-post-title">${post.up ? '<span class=\'up-badge\'>UP</span>' : ''}${post.title}</div>
         <div class="post-meta">
