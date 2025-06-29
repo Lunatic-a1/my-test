@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
     function updateButtonVisibility() {
       const isAtStart = carousel.scrollLeft === 0;
       // 마지막 카드가 완전히 보이면 다음 버튼 숨김
-      const cards = carousel.querySelectorAll('.popular-post-card');
+      const cards = carousel.querySelectorAll('.content-popular-card');
       let isAtEnd = false;
       if (cards.length > 0) {
         const lastCard = cards[cards.length - 1];
@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     // 오른쪽 버튼 클릭: 끝으로 이동
     rightBtn.onclick = () => {
-      const cards = carousel.querySelectorAll('.popular-post-card');
+      const cards = carousel.querySelectorAll('.content-popular-card');
       if (cards.length > 0) {
         const lastCard = cards[cards.length - 1];
         const scrollTo = Math.max(
@@ -105,7 +105,7 @@ function renderPopularPosts() {
   carousel.innerHTML = '<div class="popular-card-spacer"></div>';
   popularPosts.forEach((post, idx) => {
     const card = document.createElement('div');
-    card.className = 'post-card popular-post-card';
+    card.className = 'post-card content-popular-card';
     let rankHtml = '';
     if (post.rank === 1) {
       rankHtml = `<span class="post-rank" style="padding:0;"> \
@@ -154,7 +154,7 @@ function renderPopularPosts() {
       <div class="poster-box">${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'포스터\' />' : '포스터'}</div>
       ${rankHtml}
       <div class="post-info">
-        <div class="post-title popular-post-title">${post.title}</div>
+        <div class="post-title content-popular-title">${post.title}</div>
       </div>
     `;
     carousel.appendChild(card);
@@ -168,11 +168,11 @@ function renderLatestPosts() {
   grid.innerHTML = '';
   latestPosts.forEach((post, idx) => {
     const card = document.createElement('div');
-    card.className = 'post-card latest-post-card';
+    card.className = 'post-card content-latest-card';
     card.innerHTML = `
       <div class="poster-box">${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'포스터\' />' : '포스터'}</div>
       <div class="post-info">
-        <div class="post-title latest-post-title">${post.up ? '<span class=\'up-badge\'>UP</span>' : ''}${post.title}</div>
+        <div class="post-title content-latest-title">${post.up ? '<span class=\'up-badge\'>UP</span>' : ''}${post.title}</div>
         <div class="post-meta">
           <span class="meta-icon" aria-label="rating"> 
             <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none"><path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" fill="#bbb"/></svg>
@@ -195,11 +195,11 @@ function renderFavoritePosts() {
   grid.innerHTML = '';
   favoritePosts.forEach((post, idx) => {
     const card = document.createElement('div');
-    card.className = 'post-card favorites-post-card';
+    card.className = 'post-card content-favorites-card';
     card.innerHTML = `
       <div class="poster-box">${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'포스터\' />' : '포스터'}</div>
       <div class="post-info">
-        <div class="post-title favorites-post-title">${post.up ? '<span class=\'up-badge\'>UP</span>' : ''}${post.title}</div>
+        <div class="post-title content-favorites-title">${post.up ? '<span class=\'up-badge\'>UP</span>' : ''}${post.title}</div>
         <div class="post-meta">
           <span class="meta-icon" aria-label="rating"> 
             <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none"><path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z" fill="#bbb"/></svg>
