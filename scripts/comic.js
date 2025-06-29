@@ -1,16 +1,22 @@
-// 예시 데이터 (실제 데이터로 교체 가능)
-const comics = Array.from({length: 20}, (_, i) => ({
+// 예시 데이터 (100개)
+const comics = Array.from({length: 100}, (_, i) => ({
   title: `웹툰 ${i+1}`,
   rating: (Math.random() * 3 + 7).toFixed(2),
   views: (Math.floor(Math.random() * 9000) + 1000).toLocaleString(),
   up: i % 5 === 0 // 5개마다 up 표시
 }));
 
-function renderComics() {
+const PAGE_SIZE = 35;
+let currentPage = 1;
+
+function renderComics(page = 1) {
   const grid = document.querySelector('.comics-grid');
   if (!grid) return;
   grid.innerHTML = '';
-  comics.forEach(comic => {
+  const startIdx = (page - 1) * PAGE_SIZE;
+  const endIdx = startIdx + PAGE_SIZE;
+  const pageComics = comics.slice(startIdx, endIdx);
+  pageComics.forEach(comic => {
     const card = document.createElement('div');
     card.className = 'post-card';
     card.innerHTML = `
@@ -31,9 +37,87 @@ function renderComics() {
     `;
     grid.appendChild(card);
   });
+  renderPagination(page);
 }
 
-window.addEventListener('DOMContentLoaded', renderComics);
+function renderPagination(page) {
+  let pagination = document.getElementById('pagination');
+  if (!pagination) {
+    pagination = document.createElement('div');
+    pagination.id = 'pagination';
+    pagination.className = 'pagination';
+    document.querySelector('.section').appendChild(pagination);
+  }
+  const totalPages = Math.ceil(comics.length / PAGE_SIZE);
+  let html = '';
+  // 페이지 번호 (최대 10개만 표시)
+  let start = Math.max(1, page - 4);
+  let end = Math.min(totalPages, start + 9);
+  if (end - start < 9) start = Math.max(1, end - 9);
+  for (let i = start; i <= end; i++) {
+    if (i === page) {
+      html += `<span class="page-num active">${i}</span>`;
+    } else {
+      html += `<span class="page-num">${i}</span>`;
+    }
+  }
+  // 다음 버튼
+  if (page < totalPages) {
+    html += `<span class="page-next">다음 <svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z' fill='#1976d2'/></svg></span>`;
+  }
+  pagination.innerHTML = html;
+
+  // 이벤트 바인딩
+  pagination.querySelectorAll('.page-num').forEach(el => {
+    el.onclick = () => {
+      const num = parseInt(el.textContent);
+      currentPage = num;
+      renderComics(num);
+      window.scrollTo({top:0, behavior:'smooth'});
+    };
+  });
+  const nextBtn = pagination.querySelector('.page-next');
+  if (nextBtn) {
+    nextBtn.onclick = () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderComics(currentPage);
+        window.scrollTo({top:0, behavior:'smooth'});
+      }
+    };
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  renderComics(1);
+  // 페이지네이션용 간단 스타일 추가
+  const style = document.createElement('style');
+  style.textContent = `
+    .pagination {
+      margin: 32px 0 0 0;
+      text-align: center;
+      font-size: 1.2rem;
+      user-select: none;
+    }
+    .pagination .page-num, .pagination .page-next {
+      display: inline-block;
+      margin: 0 8px;
+      color: #1976d2;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .pagination .page-num.active {
+      color: #222;
+      font-weight: bold;
+      cursor: default;
+    }
+    .pagination .page-num:hover:not(.active), .pagination .page-next:hover {
+      color: #0d47a1;
+      text-decoration: underline;
+    }
+  `;
+  document.head.appendChild(style);
+});
 
 // 서브네비 메뉴 활성화 토글
 window.addEventListener('DOMContentLoaded', () => {
