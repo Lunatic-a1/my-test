@@ -84,7 +84,7 @@
 
 .comic-sort-tabs {
   display: flex;
-  gap: 12px;
+  gap: 6px;
 }
 .comic-sort-tab {
   font-size: 0.98rem;
