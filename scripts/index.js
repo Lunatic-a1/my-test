@@ -151,7 +151,7 @@ function renderPopularContents() {
       rankHtml = `<span class="content-rank">${content.rank}</span>`;
     }
     card.innerHTML = `
-      <div class="content-poster-box">${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'포스터\' />' : '포스터'}</div>
+      <div class="content-poster-box">${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'콘텐츠\' />' : '콘텐츠'}</div>
       ${rankHtml}
       <div class="content-info">
         <div class="content-title content-popular-title">${content.title}</div>
@@ -170,7 +170,7 @@ function renderLatestContents() {
     const card = document.createElement('div');
     card.className = 'content-card content-latest-card';
     card.innerHTML = `
-      <div class="content-poster-box">${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'포스터\' />' : '포스터'}</div>
+      <div class="content-poster-box">${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'콘텐츠\' />' : '콘텐츠'}</div>
       <div class="content-info">
         <div class="content-title content-latest-title">${content.up ? '<span class=\'up-badge\'>UP</span>' : ''}${content.title}</div>
         <div class="content-meta">
@@ -197,7 +197,7 @@ function renderFavoriteContents() {
     const card = document.createElement('div');
     card.className = 'content-card content-favorites-card';
     card.innerHTML = `
-      <div class="content-poster-box">${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'포스터\' />' : '포스터'}</div>
+      <div class="content-poster-box">${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'콘텐츠\' />' : '콘텐츠'}</div>
       <div class="content-info">
         <div class="content-title content-favorites-title">${content.up ? '<span class=\'up-badge\'>UP</span>' : ''}${content.title}</div>
         <div class="content-meta">
