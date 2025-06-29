@@ -50,34 +50,27 @@ function renderPagination(page) {
   }
   const totalPages = Math.ceil(comics.length / PAGE_SIZE);
   let html = '';
+
+  // 한 번에 최대 10개 페이지 번호만 보여주기
+  const groupSize = 10;
+  const groupStart = Math.floor((page - 1) / groupSize) * groupSize + 1;
+  let groupEnd = groupStart + groupSize - 1;
+  if (groupEnd > totalPages) groupEnd = totalPages;
+
   // 이전 버튼
   if (page > 1) {
     html += `<span class="page-prev"><svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6z' fill='#222'/></svg> 이전</span>`;
   }
-  // 페이지 번호 (최대 10개만 표시, 현재 페이지가 가운데)
-  let start, end;
-  if (totalPages <= 10) {
-    start = 1;
-    end = totalPages;
-  } else {
-    if (page <= 6) {
-      start = 1;
-      end = 10;
-    } else if (page + 4 >= totalPages) {
-      start = totalPages - 9;
-      end = totalPages;
-    } else {
-      start = page - 5;
-      end = page + 4;
-    }
-  }
-  for (let i = start; i <= end; i++) {
+
+  // 페이지 번호
+  for (let i = groupStart; i <= groupEnd; i++) {
     if (i === page) {
       html += `<span class="page-num active">${i}</span>`;
     } else {
       html += `<span class="page-num">${i}</span>`;
     }
   }
+
   // 다음 버튼
   if (page < totalPages) {
     html += `<span class="page-next">다음 <svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z' fill='#222'/></svg></span>`;
@@ -88,9 +81,16 @@ function renderPagination(page) {
   const prevBtn = pagination.querySelector('.page-prev');
   if (prevBtn) {
     prevBtn.onclick = () => {
-      if (currentPage > 1) {
-        currentPage--;
-        renderComics(currentPage);
+      if (page > 1) {
+        // 그룹의 첫 페이지에서 이전을 누르면 이전 그룹의 마지막 페이지로 이동
+        if (page === groupStart) {
+          const prevGroupLast = groupStart - 1;
+          currentPage = prevGroupLast;
+          renderComics(currentPage);
+        } else {
+          currentPage--;
+          renderComics(currentPage);
+        }
         window.scrollTo({top:0, behavior:'smooth'});
       }
     };
@@ -106,9 +106,16 @@ function renderPagination(page) {
   const nextBtn = pagination.querySelector('.page-next');
   if (nextBtn) {
     nextBtn.onclick = () => {
-      if (currentPage < totalPages) {
-        currentPage++;
-        renderComics(currentPage);
+      if (page < totalPages) {
+        // 그룹의 마지막 페이지에서 다음을 누르면 다음 그룹의 첫 페이지로 이동
+        if (page === groupEnd) {
+          const nextGroupFirst = groupEnd + 1;
+          currentPage = nextGroupFirst;
+          renderComics(currentPage);
+        } else {
+          currentPage++;
+          renderComics(currentPage);
+        }
         window.scrollTo({top:0, behavior:'smooth'});
       }
     };
