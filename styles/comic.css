@@ -89,7 +89,7 @@
 .comic-sort-tab {
   font-size: 0.98rem;
   color: #888;
-  padding: 0 8px;
+  padding: 0 4px;
   border-radius: 0;
   cursor: pointer;
   transition: color 0.18s;
@@ -98,14 +98,19 @@
   border: none;
   box-shadow: none;
   position: relative;
+  line-height: 1.7;
 }
 .comic-sort-tab:not(:first-child)::before {
   content: '·';
   color: #bbb;
-  margin-right: 8px;
+  margin-right: 4px;
+  margin-left: 4px;
   font-size: 1.1em;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
   position: relative;
-  top: -1px;
+  top: 0;
 }
 .comic-sort-tab.active {
   color: #00c13b;
