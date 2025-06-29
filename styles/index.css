@@ -92,12 +92,12 @@
   width: 12px;
 }
 
-.popular-post-card {
+.content-popular-card {
   display: inline-block;
   margin-right: 12px;
   position: relative;
 }
-.popular-post-card:last-child {
+.content-popular-card:last-child {
   margin-right: 0;
 }
 
@@ -108,11 +108,11 @@
   gap: 12px;
 }
 
-.latest-post-card, .favorites-post-card {
+.content-latest-card, .content-favorites-card {
   text-align: center;
 }
 
-.latest-post-title, .favorites-post-title {
+.content-latest-title, .content-favorites-title {
   font-weight: bold;
 }
 
