@@ -85,7 +85,7 @@ const popularPosts = Array.from({length: 10}, (_, i) => ({
   title: `인기작 ${i+1}`,
   rank: i+1
 }));
-const latestPosts = Array.from({length: 7}, (_, i) => ({
+const latestPosts = Array.from({length: 21}, (_, i) => ({
   title: `최신작 ${i+1}`,
   rating: (Math.random() * 3 + 7).toFixed(2),
   views: (Math.floor(Math.random() * 9000) + 1000).toLocaleString(),
