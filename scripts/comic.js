@@ -54,10 +54,23 @@ function renderPagination(page) {
   if (page > 1) {
     html += `<span class="page-prev"><svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6z' fill='#222'/></svg> 이전</span>`;
   }
-  // 페이지 번호 (최대 10개만 표시)
-  let start = Math.max(1, page - 4);
-  let end = Math.min(totalPages, start + 9);
-  if (end - start < 9) start = Math.max(1, end - 9);
+  // 페이지 번호 (최대 10개만 표시, 현재 페이지가 가운데)
+  let start, end;
+  if (totalPages <= 10) {
+    start = 1;
+    end = totalPages;
+  } else {
+    if (page <= 6) {
+      start = 1;
+      end = 10;
+    } else if (page + 4 >= totalPages) {
+      start = totalPages - 9;
+      end = totalPages;
+    } else {
+      start = page - 5;
+      end = page + 4;
+    }
+  }
   for (let i = start; i <= end; i++) {
     if (i === page) {
       html += `<span class="page-num active">${i}</span>`;
@@ -104,33 +117,6 @@ function renderPagination(page) {
 
 window.addEventListener('DOMContentLoaded', () => {
   renderComics(1);
-  // 페이지네이션용 간단 스타일 추가
-  const style = document.createElement('style');
-  style.textContent = `
-    .pagination {
-      margin: 32px 0 0 0;
-      text-align: center;
-      font-size: 1.2rem;
-      user-select: none;
-    }
-    .pagination .page-num, .pagination .page-next, .pagination .page-prev {
-      display: inline-block;
-      margin: 0 8px;
-      color: #222;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-    .pagination .page-num.active {
-      color: #222;
-      font-weight: bold;
-      cursor: default;
-    }
-    .pagination .page-num:hover:not(.active), .pagination .page-next:hover, .pagination .page-prev:hover {
-      color: #0d47a1;
-      text-decoration: underline;
-    }
-  `;
-  document.head.appendChild(style);
 });
 
 // 서브네비 메뉴 활성화 토글
