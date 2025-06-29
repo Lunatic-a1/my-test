@@ -53,8 +53,8 @@ function renderComics(page = 1) {
     card.className = 'content-card';
     card.innerHTML = `
       <div class="content-poster-box">
-        ${(comic.isAdult && comic.createdAt >= Date.now() - 1000*60*60*24*30) ? `<span class=\"new-badge new-badge--below\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"12\" fill=\"#00c13b\"/><text x=\"12\" y=\"17\" text-anchor=\"middle\" font-size=\"7\" fill=\"#111\" font-weight=\"bold\">Шинэ</text></svg></span>` : ''}
-        ${(!comic.isAdult && comic.createdAt >= Date.now() - 1000*60*60*24*30) ? `<span class=\"new-badge new-badge--top\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"12\" fill=\"#00c13b\"/><text x=\"12\" y=\"17\" text-anchor=\"middle\" font-size=\"7\" fill=\"#111\" font-weight=\"bold\">Шинэ</text></svg></span>` : ''}
+        ${(comic.isAdult && comic.createdAt >= Date.now() - 1000*60*60*24*30) ? `<span class=\"new-badge new-badge--below\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"12\" fill=\"#00c13b\"/><text x=\"12\" y=\"13\" text-anchor=\"middle\" font-size=\"7\" fill=\"#111\" font-weight=\"bold\">Шинэ</text></svg></span>` : ''}
+        ${(!comic.isAdult && comic.createdAt >= Date.now() - 1000*60*60*24*30) ? `<span class=\"new-badge new-badge--top\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"12\" fill=\"#00c13b\"/><text x=\"12\" y=\"13\" text-anchor=\"middle\" font-size=\"7\" fill=\"#111\" font-weight=\"bold\">Шинэ</text></svg></span>` : ''}
         ${comic.isAdult ? `<span class=\"age-badge\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><g><path d=\"M12 1.5 L22.5 4.5 V12 C22.5 18 12 22.5 12 22.5 C12 22.5 1.5 18 1.5 12 V4.5 Z\" fill=\"#F7931A\"/><circle cx=\"12\" cy=\"9\" r=\"3.75\" fill=\"#fff\"/><path d=\"M12 13.5c-3 0-5.25 1.5-5.25 3v1.5h10.5v-1.5c0-1.5-2.25-3-5.25-3z\" fill=\"#fff\"/></g></svg></span>` : ''}
         콘텐츠
       </div>
