@@ -103,4 +103,8 @@
 .comic-sort-tab:hover:not(.active) {
   background: #e3e3e3;
   color: #1976d2;
+}
+
+.comic-section-header {
+  margin-bottom: 28px;
 } 
