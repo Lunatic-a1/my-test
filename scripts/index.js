@@ -151,8 +151,7 @@ function renderPopularPosts() {
       rankHtml = `<span class="poster-rank">${post.rank}</span>`;
     }
     card.innerHTML = `
-      <div class="poster-box">${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'포스터\' />' : '포스터'}</div>
-      <span class="poster-rank">${post.rank}</span>
+      <div class="poster-box">${idx === 0 ? '<img src=\'includes/test-poster.png\' alt=\'포스터\' />' : '포스터'}${rankHtml}</div>
       <div class="post-info">
         <div class="post-title popular-post-title">${post.title}</div>
       </div>
