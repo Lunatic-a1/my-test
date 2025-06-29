@@ -98,13 +98,11 @@
   border: none;
   box-shadow: none;
   position: relative;
-  line-height: 1.7;
 }
 .comic-sort-tab:not(:first-child)::before {
   content: '·';
   color: #bbb;
   margin-right: 4px;
-  margin-left: 4px;
   font-size: 1.1em;
   display: inline-block;
   vertical-align: middle;
@@ -124,4 +122,10 @@
 
 .comic-section-header {
   margin-bottom: 28px;
+  align-items: baseline;
+}
+
+.section-title {
+  margin-bottom: 0;
+  padding-bottom: 0;
 } 
