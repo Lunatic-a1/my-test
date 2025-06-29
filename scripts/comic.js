@@ -52,7 +52,7 @@ function renderPagination(page) {
   let html = '';
   // 이전 버튼
   if (page > 1) {
-    html += `<span class="page-prev"><svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6z' fill='#1976d2'/></svg> 이전</span>`;
+    html += `<span class="page-prev"><svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6z' fill='#222'/></svg> 이전</span>`;
   }
   // 페이지 번호 (최대 10개만 표시)
   let start = Math.max(1, page - 4);
@@ -67,7 +67,7 @@ function renderPagination(page) {
   }
   // 다음 버튼
   if (page < totalPages) {
-    html += `<span class="page-next">다음 <svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z' fill='#1976d2'/></svg></span>`;
+    html += `<span class="page-next">다음 <svg style='vertical-align:middle' width='18' height='18' viewBox='0 0 24 24'><path d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z' fill='#222'/></svg></span>`;
   }
   pagination.innerHTML = html;
 
