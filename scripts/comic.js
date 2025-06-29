@@ -19,7 +19,11 @@ function getSortedComics() {
       arr.sort((a, b) => parseInt(b.views.replace(/,/g, '')) - parseInt(a.views.replace(/,/g, '')));
       break;
     case '업데이트순':
-      arr.sort((a, b) => b.createdAt - a.createdAt);
+      arr.sort((a, b) => {
+        if (b.up && !a.up) return 1;
+        if (a.up && !b.up) return -1;
+        return b.createdAt - a.createdAt;
+      });
       break;
     case '신작순':
       arr.sort((a, b) => b.createdAt - a.createdAt);
