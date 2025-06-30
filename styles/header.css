@@ -128,29 +128,13 @@
   color: #222;
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  min-width: 200px;
+  min-width: 220px;
   z-index: 10;
-  padding: 15px;
-}
-.user-info-box {
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  padding: 18px 20px 12px 20px;
 }
 .user-id, .user-point {
-  font-size: 0.9em;
-  color: #555;
-  margin-bottom: 5px;
-}
-.user-menu-box .dropdown-item {
-  display: block;
-  padding: 8px 0;
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-}
-.user-menu-box .dropdown-item:hover {
-  color: #0d47a1;
+  margin-bottom: 8px;
+  font-size: 15px;
 }
 .profile-btn {
   width: 100%;
