@@ -101,8 +101,8 @@ function bindHeaderAuthEvents() {
         if (userIdSpan) userIdSpan.textContent = data.userId || '--------';
         if (userPointSpan) userPointSpan.textContent = data.point !== undefined ? data.point : '0';
 
-        // 관리자 권한 확인
-        if (data.role === 'admin') {
+        // 관리자 권한 확인 (isAdmin: true 필드 기준)
+        if (data.isAdmin === true) {
           if (adminDashboardLink) adminDashboardLink.style.display = 'block';
         } else {
           if (adminDashboardLink) adminDashboardLink.style.display = 'none';
