@@ -39,7 +39,6 @@ function bindHeaderAuthEvents() {
   const loginLink = document.getElementById('login-link');
   const userNotifyBtn = document.getElementById('user-notify-btn');
   const userNotifyPanel = document.getElementById('user-notify-panel');
-  const adminDashboardBtn = document.getElementById('admin-dashboard-btn');
 
   // 드롭다운 토글 (user-profile 클릭 시에만)
   if (userProfile && userDropdown && userNotifyPanel) {
@@ -90,26 +89,16 @@ function bindHeaderAuthEvents() {
   }
 
   onAuthStateChanged(auth, async (user) => {
-    const adminDashboardBtn = document.getElementById('admin-dashboard-btn');
-    if (adminDashboardBtn) adminDashboardBtn.style.display = 'none'; // 기본적으로 숨김
-
     if (user) {
       if (loginLink) loginLink.style.display = 'none';
       if (userProfile) userProfile.style.display = 'flex';
-      
+      // Firestore에서 유저 정보 가져오기
       const userDoc = await getDoc(doc(db, 'users', user.uid));
-
       if (userDoc.exists()) {
         const data = userDoc.data();
         if (userNickname) userNickname.textContent = data.nickname || user.email;
         if (userIdSpan) userIdSpan.textContent = data.userId || '--------';
         if (userPointSpan) userPointSpan.textContent = data.point !== undefined ? data.point : '0';
-
-        // 관리자 권한 확인
-        if (data.role === 'admin' && adminDashboardBtn) {
-          adminDashboardBtn.style.display = 'block';
-        }
-
       } else {
         if (userNickname) userNickname.textContent = user.email;
         if (userIdSpan) userIdSpan.textContent = '--------';
