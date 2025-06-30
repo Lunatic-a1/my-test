@@ -8,11 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             // 사용자가 로그인함 -> 관리자 권한 확인
-            const userDocRef = doc(db, "users", user.uid);
-            const userDocSnap = await getDoc(userDocRef);
-
-            if (userDocSnap.exists() && userDocSnap.data().role === 'admin') {
-                // 관리자 확인 -> 레이아웃 로드
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists() && userDoc.data().isAdmin === true) {
+                // 관리자일 경우, 페이지 로드 계속
+                console.log("관리자 접근 허용:", user.email);
                 loadAdminLayout();
             } else {
                 // 관리자가 아님 -> 홈페이지로 리디렉션
