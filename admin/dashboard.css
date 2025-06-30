@@ -46,4 +46,20 @@ tr:nth-child(even) { background: #f9fafc; }
     padding-left: 45px;
     font-size: 0.95em;
     background-color: rgba(0,0,0,0.1);
+}
+
+.sub-menu {
+    display: none;
+}
+
+.menu-toggle::after {
+    content: '▶';
+    float: right;
+    transition: transform 0.2s;
+    font-size: 0.7em;
+    line-height: inherit;
+}
+
+.menu-toggle.active::after {
+    transform: rotate(90deg);
 } 
