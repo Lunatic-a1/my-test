@@ -1,11 +1,30 @@
+import { auth } from "../scripts/firebase-init.js";
+import { signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     fetch('includes/sidebar.html')
         .then(response => response.text())
         .then(data => {
             document.body.insertAdjacentHTML('afterbegin', data);
             initializeMenu();
+            bindLogoutEvent();
         });
 });
+
+function bindLogoutEvent() {
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            signOut(auth).then(() => {
+                window.location.href = '/index.html';
+            }).catch((error) => {
+                console.error("Logout failed: ", error);
+                alert("로그아웃에 실패했습니다.");
+            });
+        });
+    }
+}
 
 function initializeMenu() {
     const currentPage = window.location.pathname.split('/').pop();
