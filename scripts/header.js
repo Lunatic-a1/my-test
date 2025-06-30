@@ -39,6 +39,7 @@ function bindHeaderAuthEvents() {
   const loginLink = document.getElementById('login-link');
   const userNotifyBtn = document.getElementById('user-notify-btn');
   const userNotifyPanel = document.getElementById('user-notify-panel');
+  const adminDashboardLink = document.getElementById('admin-dashboard-link');
 
   // 드롭다운 토글 (user-profile 클릭 시에만)
   if (userProfile && userDropdown && userNotifyPanel) {
@@ -99,15 +100,25 @@ function bindHeaderAuthEvents() {
         if (userNickname) userNickname.textContent = data.nickname || user.email;
         if (userIdSpan) userIdSpan.textContent = data.userId || '--------';
         if (userPointSpan) userPointSpan.textContent = data.point !== undefined ? data.point : '0';
+
+        // 관리자 권한 확인
+        if (data.role === 'admin') {
+          if (adminDashboardLink) adminDashboardLink.style.display = 'block';
+        } else {
+          if (adminDashboardLink) adminDashboardLink.style.display = 'none';
+        }
+
       } else {
         if (userNickname) userNickname.textContent = user.email;
         if (userIdSpan) userIdSpan.textContent = '--------';
         if (userPointSpan) userPointSpan.textContent = '0';
+        if (adminDashboardLink) adminDashboardLink.style.display = 'none';
       }
     } else {
       if (loginLink) loginLink.style.display = '';
       if (userProfile) userProfile.style.display = 'none';
       if (userDropdown) userDropdown.style.display = 'none';
+      if (adminDashboardLink) adminDashboardLink.style.display = 'none';
     }
   });
 
