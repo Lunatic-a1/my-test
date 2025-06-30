@@ -1,7 +1,31 @@
-import { auth } from "../scripts/firebase-init.js";
-import { signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+import { app, auth } from "../scripts/firebase-init.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+const db = getFirestore(app);
 
 document.addEventListener("DOMContentLoaded", () => {
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            // 사용자가 로그인함 -> 관리자 권한 확인
+            const userDocRef = doc(db, "users", user.uid);
+            const userDocSnap = await getDoc(userDocRef);
+
+            if (userDocSnap.exists() && userDocSnap.data().role === 'admin') {
+                // 관리자 확인 -> 레이아웃 로드
+                loadAdminLayout();
+            } else {
+                // 관리자가 아님 -> 홈페이지로 리디렉션
+                window.location.href = "/index.html";
+            }
+        } else {
+            // 로그인하지 않음 -> 로그인 페이지로 리디렉션
+            window.location.href = "/login.html";
+        }
+    });
+});
+
+function loadAdminLayout() {
     fetch('includes/sidebar.html')
         .then(response => response.text())
         .then(data => {
@@ -9,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             initializeMenu();
             bindLogoutEvent();
         });
-});
+}
 
 function bindLogoutEvent() {
     const logoutBtn = document.getElementById('logout-btn');
@@ -32,11 +56,13 @@ function initializeMenu() {
 
     menuToggles.forEach(toggle => {
         const subMenu = toggle.nextElementSibling;
+        if (!subMenu || !subMenu.classList.contains('sub-menu')) return;
+        
         const subMenuLinks = subMenu.querySelectorAll('a');
         let isCurrentMenuActive = false;
 
         subMenuLinks.forEach(link => {
-            if (link.getAttribute('href').split('/').pop() === currentPage) {
+            if (link.getAttribute('href') && link.getAttribute('href').split('/').pop() === currentPage) {
                 link.classList.add('active');
                 isCurrentMenuActive = true;
             }
@@ -50,17 +76,17 @@ function initializeMenu() {
         toggle.addEventListener('click', (e) => {
             e.preventDefault();
             toggle.classList.toggle('active');
-            const subMenu = toggle.nextElementSibling;
-            if (subMenu.style.display === 'block') {
-                subMenu.style.display = 'none';
+            const subMenuToToggle = toggle.nextElementSibling;
+            if (subMenuToToggle.style.display === 'block') {
+                subMenuToToggle.style.display = 'none';
             } else {
-                subMenu.style.display = 'block';
+                subMenuToToggle.style.display = 'block';
             }
         });
     });
 
     // For non-group menus
-    const singleLinks = document.querySelectorAll('.sidebar > a');
+    const singleLinks = document.querySelectorAll('.sidebar > a:not(.menu-toggle)');
     singleLinks.forEach(link => {
       if (link.getAttribute('href') && link.getAttribute('href').split('/').pop() === currentPage) {
         link.classList.add('active');
