@@ -136,25 +136,37 @@
   margin-bottom: 8px;
   font-size: 15px;
 }
-.profile-btn {
+.user-dropdown-item {
   width: 100%;
-  margin-bottom: 8px;
-  padding: 8px 0;
-  border: none;
-  background: #eee;
+  padding: 10px 0;
   border-radius: 5px;
   font-size: 15px;
   cursor: pointer;
+  margin-bottom: 8px;
+  text-align: center;
+  transition: opacity 0.2s;
 }
-.logout-btn {
-  width: 100%;
-  padding: 8px 0;
-  border: none;
+.user-dropdown-item:hover {
+  opacity: 0.85;
+}
+.user-dropdown-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+#profile-btn {
+  background: #eee;
+  color: #333;
+}
+#logout-btn {
   background: #f8d7da;
   color: #b71c1c;
-  border-radius: 5px;
-  font-size: 15px;
-  cursor: pointer;
+}
+#admin-dashboard-link {
+  background: #e0e0e0;
+}
+#admin-dashboard-link a {
+  color: #222;
 }
 .user-notify-panel {
   display: none;
