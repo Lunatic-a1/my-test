@@ -1,0 +1,50 @@
+body {
+  background: #f7f7f7;
+  font-family: 'Segoe UI', '맑은 고딕', Arial, sans-serif;
+}
+.admin-login-container {
+  max-width: 350px;
+  margin: 100px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.09);
+  padding: 32px 28px 24px 28px;
+  text-align: center;
+}
+.admin-login-container h1 {
+  margin-bottom: 24px;
+  font-size: 1.5rem;
+  color: #222;
+}
+#admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+#admin-login-form input {
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+#admin-login-form button {
+  padding: 10px 0;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+#admin-login-form button:hover {
+  background: #ffd600;
+  color: #222;
+}
+#admin-login-message {
+  margin-top: 18px;
+  color: #b71c1c;
+  font-size: 0.98rem;
+  min-height: 22px;
+} 
