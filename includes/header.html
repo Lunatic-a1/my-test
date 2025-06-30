@@ -28,10 +28,15 @@
               <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v3.586l-.707.707A1 1 0 0 0 5 16h14a1 1 0 0 0 .707-1.707L19 12.586V9a7 7 0 0 0-7-7zm0 18a3 3 0 0 0 2.995-2.824L15 17h-6a3 3 0 0 0 2.824 2.995L12 20z"/></svg>
             </button>
             <div id="user-dropdown" class="user-dropdown">
-              <div class="user-id">ID: <span id="user-id">--------</span></div>
-              <div class="user-point">코인: <span id="user-point">0</span></div>
-              <button id="profile-btn" class="profile-btn">회원정보</button>
-              <button id="logout-btn" class="logout-btn">로그아웃</button>
+              <div class="user-dropdown-info">
+                <span id="user-id"></span>
+                <span><span id="user-point">0</span> P</span>
+              </div>
+              <div class="user-dropdown-menu">
+                <a href="#" id="profile-btn">회원정보</a>
+                <a href="/admin/dashboard.html" id="admin-dashboard-btn" style="display: none;">관리자 대시보드</a>
+                <a href="#" id="logout-btn">로그아웃</a>
+              </div>
             </div>
           </div>
           <div id="user-notify-panel" class="user-notify-panel">
