@@ -23,6 +23,8 @@
     </style>
 </head>
 <body>
+    <!-- Sidebar Include -->
+    <div id="sidebar-include"></div>
     <div class="main">
         <div class="header">
             <h1>작품 등록</h1>
@@ -105,6 +107,11 @@
         </div>
     </div>
     <script type="module" src="admin-layout.js"></script>
-    <!-- Firestore 연동 및 이미지 업로드, 입력 검증 JS는 이전 구현 참고하여 추가 가능 -->
+    <script>
+    // Sidebar include (vanilla JS)
+    fetch('includes/sidebar.html')
+      .then(res => res.text())
+      .then(html => { document.getElementById('sidebar-include').innerHTML = html; });
+    </script>
 </body>
 </html> 
