@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="dashboard.css">
     <style>
         body { background: #fafbfc; }
-        .main { max-width: 720px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px #0001; padding: 32px 36px; }
+        .main { max-width: 720px; margin-left: 220px; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px #0001; }
+        @media (max-width: 700px) {
+            .main { margin-left: 100px; padding: 15px; }
+        }
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
         .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; }
         .form-row { display: flex; align-items: flex-start; margin-bottom: 18px; gap: 16px; }
