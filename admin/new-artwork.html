@@ -149,10 +149,35 @@
                 <div class="reg-btn-row">
                     <button type="button" class="reg-btn cancel">취소</button>
                     <button type="submit" class="reg-btn submit">등록</button>
+                    <button type="button" class="reg-btn submit-chapter">등록 후 1화 올리기</button>
                 </div>
             </form>
         </div>
     </div>
     <script type="module" src="admin-layout.js"></script>
+    <script>
+    // 취소 버튼
+    document.querySelector('.reg-btn.cancel')?.addEventListener('click', () => {
+        window.location.href = '/admin/artwork-list.html';
+    });
+    // 등록 후 1화 올리기 버튼
+    document.querySelector('.reg-btn.submit-chapter')?.addEventListener('click', function() {
+        // 실제 구현에서는 Firestore 등록 후 성공 콜백에서 이동
+        // 여기서는 폼 검증만 하고 이동
+        const form = document.querySelector('.artwork-reg-form');
+        if (form.checkValidity()) {
+            // 작품 등록 로직 (생략)
+            window.location.href = '/admin/new-artwork-chapter.html';
+        } else {
+            form.reportValidity();
+        }
+    });
+    // 등록 버튼 (submit)
+    document.querySelector('.artwork-reg-form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // 작품 등록 로직 (생략)
+        alert('작품이 등록되었습니다!');
+    });
+    </script>
 </body>
 </html> 
