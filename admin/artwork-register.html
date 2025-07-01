@@ -164,11 +164,13 @@
                         <div class="reg-image-group">
                             <div class="image-upload-box">
                                 <div class="image-upload-label">포스터형<br><span>480 × 623</span></div>
+                                <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
                                 <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" />
                                 <label for="poster-upload">파일 선택</label>
                             </div>
                             <div class="image-upload-box">
                                 <div class="image-upload-label">가로형<br><span>434 × 330</span></div>
+                                <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
                                 <input type="file" id="landscape-upload" accept="image/jpeg,image/jpg" />
                                 <label for="landscape-upload">파일 선택</label>
                             </div>
@@ -196,5 +198,43 @@
         </div>
     </div>
     <script type="module" src="admin-layout.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 포스터형
+        const posterInput = document.getElementById('poster-upload');
+        const posterBox = posterInput.closest('.image-upload-box');
+        const posterPreview = posterBox.querySelector('.preview-img');
+        posterInput.addEventListener('change', e => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = ev => {
+                    posterPreview.src = ev.target.result;
+                    posterPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                posterPreview.style.display = 'none';
+            }
+        });
+        // 가로형
+        const landscapeInput = document.getElementById('landscape-upload');
+        const landscapeBox = landscapeInput.closest('.image-upload-box');
+        const landscapePreview = landscapeBox.querySelector('.preview-img');
+        landscapeInput.addEventListener('change', e => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = ev => {
+                    landscapePreview.src = ev.target.result;
+                    landscapePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                landscapePreview.style.display = 'none';
+            }
+        });
+    });
+    </script>
 </body>
 </html> 
