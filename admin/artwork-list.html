@@ -37,9 +37,11 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>이미지</th>
+                        <th>썸네일</th>
                         <th>제목</th>
                         <th>장르</th>
+                        <th>포인트</th>
+                        <th>요약</th>
                         <th>등록일</th>
                         <th>상태</th>
                         <th>관리</th>
@@ -61,12 +63,12 @@
 
     async function renderArtworkList() {
         const tbody = document.getElementById('artwork-list-tbody');
-        tbody.innerHTML = '<tr><td colspan="6">로딩 중...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="8">로딩 중...</td></tr>';
         try {
             const q = query(collection(db, 'webtoons'), orderBy('createdAt', 'desc'));
             const snapshot = await getDocs(q);
             if (snapshot.empty) {
-                tbody.innerHTML = '<tr><td colspan="6">등록된 작품이 없습니다.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8">등록된 작품이 없습니다.</td></tr>';
                 return;
             }
             tbody.innerHTML = '';
@@ -75,11 +77,15 @@
                 const imgUrl = data.posterUrl || data.landscapeUrl || 'https://via.placeholder.com/60x80?text=No+Image';
                 const genres = Array.isArray(data.genre) ? data.genre.join(', ') : (data.genre || '-');
                 const dateStr = data.createdAt && data.createdAt.toDate ? data.createdAt.toDate().toLocaleDateString() : '-';
+                const paidPoint = data.paidPoint ? data.paidPoint + 'P' : '-';
+                const summary = data.summary || '-';
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td><img src="${imgUrl}" alt="썸네일" style="width:48px;height:64px;object-fit:cover;border-radius:6px;background:#eee;" /></td>
                     <td>${data.title || ''}</td>
                     <td>${genres}</td>
+                    <td>${paidPoint}</td>
+                    <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${summary}</td>
                     <td>${dateStr}</td>
                     <td>정상</td>
                     <td><button class="artwork-action-btn">관리</button></td>
@@ -87,7 +93,8 @@
                 tbody.appendChild(tr);
             });
         } catch (err) {
-            tbody.innerHTML = '<tr><td colspan="6">목록을 불러오는 중 오류가 발생했습니다.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8">목록을 불러오는 중 오류가 발생했습니다.</td></tr>';
+            console.error(err);
         }
     }
 
