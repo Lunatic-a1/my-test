@@ -1,0 +1,25 @@
+.artwork-action-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #00e676;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: background 0.18s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.artwork-action-btn:last-child {
+  margin-right: 0;
+}
+.artwork-action-btn svg {
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.artwork-action-btn:hover {
+  background: #00c853;
+} 
