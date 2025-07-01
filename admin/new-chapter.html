@@ -40,8 +40,12 @@
                     </select>
                 </div>
                 <div class="form-row">
+                    <label for="chapter-number">회차수</label>
+                    <input type="number" id="chapter-number" min="1" step="1" placeholder="회차 번호를 입력해 주세요." required />
+                </div>
+                <div class="form-row">
                     <label for="chapter-title">회차 제목</label>
-                    <input type="text" id="chapter-title" placeholder="회차 제목을 입력해 주세요." required />
+                    <input type="text" id="chapter-title" placeholder="회차 제목을 입력해 주세요. (선택)" />
                 </div>
                 <div class="form-row">
                     <label for="chapter-summary">회차 요약</label>
@@ -73,7 +77,35 @@
     </div>
     <script type="module" src="admin-layout.js"></script>
     <script type="module">
-    // Firestore 연동 및 작품 목록 불러오기, 이미지 미리보기 등은 추후 구현
+    import { app } from '../scripts/firebase-init.js';
+    import { getFirestore, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js';
+    const db = getFirestore(app);
+
+    // 작품 목록 동적 렌더링
+    async function populateArtworkSelect() {
+        const select = document.getElementById('artwork-select');
+        select.innerHTML = '<option value="">로딩 중...</option>';
+        try {
+            const q = query(collection(db, 'webtoons'), orderBy('createdAt', 'desc'));
+            const snapshot = await getDocs(q);
+            if (snapshot.empty) {
+                select.innerHTML = '<option value="" disabled>등록된 작품이 없습니다</option>';
+                return;
+            }
+            select.innerHTML = '<option value="">작품을 선택하세요</option>';
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const option = document.createElement('option');
+                option.value = doc.id;
+                option.textContent = data.title || doc.id;
+                select.appendChild(option);
+            });
+        } catch (err) {
+            select.innerHTML = '<option value="" disabled>작품 목록을 불러올 수 없습니다</option>';
+        }
+    }
+    populateArtworkSelect();
+
     document.querySelector('.reg-btn.cancel')?.addEventListener('click', () => {
         window.location.href = '/admin/artwork-list.html';
     });
