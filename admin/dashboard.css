@@ -132,25 +132,25 @@ tr:nth-child(even) { background: #f9fafc; }
 /* 작품 관리 액션 버튼 스타일 */
 .artwork-btn-group {
   display: flex;
-  gap: 12px;
-  margin-left: 16px;
+  gap: 16px;
+  align-items: center;
 }
 .artwork-action-btn {
   background: #00d26a;
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 1.08rem;
+  padding: 14px 28px;
+  font-size: 1.1rem;
   font-weight: 600;
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.2s, box-shadow 0.2s;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .artwork-action-btn svg {
-  margin-right: 6px;
+  margin-right: 8px;
   display: inline-block;
 }
 .artwork-action-btn:hover {
