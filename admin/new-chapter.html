@@ -6,13 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dashboard.css">
     <style>
-        body { background: #fafbfc; }
-        .main { max-width: 720px; margin-left: 220px; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px #0001; }
-        @media (max-width: 700px) {
-            .main { margin-left: 100px; padding: 15px; }
-        }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-        .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; }
+        body { background: #f4f6fa; }
         .form-row { display: flex; align-items: flex-start; margin-bottom: 18px; gap: 16px; }
         .form-row label { min-width: 120px; font-weight: 500; font-size: 1rem; text-align: left; margin-top: 6px; }
         .form-row input[type="text"], .form-row textarea, .form-row select, .form-row input[type="date"] {
@@ -35,45 +29,47 @@
             <h1>신규 회차 등록</h1>
             <div class="user-info">관리자님 환영합니다!</div>
         </div>
-        <div class="section-title">회차 정보 입력</div>
-        <form id="chapter-form">
-            <div class="form-row">
-                <label for="artwork-select">작품 선택</label>
-                <select id="artwork-select" required>
-                    <option value="">작품을 선택하세요</option>
-                    <!-- JS로 작품 목록 동적 렌더링 -->
-                </select>
-            </div>
-            <div class="form-row">
-                <label for="chapter-title">회차 제목</label>
-                <input type="text" id="chapter-title" placeholder="회차 제목을 입력해 주세요." required />
-            </div>
-            <div class="form-row">
-                <label for="chapter-summary">회차 요약</label>
-                <input type="text" id="chapter-summary" maxlength="100" placeholder="회차 요약을 입력해 주세요." />
-            </div>
-            <div class="form-row">
-                <label for="chapter-content">회차 본문</label>
-                <textarea id="chapter-content" placeholder="회차 본문을 입력하거나 이미지를 업로드해 주세요."></textarea>
-            </div>
-            <div class="form-row">
-                <label for="chapter-date">공개일</label>
-                <input type="date" id="chapter-date" required />
-            </div>
-            <div class="form-row">
-                <label>썸네일 이미지</label>
-                <div class="image-upload-box">
-                    <div class="image-upload-label">썸네일<br><span>권장: 320 × 320</span></div>
-                    <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
-                    <input type="file" id="thumbnail-upload" accept="image/jpeg,image/jpg,image/png" />
-                    <label for="thumbnail-upload">파일 선택</label>
+        <div class="section">
+            <div class="section-title">회차 정보 입력</div>
+            <form id="chapter-form">
+                <div class="form-row">
+                    <label for="artwork-select">작품 선택</label>
+                    <select id="artwork-select" required>
+                        <option value="">작품을 선택하세요</option>
+                        <!-- JS로 작품 목록 동적 렌더링 -->
+                    </select>
                 </div>
-            </div>
-            <div class="btn-row">
-                <button type="button" class="reg-btn cancel">취소</button>
-                <button type="submit" class="reg-btn submit">등록</button>
-            </div>
-        </form>
+                <div class="form-row">
+                    <label for="chapter-title">회차 제목</label>
+                    <input type="text" id="chapter-title" placeholder="회차 제목을 입력해 주세요." required />
+                </div>
+                <div class="form-row">
+                    <label for="chapter-summary">회차 요약</label>
+                    <input type="text" id="chapter-summary" maxlength="100" placeholder="회차 요약을 입력해 주세요." />
+                </div>
+                <div class="form-row">
+                    <label for="chapter-content">회차 본문</label>
+                    <textarea id="chapter-content" placeholder="회차 본문을 입력하거나 이미지를 업로드해 주세요."></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="chapter-date">공개일</label>
+                    <input type="date" id="chapter-date" required />
+                </div>
+                <div class="form-row">
+                    <label>썸네일 이미지</label>
+                    <div class="image-upload-box">
+                        <div class="image-upload-label">썸네일<br><span>권장: 320 × 320</span></div>
+                        <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
+                        <input type="file" id="thumbnail-upload" accept="image/jpeg,image/jpg,image/png" />
+                        <label for="thumbnail-upload">파일 선택</label>
+                    </div>
+                </div>
+                <div class="btn-row">
+                    <button type="button" class="reg-btn cancel">취소</button>
+                    <button type="submit" class="reg-btn submit">등록</button>
+                </div>
+            </form>
+        </div>
     </div>
     <script type="module" src="admin-layout.js"></script>
     <script type="module">
