@@ -234,6 +234,7 @@
             const box = input.closest('.image-upload-box');
             const preview = box.querySelector('.preview-img');
             const label = box.querySelector('.image-upload-label');
+            const fileLabel = box.querySelector(`label[for='${inputId}']`);
 
             // 파일 업로드 시 URL 입력란 비활성화
             input.addEventListener('change', async e => {
@@ -270,14 +271,18 @@
                 }
             });
 
-            // URL 입력 시 파일 업로드 input 비활성화
+            // URL 입력 시 파일 업로드 input/label 숨김
             urlInput.addEventListener('input', e => {
                 if (urlInput.value.trim() !== '') {
                     input.disabled = true;
                     input.style.opacity = 0.5;
+                    if (fileLabel) fileLabel.style.display = 'none';
+                    input.style.display = 'none';
                 } else {
                     input.disabled = false;
                     input.style.opacity = 1;
+                    if (fileLabel) fileLabel.style.display = '';
+                    input.style.display = '';
                 }
             });
         }
