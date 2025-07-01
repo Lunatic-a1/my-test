@@ -75,8 +75,27 @@
         }
         .reg-image-group {
             display: flex;
+            flex-direction: row;
+            gap: 32px;
+        }
+        .image-upload-box {
+            background: #f7f7f7;
+            border: 1.5px dashed #ddd;
+            border-radius: 8px;
+            display: flex;
             flex-direction: column;
-            gap: 24px;
+            align-items: center;
+            justify-content: center;
+            min-width: 140px;
+            margin-bottom: 0;
+        }
+        .image-upload-box:first-child {
+            height: 180px;
+            aspect-ratio: 480/623;
+        }
+        .image-upload-box:last-child {
+            height: 110px;
+            aspect-ratio: 434/330;
         }
         .image-upload-label {
             font-size: 0.98rem;
