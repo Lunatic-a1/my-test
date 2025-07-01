@@ -14,10 +14,37 @@
             <div class="user-info">관리자님 환영합니다!</div>
         </div>
         <div class="section">
-            <div class="section-title">작품 목록</div>
-            <!-- 작품 목록 컨텐츠 -->
+            <div class="section-header">
+                <h2 class="section-title">작품 목록</h2>
+                <div class="search-container">
+                    <select id="search-filter">
+                        <option value="title">제목</option>
+                        <option value="author">작가</option>
+                        <option value="artworkId">작품 ID</option>
+                    </select>
+                    <input type="text" id="search-input" placeholder="검색...">
+                    <button id="artwork-add-btn">작품 등록</button>
+                </div>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>작품 ID</th>
+                        <th>제목</th>
+                        <th>작가</th>
+                        <th>등록일</th>
+                        <th>상태</th>
+                        <th>관리</th>
+                    </tr>
+                </thead>
+                <tbody id="artwork-list-tbody">
+                    <!-- JS로 동적 생성 예정 -->
+                </tbody>
+            </table>
+            <div id="pagination" class="pagination"></div>
         </div>
     </div>
     <script type="module" src="admin-layout.js"></script>
+    <!-- 추후 artwork-management.js 추가 예정 -->
 </body>
 </html> 
