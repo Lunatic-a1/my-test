@@ -47,13 +47,16 @@
                     <label for="chapter-title">회차 제목</label>
                     <input type="text" id="chapter-title" placeholder="회차 제목을 입력해 주세요. (선택)" />
                 </div>
-                <div class="form-row">
-                    <label for="chapter-summary">회차 요약</label>
-                    <input type="text" id="chapter-summary" maxlength="100" placeholder="회차 요약을 입력해 주세요." />
+                <div class="form-row" style="margin-top:-10px; margin-bottom:10px;">
+                    <div style="margin-left:120px; color:#1976d2; font-size:1.05rem;" id="chapter-title-preview"></div>
                 </div>
                 <div class="form-row">
                     <label for="chapter-content">회차 본문</label>
                     <textarea id="chapter-content" placeholder="회차 본문을 입력하거나 이미지를 업로드해 주세요."></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="chapter-comment">작가의 말/크리에이터의 말</label>
+                    <textarea id="chapter-comment" placeholder="작가의 말 또는 크리에이터의 말을 입력해 주세요. (선택)"></textarea>
                 </div>
                 <div class="form-row">
                     <label for="chapter-date">공개일</label>
@@ -128,6 +131,21 @@
             label.style.display = 'block';
         }
     });
+    // 회차 제목 미리보기
+    function updateChapterTitlePreview() {
+        const num = document.getElementById('chapter-number').value;
+        const title = document.getElementById('chapter-title').value.trim();
+        const preview = document.getElementById('chapter-title-preview');
+        if (!num) { preview.textContent = ''; return; }
+        if (!title) {
+            preview.textContent = `${num}화`;
+        } else {
+            // 숫자+점+공백+제목 (1. 사랑) 또는 숫자+콜론+공백+제목 (145: 전쟁)
+            preview.textContent = `${num}${Number(num) < 100 ? '. ' : ': '}${title}`;
+        }
+    }
+    document.getElementById('chapter-number').addEventListener('input', updateChapterTitlePreview);
+    document.getElementById('chapter-title').addEventListener('input', updateChapterTitlePreview);
     </script>
 </body>
 </html> 
