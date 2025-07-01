@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>신규 회차 등록</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        body { background: #fafbfc; }
+        .main { max-width: 720px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px #0001; padding: 32px 36px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; }
+        .form-row { display: flex; align-items: flex-start; margin-bottom: 18px; gap: 16px; }
+        .form-row label { min-width: 120px; font-weight: 500; font-size: 1rem; text-align: left; margin-top: 6px; }
+        .form-row input[type="text"], .form-row textarea, .form-row select, .form-row input[type="date"] {
+            flex: 1 1 320px; border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 1rem; background: #fff; resize: none;
+        }
+        .form-row textarea { min-height: 80px; }
+        .form-row input[type="file"] { border: none; padding: 0; background: none; }
+        .image-upload-box { background: #f7f7f7; border: 1.5px dashed #ddd; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 140px; height: 150px; margin-bottom: 0; position: relative; }
+        .image-upload-label { font-size: 0.98rem; font-weight: 500; color: #888; margin-bottom: 12px; text-align: center; }
+        .preview-img { display: none; max-width: 100%; max-height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; z-index: 1; background: #fafafa; }
+        .btn-row { display: flex; gap: 18px; justify-content: flex-end; margin-top: 32px; }
+        .reg-btn { padding: 10px 32px; border-radius: 6px; border: none; font-size: 1.08rem; font-weight: 600; cursor: pointer; background: #1976d2; color: #fff; transition: background 0.15s; }
+        .reg-btn.cancel { background: #bbb; color: #fff; }
+        .reg-btn:active { background: #125ea2; }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <h1>신규 회차 등록</h1>
+            <div class="user-info">관리자님 환영합니다!</div>
+        </div>
+        <div class="section-title">회차 정보 입력</div>
+        <form id="chapter-form">
+            <div class="form-row">
+                <label for="artwork-select">작품 선택</label>
+                <select id="artwork-select" required>
+                    <option value="">작품을 선택하세요</option>
+                    <!-- JS로 작품 목록 동적 렌더링 -->
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="chapter-title">회차 제목</label>
+                <input type="text" id="chapter-title" placeholder="회차 제목을 입력해 주세요." required />
+            </div>
+            <div class="form-row">
+                <label for="chapter-summary">회차 요약</label>
+                <input type="text" id="chapter-summary" maxlength="100" placeholder="회차 요약을 입력해 주세요." />
+            </div>
+            <div class="form-row">
+                <label for="chapter-content">회차 본문</label>
+                <textarea id="chapter-content" placeholder="회차 본문을 입력하거나 이미지를 업로드해 주세요."></textarea>
+            </div>
+            <div class="form-row">
+                <label for="chapter-date">공개일</label>
+                <input type="date" id="chapter-date" required />
+            </div>
+            <div class="form-row">
+                <label>썸네일 이미지</label>
+                <div class="image-upload-box">
+                    <div class="image-upload-label">썸네일<br><span>권장: 320 × 320</span></div>
+                    <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
+                    <input type="file" id="thumbnail-upload" accept="image/jpeg,image/jpg,image/png" />
+                    <label for="thumbnail-upload">파일 선택</label>
+                </div>
+            </div>
+            <div class="btn-row">
+                <button type="button" class="reg-btn cancel">취소</button>
+                <button type="submit" class="reg-btn submit">등록</button>
+            </div>
+        </form>
+    </div>
+    <script type="module" src="admin-layout.js"></script>
+    <script type="module">
+    // Firestore 연동 및 작품 목록 불러오기, 이미지 미리보기 등은 추후 구현
+    document.querySelector('.reg-btn.cancel')?.addEventListener('click', () => {
+        window.location.href = '/admin/artwork-list.html';
+    });
+    // 썸네일 미리보기
+    document.getElementById('thumbnail-upload').addEventListener('change', e => {
+        const file = e.target.files[0];
+        const box = e.target.closest('.image-upload-box');
+        const preview = box.querySelector('.preview-img');
+        const label = box.querySelector('.image-upload-label');
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = ev => {
+                preview.src = ev.target.result;
+                preview.style.display = 'block';
+                label.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            preview.style.display = 'none';
+            label.style.display = 'block';
+        }
+    });
+    </script>
+</body>
+</html> 
