@@ -23,8 +23,16 @@
                         <option value="artworkId">작품 ID</option>
                     </select>
                     <input type="text" id="search-input" placeholder="검색...">
-                    <button id="artwork-add-btn">신규 작품 등록</button>
-                    <button id="episode-add-btn">신규 회차 등록</button>
+                    <div class="artwork-btn-group">
+                        <button id="episode-add-btn" class="artwork-action-btn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="vertical-align:middle;margin-right:6px;"><path d="M10 2V18M2 10H18" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+                            신규 회차 등록
+                        </button>
+                        <button id="artwork-add-btn" class="artwork-action-btn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="vertical-align:middle;margin-right:6px;"><path d="M4 14.5V16a1 1 0 0 0 1 1h1.5l7.06-7.06a1 1 0 0 0 0-1.41l-2.09-2.09a1 1 0 0 0-1.41 0L4 14.5Zm9.06-7.06 2.09 2.09" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            신규 작품 등록
+                        </button>
+                    </div>
                 </div>
             </div>
             <table class="data-table">
