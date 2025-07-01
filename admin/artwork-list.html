@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>작품 관리</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../styles/artwork-management.css">
+</head>
+<body>
+    <!-- 사이드바는 스크립트로 로드됩니다 -->
+    <div class="main">
+        <div class="header">
+            <h1>작품 관리</h1>
+            <div class="user-info">관리자님 환영합니다!</div>
+        </div>
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">작품 목록</h2>
+                <div class="search-container">
+                    <select id="search-filter">
+                        <option value="title">제목</option>
+                        <option value="author">작가</option>
+                        <option value="artworkId">작품 ID</option>
+                    </select>
+                    <input type="text" id="search-input" placeholder="검색...">
+                    <button id="episode-add-btn" class="artwork-action-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;margin-right:6px;"><path d="M12 5v14m7-7H5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        신규 회차 등록
+                    </button>
+                    <button id="artwork-add-btn" class="artwork-action-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;margin-right:6px;"><path d="M12 20h9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19.5 3 21l1.5-4L16.5 3.5Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        신규 작품 등록
+                    </button>
+                </div>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>작품 ID</th>
+                        <th>제목</th>
+                        <th>작가</th>
+                        <th>등록일</th>
+                        <th>상태</th>
+                        <th>관리</th>
+                    </tr>
+                </thead>
+                <tbody id="artwork-list-tbody">
+                    <!-- JS로 동적 생성 예정 -->
+                </tbody>
+            </table>
+            <div id="pagination" class="pagination"></div>
+        </div>
+    </div>
+    <script type="module" src="admin-layout.js"></script>
+    <script>
+    document.getElementById('artwork-add-btn')?.addEventListener('click', function() {
+      window.location.href = 'artwork-registration.html';
+    });
+    </script>
+    <!-- 추후 artwork-management.js 추가 예정 -->
+</body>
+</html> 
