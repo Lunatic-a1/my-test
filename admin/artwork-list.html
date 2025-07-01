@@ -37,9 +37,9 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>작품 ID</th>
+                        <th>이미지</th>
                         <th>제목</th>
-                        <th>작가</th>
+                        <th>장르</th>
                         <th>등록일</th>
                         <th>상태</th>
                         <th>관리</th>
@@ -72,12 +72,15 @@
             tbody.innerHTML = '';
             snapshot.forEach(doc => {
                 const data = doc.data();
+                const imgUrl = data.posterUrl || data.landscapeUrl || 'https://via.placeholder.com/60x80?text=No+Image';
+                const genres = Array.isArray(data.genre) ? data.genre.join(', ') : (data.genre || '-');
+                const dateStr = data.createdAt && data.createdAt.toDate ? data.createdAt.toDate().toLocaleDateString() : '-';
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${doc.id}</td>
+                    <td><img src="${imgUrl}" alt="썸네일" style="width:48px;height:64px;object-fit:cover;border-radius:6px;background:#eee;" /></td>
                     <td>${data.title || ''}</td>
-                    <td>${data.author || '-'}</td>
-                    <td>${data.createdAt && data.createdAt.toDate ? data.createdAt.toDate().toLocaleDateString() : '-'}</td>
+                    <td>${genres}</td>
+                    <td>${dateStr}</td>
                     <td>정상</td>
                     <td><button class="artwork-action-btn">관리</button></td>
                 `;
