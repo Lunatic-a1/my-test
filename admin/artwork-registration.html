@@ -209,7 +209,14 @@
         </div>
     </div>
     <script type="module" src="admin-layout.js"></script>
-    <script>
+    <script type="module">
+    import { app } from '../scripts/firebase-init.js';
+    import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js';
+    import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-storage.js';
+
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
     document.addEventListener('DOMContentLoaded', () => {
         function setupPreview(inputId) {
             const input = document.getElementById(inputId);
@@ -247,6 +254,58 @@
                 setTimeout(() => {
                     window.location.href = '/admin/new-chapter.html';
                 }, 500);
+            }
+        });
+
+        // 등록 버튼: 작품 등록
+        document.querySelector('.artwork-reg-form')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const title = form.querySelector('#title').value.trim();
+            const type = form.querySelector('input[name="type"]:checked').value;
+            const genres = Array.from(form.querySelectorAll('input[name="genre"]:checked')).map(cb => cb.value);
+            const summary = form.querySelector('#summary').value.trim();
+            const enjoy = form.querySelector('#enjoy').value.trim();
+            const paidPoint = form.querySelector('input[name="paid-point"]:checked').value;
+            const posterFile = form.querySelector('#poster-upload').files[0];
+            const landscapeFile = form.querySelector('#landscape-upload').files[0];
+
+            // 이미지 업로드
+            let posterUrl = '';
+            let landscapeUrl = '';
+            try {
+                if (posterFile) {
+                    const posterRef = ref(storage, `artworks/posters/${Date.now()}_${posterFile.name}`);
+                    await uploadBytes(posterRef, posterFile);
+                    posterUrl = await getDownloadURL(posterRef);
+                }
+                if (landscapeFile) {
+                    const landscapeRef = ref(storage, `artworks/landscapes/${Date.now()}_${landscapeFile.name}`);
+                    await uploadBytes(landscapeRef, landscapeFile);
+                    landscapeUrl = await getDownloadURL(landscapeRef);
+                }
+            } catch (err) {
+                alert('이미지 업로드 중 오류가 발생했습니다.');
+                return;
+            }
+
+            // Firestore에 작품 정보 저장
+            try {
+                await addDoc(collection(db, 'webtoons'), {
+                    title,
+                    type,
+                    genre: genres,
+                    summary,
+                    enjoy,
+                    paidPoint: Number(paidPoint),
+                    posterUrl,
+                    landscapeUrl,
+                    createdAt: new Date()
+                });
+                alert('작품이 성공적으로 등록되었습니다!');
+                window.location.href = '/admin/artwork-list.html';
+            } catch (err) {
+                alert('작품 등록 중 오류가 발생했습니다.');
             }
         });
     });
