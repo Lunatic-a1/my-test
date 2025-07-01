@@ -127,4 +127,32 @@ tr:nth-child(even) { background: #f9fafc; }
     background-color: #222e3c;
     color: #fff;
     border-color: #222e3c;
+}
+
+/* 작품 관리 액션 버튼 스타일 */
+.artwork-btn-group {
+  display: flex;
+  gap: 12px;
+  margin-left: 16px;
+}
+.artwork-action-btn {
+  background: #00d26a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.15s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.artwork-action-btn svg {
+  margin-right: 6px;
+  display: inline-block;
+}
+.artwork-action-btn:hover {
+  background: #00b85c;
 } 
