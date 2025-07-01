@@ -178,12 +178,14 @@
                                 <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
                                 <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" />
                                 <label for="poster-upload">파일 선택</label>
+                                <input type="url" id="poster-url" class="image-url-input" placeholder="포스터 이미지 URL 입력 또는 파일 업로드" style="margin-top:8px;width:90%;font-size:0.97rem;" />
                             </div>
                             <div class="image-upload-box">
                                 <div class="image-upload-label">가로형<br><span>434 × 330</span></div>
                                 <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
                                 <input type="file" id="landscape-upload" accept="image/jpeg,image/jpg" />
                                 <label for="landscape-upload">파일 선택</label>
+                                <input type="url" id="landscape-url" class="image-url-input" placeholder="가로형 이미지 URL 입력 또는 파일 업로드" style="margin-top:8px;width:90%;font-size:0.97rem;" />
                             </div>
                         </div>
                         <div class="reg-tip">* 파일 용량 1MB 이하 / jpg만 업로드 가능<br>* 가로형 대표 이미지만 업로드하셔도 기타 이미지가 자동 생성됩니다.<br>* 포스터형은 작품 홈에서 대표 이미지로 활용됩니다.</div>
@@ -218,14 +220,20 @@
     const storage = getStorage(app);
 
     document.addEventListener('DOMContentLoaded', () => {
-        function setupPreview(inputId) {
+        function setupPreview(inputId, urlInputId) {
             const input = document.getElementById(inputId);
+            const urlInput = document.getElementById(urlInputId);
             const box = input.closest('.image-upload-box');
             const preview = box.querySelector('.preview-img');
             const label = box.querySelector('.image-upload-label');
-            input.addEventListener('change', e => {
+
+            // 파일 업로드 시 URL 입력란 비활성화
+            input.addEventListener('change', async e => {
                 const file = e.target.files[0];
                 if (file) {
+                    urlInput.disabled = true;
+                    urlInput.style.opacity = 0.5;
+                    urlInput.placeholder = '파일 업로드 시 URL 입력 불가';
                     const reader = new FileReader();
                     reader.onload = ev => {
                         preview.src = ev.target.result;
@@ -233,14 +241,40 @@
                         label.style.display = 'none';
                     };
                     reader.readAsDataURL(file);
+                    // 업로드 즉시 Storage에 업로드 후 URL 입력란에 자동 입력
+                    try {
+                        const storagePath = inputId === 'poster-upload' ? 'artworks/posters/' : 'artworks/landscapes/';
+                        const storageRef = ref(storage, `${storagePath}${Date.now()}_${file.name}`);
+                        await uploadBytes(storageRef, file);
+                        const url = await getDownloadURL(storageRef);
+                        urlInput.value = url;
+                    } catch (err) {
+                        alert('이미지 업로드 중 오류가 발생했습니다.');
+                        urlInput.value = '';
+                    }
                 } else {
                     preview.style.display = 'none';
                     label.style.display = 'block';
+                    urlInput.value = '';
+                    urlInput.disabled = false;
+                    urlInput.style.opacity = 1;
+                    urlInput.placeholder = inputId === 'poster-upload' ? '포스터 이미지 URL 입력 또는 파일 업로드' : '가로형 이미지 URL 입력 또는 파일 업로드';
+                }
+            });
+
+            // URL 입력 시 파일 업로드 input 비활성화
+            urlInput.addEventListener('input', e => {
+                if (urlInput.value.trim() !== '') {
+                    input.disabled = true;
+                    input.style.opacity = 0.5;
+                } else {
+                    input.disabled = false;
+                    input.style.opacity = 1;
                 }
             });
         }
-        setupPreview('poster-upload');
-        setupPreview('landscape-upload');
+        setupPreview('poster-upload', 'poster-url');
+        setupPreview('landscape-upload', 'landscape-url');
         // 취소 버튼: 목록으로 이동
         document.querySelector('.reg-btn.cancel')?.addEventListener('click', () => {
             window.location.href = '/admin/artwork-list.html';
@@ -267,25 +301,13 @@
             const summary = form.querySelector('#summary').value.trim();
             const enjoy = form.querySelector('#enjoy').value.trim();
             const paidPoint = form.querySelector('input[name="paid-point"]:checked').value;
-            const posterFile = form.querySelector('#poster-upload').files[0];
-            const landscapeFile = form.querySelector('#landscape-upload').files[0];
+            // URL 입력란에서 값 가져오기
+            const posterUrl = form.querySelector('#poster-url').value.trim();
+            const landscapeUrl = form.querySelector('#landscape-url').value.trim();
 
-            // 이미지 업로드
-            let posterUrl = '';
-            let landscapeUrl = '';
-            try {
-                if (posterFile) {
-                    const posterRef = ref(storage, `artworks/posters/${Date.now()}_${posterFile.name}`);
-                    await uploadBytes(posterRef, posterFile);
-                    posterUrl = await getDownloadURL(posterRef);
-                }
-                if (landscapeFile) {
-                    const landscapeRef = ref(storage, `artworks/landscapes/${Date.now()}_${landscapeFile.name}`);
-                    await uploadBytes(landscapeRef, landscapeFile);
-                    landscapeUrl = await getDownloadURL(landscapeRef);
-                }
-            } catch (err) {
-                alert('이미지 업로드 중 오류가 발생했습니다.');
+            // 최소 하나의 이미지 URL은 있어야 함
+            if (!posterUrl && !landscapeUrl) {
+                alert('포스터 또는 가로형 이미지 URL을 입력하거나 파일을 업로드해 주세요.');
                 return;
             }
 
