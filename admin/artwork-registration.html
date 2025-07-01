@@ -89,6 +89,7 @@
             min-width: 140px;
             height: 150px;
             margin-bottom: 0;
+            position: relative;
         }
         .image-upload-box:first-child {
             aspect-ratio: 480/623;
@@ -104,6 +105,17 @@
             color: #888;
             margin-bottom: 12px;
             text-align: center;
+        }
+        .preview-img {
+            display: none;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            margin: auto;
+            z-index: 1;
+            background: #fafafa;
         }
     </style>
 </head>
@@ -199,40 +211,29 @@
     <script type="module" src="admin-layout.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // 포스터형
-        const posterInput = document.getElementById('poster-upload');
-        const posterBox = posterInput.closest('.image-upload-box');
-        const posterPreview = posterBox.querySelector('.preview-img');
-        posterInput.addEventListener('change', e => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = ev => {
-                    posterPreview.src = ev.target.result;
-                    posterPreview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                posterPreview.style.display = 'none';
-            }
-        });
-        // 가로형
-        const landscapeInput = document.getElementById('landscape-upload');
-        const landscapeBox = landscapeInput.closest('.image-upload-box');
-        const landscapePreview = landscapeBox.querySelector('.preview-img');
-        landscapeInput.addEventListener('change', e => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = ev => {
-                    landscapePreview.src = ev.target.result;
-                    landscapePreview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                landscapePreview.style.display = 'none';
-            }
-        });
+        function setupPreview(inputId) {
+            const input = document.getElementById(inputId);
+            const box = input.closest('.image-upload-box');
+            const preview = box.querySelector('.preview-img');
+            const label = box.querySelector('.image-upload-label');
+            input.addEventListener('change', e => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = ev => {
+                        preview.src = ev.target.result;
+                        preview.style.display = 'block';
+                        label.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.style.display = 'none';
+                    label.style.display = 'block';
+                }
+            });
+        }
+        setupPreview('poster-upload');
+        setupPreview('landscape-upload');
         // 취소 버튼: 목록으로 이동
         document.querySelector('.reg-btn.cancel')?.addEventListener('click', () => {
             window.location.href = '/admin/artwork-list.html';
