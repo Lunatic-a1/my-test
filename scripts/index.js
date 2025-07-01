@@ -255,9 +255,79 @@ function renderMonthlyWebtoons() {
   });
 }
 
+import { getFirestore, doc, getDoc, collection, query, where, orderBy, limit, getDocs } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { app } from "./firebase-init";
+
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+async function getLastViewedWebtoonId() {
+  const user = auth.currentUser;
+  if (user) {
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    if (userDoc.exists()) {
+      const viewed = userDoc.data().viewedWebtoons || [];
+      return viewed.length > 0 ? viewed[viewed.length - 1] : null;
+    }
+  } else {
+    const viewed = JSON.parse(localStorage.getItem("viewedWebtoons") || "[]");
+    return viewed.length > 0 ? viewed[viewed.length - 1] : null;
+  }
+  return null;
+}
+
+async function getRecommendedWebtoons() {
+  const lastViewedId = await getLastViewedWebtoonId();
+  if (!lastViewedId) return [];
+  const webtoonDoc = await getDoc(doc(db, "webtoons", lastViewedId));
+  if (!webtoonDoc.exists()) return [];
+  const genre = webtoonDoc.data().genre;
+  const q = query(
+    collection(db, "webtoons"),
+    where("genre", "==", genre),
+    orderBy("viewCount", "desc"),
+    limit(5)
+  );
+  const querySnapshot = await getDocs(q);
+  const recommended = [];
+  querySnapshot.forEach(doc => {
+    if (doc.id !== lastViewedId) {
+      recommended.push({ id: doc.id, ...doc.data() });
+    }
+  });
+  return recommended;
+}
+
+async function renderRecommendedWebtoons() {
+  const list = document.querySelector('.recommended-webtoon-list');
+  if (!list) return;
+  list.innerHTML = '<div>로딩 중...</div>';
+  const webtoons = await getRecommendedWebtoons();
+  list.innerHTML = '';
+  if (webtoons.length === 0) {
+    list.innerHTML = '<div>추천할 웹툰이 없습니다.</div>';
+    return;
+  }
+  webtoons.forEach(w => {
+    const card = document.createElement('div');
+    card.className = 'monthly-webtoon-card';
+    card.innerHTML = `
+      <div class="monthly-webtoon-thumb" style="position:relative; width:100%; aspect-ratio:434/330; max-width:320px; max-height:150px; overflow:hidden;">
+        <img src="${w.imgUrl || 'includes/test-poster.png'}" alt="${w.title}" style="width:100%;height:100%;object-fit:cover; border-radius:12px;" />
+      </div>
+      <div class="monthly-webtoon-title" style="font-size:1.13rem;font-weight:700;margin:10px 0 2px 0; padding:0 16px; line-height:1.2;">${w.title}</div>
+      <div class="monthly-webtoon-genre" style="font-size:1.01rem;color:#009688;margin-bottom:4px; padding:0 16px; line-height:1.2;">${w.genre}</div>
+      <div class="monthly-webtoon-desc" style="font-size:0.99rem;color:#444;line-height:1.45; padding:0 16px; max-height:3.2em; overflow:hidden; text-overflow:ellipsis;">${w.desc || ''}</div>
+    `;
+    list.appendChild(card);
+  });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   renderPopularContents();
   renderLatestContents();
   renderFavoriteContents();
   renderMonthlyWebtoons();
+  renderRecommendedWebtoons();
 }); 
