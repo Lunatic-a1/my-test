@@ -233,6 +233,21 @@
                 landscapePreview.style.display = 'none';
             }
         });
+        // 취소 버튼: 목록으로 이동
+        document.querySelector('.reg-btn.cancel')?.addEventListener('click', () => {
+            window.location.href = '/admin/artwork-list.html';
+        });
+        // 등록 후 1화 올리기 버튼: 등록 + 1화 등록 페이지 이동
+        document.querySelector('.reg-btn.submit-once')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            const form = document.querySelector('.artwork-reg-form');
+            if (form) {
+                form.requestSubmit();
+                setTimeout(() => {
+                    window.location.href = '/admin/new-chapter.html';
+                }, 500);
+            }
+        });
     });
     </script>
 </body>
