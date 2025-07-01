@@ -2,12 +2,19 @@ body {
   background: #f7f7f7;
 }
 .main {
-  max-width: 1200px;
-  margin: 40px auto 0 auto;
-  padding: 0 40px;
+  margin-left: 220px;
+  padding: 30px;
+  max-width: none;
+  margin-top: 0;
   background: none;
   border-radius: 0;
   box-shadow: none;
+}
+@media (max-width: 700px) {
+  .main {
+    margin-left: 100px;
+    padding: 15px;
+  }
 }
 .header {
   display: flex;
