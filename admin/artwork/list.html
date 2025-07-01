@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>작품 관리</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../dashboard.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../styles/artwork-management.css">
 </head>
 <body>
     <!-- 사이드바는 스크립트로 로드됩니다 -->
@@ -51,10 +52,10 @@
             <div id="pagination" class="pagination"></div>
         </div>
     </div>
-    <script type="module" src="../admin-layout.js"></script>
+    <script type="module" src="admin-layout.js"></script>
     <script>
     document.getElementById('artwork-add-btn')?.addEventListener('click', function() {
-      window.location.href = 'register.html';
+      window.location.href = 'artwork-registration.html';
     });
     </script>
     <!-- 추후 artwork-management.js 추가 예정 -->
