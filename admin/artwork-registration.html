@@ -6,6 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/artwork-registration.css">
     <link rel="stylesheet" href="dashboard.css">
+    <style>
+        .reg-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 18px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .reg-row label {
+            min-width: 120px;
+            max-width: 120px;
+            font-weight: 500;
+            margin-top: 7px;
+            font-size: 1rem;
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .reg-row input[type="text"],
+        .reg-row input[type="file"],
+        .reg-row textarea,
+        .reg-row .reg-radio-group,
+        .reg-row .reg-checkbox-group,
+        .reg-row .reg-image-group {
+            flex: 1 1 320px;
+            border: 1px solid #d0d0d0;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 1rem;
+            background: #fff;
+            resize: none;
+            margin-left: 0;
+        }
+        .reg-row input[type="file"] {
+            border: none;
+            padding: 0;
+            background: none;
+        }
+        .reg-row .reg-radio-group,
+        .reg-row .reg-checkbox-group,
+        .reg-row .reg-image-group {
+            border: none;
+            padding: 0;
+            background: none;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+    </style>
 </head>
 <body>
     <div class="main">
@@ -19,8 +67,7 @@
                 <section class="reg-section">
                     <div class="reg-row">
                         <label for="title">작품명</label>
-                        <input type="text" id="title" maxlength="30" placeholder="작품명을 입력해 주세요." required>
-                        <span class="input-count">0/30</span>
+                        <input type="text" id="title" placeholder="작품명을 입력해 주세요." required>
                     </div>
                     <div class="reg-row">
                         <label>형식</label>
