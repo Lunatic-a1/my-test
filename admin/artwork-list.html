@@ -53,7 +53,42 @@
         </div>
     </div>
     <script type="module" src="admin-layout.js"></script>
-    <script>
+    <script type="module">
+    import { app } from '../scripts/firebase-init.js';
+    import { getFirestore, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js';
+
+    const db = getFirestore(app);
+
+    async function renderArtworkList() {
+        const tbody = document.getElementById('artwork-list-tbody');
+        tbody.innerHTML = '<tr><td colspan="6">로딩 중...</td></tr>';
+        try {
+            const q = query(collection(db, 'webtoons'), orderBy('createdAt', 'desc'));
+            const snapshot = await getDocs(q);
+            if (snapshot.empty) {
+                tbody.innerHTML = '<tr><td colspan="6">등록된 작품이 없습니다.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = '';
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${doc.id}</td>
+                    <td>${data.title || ''}</td>
+                    <td>${data.author || '-'}</td>
+                    <td>${data.createdAt && data.createdAt.toDate ? data.createdAt.toDate().toLocaleDateString() : '-'}</td>
+                    <td>정상</td>
+                    <td><button class="artwork-action-btn">관리</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        } catch (err) {
+            tbody.innerHTML = '<tr><td colspan="6">목록을 불러오는 중 오류가 발생했습니다.</td></tr>';
+        }
+    }
+
+    renderArtworkList();
     document.getElementById('artwork-add-btn')?.addEventListener('click', function() {
       window.location.href = 'artwork-registration.html';
     });
