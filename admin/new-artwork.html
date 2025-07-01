@@ -155,28 +155,68 @@
         </div>
     </div>
     <script type="module" src="admin-layout.js"></script>
-    <script>
+    <script type="module">
+    import { app } from '../scripts/firebase-init.js';
+    import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js';
+    const db = getFirestore(app);
+    // 폼 등록 함수
+    async function registerArtwork(form) {
+        const title = form.querySelector('#title').value.trim();
+        const type = form.querySelector('input[name="type"]:checked')?.value || '';
+        const genres = Array.from(form.querySelectorAll('input[name="genre"]:checked')).map(cb => cb.value);
+        const summary = form.querySelector('#summary').value.trim();
+        const enjoy = form.querySelector('#enjoy').value.trim();
+        const posterUrl = form.querySelector('#poster-url').value.trim();
+        const landscapeUrl = form.querySelector('#landscape-url').value.trim();
+        const paidPoint = form.querySelector('input[name="paid-point"]:checked')?.value || '';
+        // 실제 이미지 업로드는 생략, URL만 저장
+        const docData = {
+            title,
+            type,
+            genre: genres,
+            summary,
+            enjoy,
+            posterUrl,
+            landscapeUrl,
+            paidPoint,
+            createdAt: serverTimestamp(),
+        };
+        const docRef = await addDoc(collection(db, 'webtoons'), docData);
+        return docRef.id;
+    }
     // 취소 버튼
     document.querySelector('.reg-btn.cancel')?.addEventListener('click', () => {
         window.location.href = '/admin/artwork-list.html';
     });
     // 등록 후 1화 올리기 버튼
-    document.querySelector('.reg-btn.submit-chapter')?.addEventListener('click', function() {
-        // 실제 구현에서는 Firestore 등록 후 성공 콜백에서 이동
-        // 여기서는 폼 검증만 하고 이동
+    document.querySelector('.reg-btn.submit-chapter')?.addEventListener('click', async function() {
         const form = document.querySelector('.artwork-reg-form');
         if (form.checkValidity()) {
-            // 작품 등록 로직 (생략)
-            window.location.href = '/admin/new-artwork-chapter.html';
+            this.disabled = true;
+            try {
+                const id = await registerArtwork(form);
+                window.location.href = `/admin/new-artwork-chapter.html?artwork=${id}`;
+            } catch (e) {
+                alert('등록 중 오류가 발생했습니다.');
+                this.disabled = false;
+            }
         } else {
             form.reportValidity();
         }
     });
     // 등록 버튼 (submit)
-    document.querySelector('.artwork-reg-form')?.addEventListener('submit', function(e) {
+    document.querySelector('.artwork-reg-form')?.addEventListener('submit', async function(e) {
         e.preventDefault();
-        // 작품 등록 로직 (생략)
-        alert('작품이 등록되었습니다!');
+        const submitBtn = document.querySelector('.reg-btn.submit');
+        submitBtn.disabled = true;
+        try {
+            await registerArtwork(this);
+            alert('작품이 등록되었습니다!');
+            submitBtn.disabled = false;
+        } catch (e) {
+            alert('등록 중 오류가 발생했습니다.');
+            submitBtn.disabled = false;
+        }
     });
     </script>
 </body>
