@@ -297,6 +297,21 @@
             e.preventDefault();
             const form = document.querySelector('.artwork-reg-form');
             if (form) {
+                // 필수 입력값 체크
+                const title = form.querySelector('#title').value.trim();
+                const type = form.querySelector('input[name="type"]:checked');
+                const genres = Array.from(form.querySelectorAll('input[name="genre"]:checked'));
+                const summary = form.querySelector('#summary').value.trim();
+                const enjoy = form.querySelector('#enjoy').value.trim();
+                const paidPoint = form.querySelector('input[name="paid-point"]:checked');
+                const posterUrl = form.querySelector('#poster-url').value.trim();
+                const landscapeUrl = form.querySelector('#landscape-url').value.trim();
+                const posterFile = form.querySelector('#poster-upload').files[0];
+                const landscapeFile = form.querySelector('#landscape-upload').files[0];
+                if (!title || !type || genres.length === 0 || !summary || !enjoy || !paidPoint || (!posterUrl && !landscapeUrl && !posterFile && !landscapeFile)) {
+                    alert('모든 필수 입력란을 채워주세요.');
+                    return;
+                }
                 form.requestSubmit();
                 setTimeout(() => {
                     window.location.href = '/admin/new-chapter.html';
