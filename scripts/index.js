@@ -98,6 +98,31 @@ const favoriteContents = Array.from({length: 7}, (_, i) => ({
   up: i % 4 === 0 // 4개마다 up 표시
 }));
 
+// 이달의 신규 웹툰 예시 데이터
+const monthlyWebtoons = [
+  {
+    title: '오사카 환상선',
+    genre: '드라마',
+    desc: '오사카의 재일조선인 소년 김웅은 우연히 야쿠자 조카와의 싸움에 휘말린다. 야쿠자의 명령으로...',
+    img: 'includes/test-poster.png',
+    isNew: true
+  },
+  {
+    title: '지는 쪽이 영부인',
+    genre: '로맨스',
+    desc: '대한민국 대표 양수 국회의원 부부. 생활 습관부터 정치색까지 달라도 너무 다른데... 대통령 선...',
+    img: 'includes/test-poster.png',
+    isNew: true
+  },
+  {
+    title: '대표님의 남편이 되고 싶어',
+    genre: '로맨스',
+    desc: '국내 1위 경호회사 대표 강아진과 배우계 슈퍼루키 주헌의 달콤 살벌한 계약 결혼이 시작된다!...',
+    img: 'includes/test-poster.png',
+    isNew: true
+  }
+];
+
 function renderPopularContents() {
   const carousel = document.getElementById('popular-carousel');
   if (!carousel) return;
@@ -109,7 +134,7 @@ function renderPopularContents() {
     let rankHtml = '';
     if (content.rank === 1) {
       rankHtml = `<span class="content-rank" style="padding:0;"> \
-        <svg width=\"36\" height=\"50\" fill=\"none\" aria-hidden=\"true\"><path d=\"M13.788 45.296H25.29V6.152H13.787l-9.82 6.565v9.63L13.57 16h.217v29.297Z\" fill=\"#000\"></path><path d=\"M13.788 45.296h-1.852v1.852h1.852v-1.852Zm11.502 0v1.852h1.851v-1.852H25.29Zm0-39.144h1.851V4.301H25.29v1.851Zm-11.502 0V4.301h-.562l-.467.312 1.029 1.54Zm-9.82 6.565-1.03-1.54-.822.55v.99h1.852Zm0 9.63H2.116v3.444l2.873-1.9-1.021-1.544ZM13.57 16v-1.851h-.557l-.464.307 1.02 1.544Zm.217 0h1.852v-1.851h-1.852v1.851Zm0 31.15H25.29v-3.705H13.787v3.704Zm13.353-1.853V6.152h-3.703v39.144h3.703ZM25.29 4.301H13.787v3.703H25.29V4.301Zm-12.531.312-9.82 6.565 2.058 3.079 9.82-6.565-2.058-3.08ZM2.116 12.717v9.63H5.82v-9.63H2.116ZM4.99 23.892l9.603-6.348-2.042-3.09-9.603 6.348 2.042 3.09Zm8.582-6.04h.217v-3.704h-.217v3.703Zm-1.635-1.853v29.297h3.704V16h-3.704Z\" fill=\"#fff\"></path><path d=\"M13.788 45.296h11.501V6.152H13.788l-9.82 6.565v9.63L13.57 16h.217v29.297Z\" fill=\"#000\"></path><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M11.936 47.148V19.3l-9.82 6.491V11.727l11.11-7.426h13.915v42.847H11.937ZM13.571 16h.217v29.297H25.29V6.152H13.788l-9.82 6.565v9.63L13.571 16Z\" fill=\"#fff\"></path></svg>
+        <svg width=\"36\" height=\"50\" fill=\"none\" aria-hidden=\"true\"><path d=\"M13.788 45.296H25.29V6.152H13.787l-9.82 6.565v9.63L13.57 16h.217v29.297Z\" fill=\"#000\"></path><path d=\"M13.788 45.296h-1.852v1.852h1.852v-1.852Zm11.502 0v1.852h1.851v-1.852H25.29Zm0-39.144h1.851V4.301H25.29v1.851Zm-11.502 0V4.301h-.562l-.467.312 1.029 1.54Zm-9.82 6.565-1.03-1.54-.822.55v.99h1.852Zm0 9.63H2.116v3.444l2.873-1.9-1.021-1.544ZM13.57 16v-1.851h-.557l-.464.307 1.02 1.544Zm.217 0h1.852v-1.851h-1.852v1.851Zm0 31.15H25.29v-3.705H13.787v3.704Zm13.353-1.853V6.152h-3.703v39.144h3.703ZM25.29 4.301H13.787v3.703H25.29V4.301Zm-12.531.312-9.82 6.565 2.058 3.079 9.82-6.565-2.058-3.08ZM2.116 12.717v9.63H5.82v-9.63H2.116ZM4.99 23.892l9.603-6.348-2.042-3.09-9.603 6.348 2.042 3.09Zm8.582-6.04h.217v-3.704h-.217v3.703Zm-1.635-1.853v29.297h3.704V16h-3.704Z\" fill=\"#fff\"></path><path d=\"M13.788 45.296h11.501V6.152H13.788l-9.82 6.565v9.63L13.571 16Z\" fill=\"#000\"></path><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M11.936 47.148V19.3l-9.82 6.491V11.727l11.11-7.426h13.915v42.847H11.937ZM13.571 16h.217v29.297H25.29V6.152H13.788l-9.82 6.565v9.63L13.571 16Z\" fill=\"#fff\"></path></svg>
       </span>`;
     } else if (content.rank === 2) {
       rankHtml = `<span class="content-rank" style="padding:0;"> \
@@ -216,8 +241,23 @@ function renderFavoriteContents() {
   });
 }
 
+function renderMonthlyWebtoons() {
+  const list = document.querySelector('.monthly-new-webtoon-list');
+  if (!list) return;
+  list.innerHTML = '';
+  monthlyWebtoons.forEach(w => {
+    const card = document.createElement('div');
+    card.className = 'monthly-webtoon-card';
+    card.style = 'padding:0 0 18px 0; display:flex; flex-direction:column; align-items:flex-start; overflow:hidden; max-width:320px; background:none; box-shadow:none; border-radius:0;';
+    card.innerHTML = `
+      <div class=\"monthly-webtoon-thumb\" style=\"position:relative; width:100%; aspect-ratio:434/330; max-width:320px; max-height:150px; overflow:hidden;\">\n        ${w.isNew ? '<span class=\"badge-new\" style=\"position:absolute;top:12px;left:12px;z-index:2;background:#00e676;color:#fff;font-size:1.05rem;padding:4px 14px;border-radius:14px;font-weight:600;\">신작</span>' : ''}\n        <img src=\"${w.img}\" alt=\"${w.title}\" style=\"width:100%;height:100%;object-fit:cover; border-radius:12px;\" />\n      </div>\n      <div class=\"monthly-webtoon-title\" style=\"font-size:1.13rem;font-weight:700;margin:10px 0 2px 0; padding:0 16px; line-height:1.2;\">${w.title}</div>\n      <div class=\"monthly-webtoon-genre\" style=\"font-size:1.01rem;color:#009688;margin-bottom:4px; padding:0 16px; line-height:1.2;\">${w.genre}</div>\n      <div class=\"monthly-webtoon-desc\" style=\"font-size:0.99rem;color:#444;line-height:1.45; padding:0 16px; max-height:3.2em; overflow:hidden; text-overflow:ellipsis;\">${w.desc}</div>\n    `;
+    list.appendChild(card);
+  });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   renderPopularContents();
   renderLatestContents();
   renderFavoriteContents();
+  renderMonthlyWebtoons();
 }); 
