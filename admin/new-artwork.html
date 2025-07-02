@@ -168,9 +168,12 @@
         .reg-tip {
             color: #7a869a;
             font-size: 0.98rem;
-            margin-top: 7px;
-            text-align: right;
-            grid-column: 2/3;
+            margin-top: 16px;
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            grid-column: 1/3;
         }
         .reg-btn-row {
             display: flex;
@@ -208,7 +211,7 @@
             .form-row { grid-template-columns: 1fr; padding: 10px 0; }
             .form-row label { padding-right: 0; margin-bottom: 4px; }
             .image-upload-box { width: 100%; min-width: 0; }
-            .reg-tip { text-align: left; }
+            .reg-tip { text-align: center; }
         }
     </style>
 </head>
@@ -328,7 +331,11 @@
                                 <input type="url" id="landscape-url" class="image-url-input" placeholder="가로형 이미지 URL 입력 또는 파일 업로드" style="width:100%;font-size:0.97rem;margin-top:10px;" />
                             </div>
                         </div>
-                        <div class="reg-tip" style="margin-top:8px; color:#888; font-size:0.97rem;">* 파일 용량 1MB 이하 / jpg만 업로드 가능<br>* 가로형 대표 이미지만 업로드하셔도 기타 이미지가 자동 생성됩니다.<br>* 포스터형은 작품 홈에서 대표 이미지로 활용됩니다.</div>
+                        <div class="reg-tip" style="margin:16px auto 0 auto; color:#888; font-size:0.97rem; text-align:center; max-width:600px; grid-column:1/3;">
+                            * 파일 용량 1MB 이하 / jpg만 업로드 가능<br>
+                            * 가로형 대표 이미지만 업로드하셔도 기타 이미지가 자동 생성됩니다.<br>
+                            * 포스터형은 작품 홈에서 대표 이미지로 활용됩니다.
+                        </div>
                     </div>
                     <div class="form-row">
                         <label>회차 유로 사용 포인트</label>
