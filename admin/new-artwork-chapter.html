@@ -218,10 +218,6 @@
                     <div style="color:#1976d2; font-size:1.05rem;" id="chapter-title-preview"></div>
                 </div>
                 <div class="form-row">
-                    <label for="chapter-content">회차 본문</label>
-                    <textarea id="chapter-content" placeholder="회차 본문을 입력하거나 이미지를 업로드해 주세요."></textarea>
-                </div>
-                <div class="form-row">
                     <label for="chapter-comment">작가의 말/크리에이터의 말</label>
                     <textarea id="chapter-comment" placeholder="작가의 말 또는 크리에이터의 말을 입력해 주세요. (선택)"></textarea>
                 </div>
@@ -317,7 +313,6 @@
         const artworkId = document.getElementById('artwork-select').value;
         const number = document.getElementById('chapter-number').value;
         const title = document.getElementById('chapter-title').value;
-        const content = document.getElementById('chapter-content').value;
         const comment = document.getElementById('chapter-comment').value;
         const dateStr = document.getElementById('chapter-date').value;
         const date = new Date(dateStr);
@@ -327,7 +322,7 @@
         if (date > today) status = 'scheduled';
         try {
             await addDoc(collection(db, 'artwork-chapter-list'), {
-                artworkId, number, title, content, comment,
+                artworkId, number, title, comment,
                 publishDate: dateStr,
                 status,
                 createdAt: serverTimestamp()
