@@ -143,6 +143,7 @@
             background: #fafafa;
             border-radius: 6px;
             box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+            cursor: pointer;
         }
         .image-upload-box input[type="file"] {
             display: none;
@@ -455,11 +456,11 @@
         function handleImagePreview(inputId) {
             const input = document.getElementById(inputId);
             if (!input) return;
+            const uploadBox = input.closest('.image-upload-box');
+            const preview = uploadBox ? uploadBox.querySelector('.preview-img') : null;
+            if (!preview) return;
             input.addEventListener('change', function(e) {
                 const file = e.target.files && e.target.files[0];
-                const uploadBox = input.closest('.image-upload-box');
-                const preview = uploadBox ? uploadBox.querySelector('.preview-img') : null;
-                if (!preview) return;
                 if (file && file.type.startsWith('image/')) {
                     const reader = new FileReader();
                     reader.onload = function(ev) {
@@ -471,6 +472,9 @@
                     preview.src = '';
                     preview.style.display = 'none';
                 }
+            });
+            preview.addEventListener('click', function() {
+                input.click();
             });
         }
         handleImagePreview('poster-upload');
