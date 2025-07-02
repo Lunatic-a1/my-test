@@ -452,12 +452,14 @@
     </script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        function handleImagePreview(inputId, previewSelector) {
+        function handleImagePreview(inputId) {
             const input = document.getElementById(inputId);
-            const preview = document.querySelector(previewSelector);
-            if (!input || !preview) return;
+            if (!input) return;
             input.addEventListener('change', function(e) {
                 const file = e.target.files && e.target.files[0];
+                const uploadBox = input.closest('.image-upload-box');
+                const preview = uploadBox ? uploadBox.querySelector('.preview-img') : null;
+                if (!preview) return;
                 if (file && file.type.startsWith('image/')) {
                     const reader = new FileReader();
                     reader.onload = function(ev) {
@@ -471,8 +473,8 @@
                 }
             });
         }
-        handleImagePreview('poster-upload', '#poster-upload ~ label + .preview-img, #poster-upload ~ .preview-img, .image-upload-box .preview-img');
-        handleImagePreview('landscape-upload', '#landscape-upload ~ label + .preview-img, #landscape-upload ~ .preview-img, .image-upload-box .preview-img');
+        handleImagePreview('poster-upload');
+        handleImagePreview('landscape-upload');
     });
     </script>
 </body>
