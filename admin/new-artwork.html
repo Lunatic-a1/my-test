@@ -6,150 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dashboard.css">
     <style>
-        body {
-            background: #f4f6fa;
-        }
-        .form-table {
-            max-width: 800px;
-            margin: 32px auto;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            padding: 36px 32px 32px 32px;
-            gap: 0;
-        }
-        .form-row {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 0;
-            padding: 22px 0 18px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        .form-row:last-child {
-            border-bottom: none;
-        }
-        .form-row label {
-            min-width: 120px;
-            font-weight: bold;
-            font-size: 1.08rem;
-            text-align: left;
-            margin-top: 6px;
-            color: #222;
-            flex-shrink: 0;
-        }
-        .form-row > *:not(label) {
-            flex: 1;
-        }
+        .form-row { display: flex; align-items: flex-start; margin-bottom: 18px; gap: 16px; }
+        .form-row label { min-width: 120px; font-weight: 500; font-size: 1rem; text-align: left; margin-top: 6px; }
         .form-row input[type="text"], .form-row textarea, .form-row .reg-radio-group, .form-row .reg-checkbox-group, .form-row input[type="url"] {
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            padding: 10px 14px;
-            font-size: 1rem;
-            background: #fafbfc;
-            resize: none;
-            width: 100%;
-            box-sizing: border-box;
+            flex: 1 1 320px; border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 1rem; background: #fff; resize: none;
         }
-        .form-row textarea {
-            min-height: 80px;
-        }
-        .reg-radio-group, .reg-checkbox-group {
-            display: flex;
-            gap: 24px;
-            align-items: center;
-            border: none;
-            padding: 0;
-            background: none;
-        }
-        .reg-radio-group label, .reg-checkbox-group label {
-            font-weight: 400;
-            font-size: 1rem;
-            color: #222;
-        }
-        .image-upload-box {
-            background: #f7f7f7;
-            border: 1.5px dashed #ddd;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-width: 140px;
-            height: 150px;
-            margin-bottom: 0;
-            position: relative;
-        }
-        .image-upload-label {
-            font-size: 0.98rem;
-            font-weight: 500;
-            color: #888;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-        .preview-img {
-            display: none;
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            margin: auto;
-            z-index: 1;
-            background: #fafafa;
-        }
-        .reg-btn-row {
-            display: flex;
-            gap: 18px;
-            justify-content: flex-end;
-            margin-top: 32px;
-            padding: 0;
-            border-bottom: none;
-        }
-        .reg-btn {
-            padding: 10px 32px;
-            border-radius: 6px;
-            border: none;
-            font-size: 1.08rem;
-            font-weight: 600;
-            cursor: pointer;
-            background: #1976d2;
-            color: #fff;
-            transition: background 0.15s;
-        }
+        .form-row input[type="file"] { border: none; padding: 0; background: none; }
+        .reg-radio-group, .reg-checkbox-group { display: flex; gap: 18px; align-items: center; border: none; padding: 0; background: none; }
+        .image-upload-box { background: #f7f7f7; border: 1.5px dashed #ddd; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 140px; height: 150px; margin-bottom: 0; position: relative; }
+        .image-upload-label { font-size: 0.98rem; font-weight: 500; color: #888; margin-bottom: 12px; text-align: center; }
+        .preview-img { display: none; max-width: 100%; max-height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; z-index: 1; background: #fafafa; }
+        .reg-btn-row { display: flex; gap: 18px; justify-content: flex-end; margin-top: 32px; }
+        .reg-btn { padding: 10px 32px; border-radius: 6px; border: none; font-size: 1.08rem; font-weight: 600; cursor: pointer; background: #1976d2; color: #fff; transition: background 0.15s; }
         .reg-btn.cancel { background: #bbb; color: #fff; }
         .reg-btn:active { background: #125ea2; }
-        .reg-tip {
-            color: #888;
-            font-size: 0.97rem;
-            margin-top: 6px;
-            margin-bottom: 0;
-        }
-        .counter {
-            color: #aaa;
-            font-size: 0.97rem;
-            float: right;
-            margin-top: 2px;
-        }
-        .tag-help {
-            color: #888;
-            font-size: 0.97rem;
-            margin-top: 4px;
-            margin-bottom: 0;
-        }
-        .tag-tip {
-            color: #1abc9c;
-            font-size: 0.97rem;
-            margin-top: 2px;
-            margin-bottom: 0;
-            font-weight: 500;
-        }
-        @media (max-width: 700px) {
-            .form-table { max-width: 100%; padding: 0 8px; }
-            .form-row label { min-width: 80px; font-size: 0.98rem; }
-        }
     </style>
 </head>
 <body>
@@ -210,102 +80,76 @@
         <div class="section">
             <div class="section-title">새 작품 등록</div>
             <form class="artwork-reg-form">
-                <div class="form-table">
-                    <div class="form-row">
-                        <label for="title">작품명</label>
-                        <div style="width:100%">
-                            <input type="text" id="title" maxlength="30" placeholder="작품명을 입력해 주세요." required oninput="this.nextElementSibling.textContent=this.value.length+'/30'">
-                            <span class="counter">0/30</span>
+                <div class="form-row">
+                    <label for="title">작품명</label>
+                    <input type="text" id="title" placeholder="작품명을 입력해 주세요." required>
+                </div>
+                <div class="form-row">
+                    <label>형식</label>
+                    <div class="reg-radio-group">
+                        <label><input type="radio" name="type" value="에피소드" checked> 에피소드</label>
+                        <label><input type="radio" name="type" value="옴니버스"> 옴니버스</label>
+                        <label><input type="radio" name="type" value="스토리"> 스토리</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label>장르</label>
+                    <div class="reg-checkbox-group">
+                        <label><input type="checkbox" name="genre" value="로맨스" checked> 로맨스</label>
+                        <label><input type="checkbox" name="genre" value="판타지"> 판타지</label>
+                        <label><input type="checkbox" name="genre" value="액션"> 액션</label>
+                        <label><input type="checkbox" name="genre" value="일상"> 일상</label>
+                        <label><input type="checkbox" name="genre" value="스릴러"> 스릴러</label>
+                        <label><input type="checkbox" name="genre" value="개그"> 개그</label>
+                        <label><input type="checkbox" name="genre" value="무협/사극"> 무협/사극</label>
+                        <label><input type="checkbox" name="genre" value="드라마"> 드라마</label>
+                        <label><input type="checkbox" name="genre" value="감성"> 감성</label>
+                        <label><input type="checkbox" name="genre" value="스포츠"> 스포츠</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="summary">작품 한 줄 요약</label>
+                    <input type="text" id="summary" maxlength="100" placeholder="작품을 한 줄로 소개해 주세요.">
+                </div>
+                <div class="form-row">
+                    <label for="enjoy">즐거리</label>
+                    <textarea id="enjoy" maxlength="400" placeholder="작품의 즐거리를 작성해 주세요." rows="4"></textarea>
+                </div>
+                <div class="form-row">
+                    <label>대표 이미지</label>
+                    <div style="display:flex; gap:32px; width:100%;">
+                        <div class="image-upload-box">
+                            <div class="image-upload-label">포스터형<br><span>480 × 623</span></div>
+                            <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
+                            <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" />
+                            <label for="poster-upload">파일 선택</label>
+                        </div>
+                        <div class="image-upload-box">
+                            <div class="image-upload-label">가로형<br><span>434 × 330</span></div>
+                            <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
+                            <input type="file" id="landscape-upload" accept="image/jpeg,image/jpg" />
+                            <label for="landscape-upload">파일 선택</label>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <label>형식</label>
-                        <div class="reg-radio-group">
-                            <label><input type="radio" name="type" value="에피소드" checked> 에피소드</label>
-                            <label><input type="radio" name="type" value="옴니버스"> 옴니버스</label>
-                            <label><input type="radio" name="type" value="스토리"> 스토리</label>
-                        </div>
+                    <div style="display:flex; gap:32px; margin-top:8px;">
+                        <input type="url" id="poster-url" class="image-url-input" placeholder="포스터 이미지 URL 입력 또는 파일 업로드" style="width:45%;font-size:0.97rem;" />
+                        <input type="url" id="landscape-url" class="image-url-input" placeholder="가로형 이미지 URL 입력 또는 파일 업로드" style="width:45%;font-size:0.97rem;" />
                     </div>
-                    <div class="form-row">
-                        <label>장르</label>
-                        <div class="reg-checkbox-group">
-                            <label><input type="checkbox" name="genre" value="로맨스" checked> 로맨스</label>
-                            <label><input type="checkbox" name="genre" value="판타지"> 판타지</label>
-                            <label><input type="checkbox" name="genre" value="액션"> 액션</label>
-                            <label><input type="checkbox" name="genre" value="일상"> 일상</label>
-                            <label><input type="checkbox" name="genre" value="스릴러"> 스릴러</label>
-                            <label><input type="checkbox" name="genre" value="개그"> 개그</label>
-                            <label><input type="checkbox" name="genre" value="무협/사극"> 무협/사극</label>
-                            <label><input type="checkbox" name="genre" value="드라마"> 드라마</label>
-                            <label><input type="checkbox" name="genre" value="감성"> 감성</label>
-                            <label><input type="checkbox" name="genre" value="스포츠"> 스포츠</label>
-                        </div>
+                    <div class="reg-tip" style="margin-top:8px; color:#888; font-size:0.97rem;">* 파일 용량 1MB 이하 / jpg만 업로드 가능<br>* 가로형 대표 이미지만 업로드하셔도 기타 이미지가 자동 생성됩니다.<br>* 포스터형은 작품 홈에서 대표 이미지로 활용됩니다.</div>
+                </div>
+                <div class="form-row">
+                    <label>회차 유로 사용 포인트</label>
+                    <div class="reg-radio-group">
+                        <label><input type="radio" name="paid-point" value="100" checked> 100포인트</label>
+                        <label><input type="radio" name="paid-point" value="200"> 200포인트</label>
+                        <label><input type="radio" name="paid-point" value="300"> 300포인트</label>
                     </div>
-                    <div class="form-row">
-                        <label for="tags">태그</label>
-                        <div style="width:100%">
-                            <input type="text" id="tags" maxlength="10" placeholder="내 작품을 가장 잘 표현해주는 태그를 입력해 주세요." oninput="this.nextElementSibling.textContent=this.value.length+'/10'">
-                            <span class="counter">0/10</span>
-                            <div class="tag-help">· 태그는 최대 10개까지 입력할 수 있으며, 등록한 태그는 작품 홈에서 노출됩니다.<br>· 원하는 단어를 입력한 뒤에 쉼표 혹은 엔터키를 입력하시면 태그가 등록됩니다.</div>
-                            <div class="tag-tip">Tip! 자동완성 추천 태그는 다른 작품에서도 등록된 태그입니다. 자동완성 태그를 사용하시면, 작품 발견의 기회를 높일 수 있어요.</div>
-                            <div class="tag-help"><a href="#" style="color:#1976d2;text-decoration:underline;">관련 도움말 보기 &gt;</a></div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <label for="summary">작품 한 줄 요약</label>
-                        <div style="width:100%">
-                            <input type="text" id="summary" maxlength="100" placeholder="작품을 한 줄로 소개해 주세요." oninput="this.nextElementSibling.textContent=this.value.length+'/10'">
-                            <span class="counter">0/10</span>
-                            <div class="tag-help">· 작품 소개가 필요한 곳에서 노출될 수 있습니다.</div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <label for="enjoy">즐거리</label>
-                        <div style="width:100%">
-                            <textarea id="enjoy" maxlength="400" placeholder="작품의 즐거리를 작성해 주세요." rows="4" oninput="this.nextElementSibling.textContent=this.value.length+'/10'"></textarea>
-                            <span class="counter">0/10</span>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <label>대표 이미지</label>
-                        <div style="display:flex; flex-direction:column; gap:8px; width:100%;">
-                            <div style="display:flex; gap:32px; width:100%;">
-                                <div class="image-upload-box">
-                                    <div class="image-upload-label">포스터형<br><span>480 × 623</span></div>
-                                    <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
-                                    <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" />
-                                    <label for="poster-upload">파일 선택</label>
-                                </div>
-                                <div class="image-upload-box">
-                                    <div class="image-upload-label">가로형<br><span>434 × 330</span></div>
-                                    <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
-                                    <input type="file" id="landscape-upload" accept="image/jpeg,image/jpg" />
-                                    <label for="landscape-upload">파일 선택</label>
-                                </div>
-                            </div>
-                            <div style="display:flex; gap:32px; margin-top:8px;">
-                                <input type="url" id="poster-url" class="image-url-input" placeholder="포스터 이미지 URL 입력 또는 파일 업로드" style="width:45%;font-size:0.97rem;" />
-                                <input type="url" id="landscape-url" class="image-url-input" placeholder="가로형 이미지 URL 입력 또는 파일 업로드" style="width:45%;font-size:0.97rem;" />
-                            </div>
-                            <div class="reg-tip" style="margin-top:8px;">* 파일 용량 1MB 이하 / jpg만 업로드 가능<br>* 가로형 대표 이미지만 업로드하셔도 기타 이미지가 자동 생성됩니다.<br>* 포스터형은 작품 홈에서 대표 이미지로 활용됩니다.</div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <label>회차 유로 사용 포인트</label>
-                        <div style="width:100%">
-                            <div class="reg-radio-group">
-                                <label><input type="radio" name="paid-point" value="100" checked> 100포인트</label>
-                                <label><input type="radio" name="paid-point" value="200"> 200포인트</label>
-                                <label><input type="radio" name="paid-point" value="300"> 300포인트</label>
-                            </div>
-                            <div class="reg-tip" style="margin-top:8px;">* 한 회차 열람 시 차감될 포인트를 선택하세요. 전체 회차에 동일하게 적용됩니다.</div>
-                        </div>
-                    </div>
-                    <div class="reg-btn-row">
-                        <button type="button" class="reg-btn cancel">취소</button>
-                        <button type="submit" class="reg-btn submit">등록</button>
-                        <button type="button" class="reg-btn submit-chapter">등록 후 1화 올리기</button>
-                    </div>
+                    <div class="reg-tip" style="margin-top:8px; color:#888; font-size:0.97rem;">* 한 회차 열람 시 차감될 포인트를 선택하세요. 전체 회차에 동일하게 적용됩니다.</div>
+                </div>
+                <div class="reg-btn-row">
+                    <button type="button" class="reg-btn cancel">취소</button>
+                    <button type="submit" class="reg-btn submit">등록</button>
+                    <button type="button" class="reg-btn submit-chapter">등록 후 1화 올리기</button>
                 </div>
             </form>
         </div>
@@ -354,24 +198,26 @@
                 window.location.href = `/admin/new-artwork-chapter.html?artwork=${id}`;
             } catch (e) {
                 alert('등록 중 오류가 발생했습니다.');
+            } finally {
                 this.disabled = false;
             }
         } else {
             form.reportValidity();
         }
     });
-    // 등록 버튼 (submit)
+    // 기본 등록 버튼
     document.querySelector('.artwork-reg-form')?.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const submitBtn = document.querySelector('.reg-btn.submit');
-        submitBtn.disabled = true;
-        try {
-            await registerArtwork(this);
-            alert('작품이 등록되었습니다!');
-            submitBtn.disabled = false;
-        } catch (e) {
-            alert('등록 중 오류가 발생했습니다.');
-            submitBtn.disabled = false;
+        const form = e.target;
+        if (form.checkValidity()) {
+            try {
+                await registerArtwork(form);
+                window.location.href = '/admin/artwork-list.html';
+            } catch (e) {
+                alert('등록 중 오류가 발생했습니다.');
+            }
+        } else {
+            form.reportValidity();
         }
     });
     </script>
