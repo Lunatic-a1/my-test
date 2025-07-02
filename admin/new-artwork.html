@@ -102,12 +102,16 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-width: 140px;
+            min-width: 100px;
             height: 150px;
             margin-bottom: 0;
             position: relative;
             width: 180px;
             transition: border 0.15s;
+        }
+        .image-upload-box.portrait {
+            width: 120px;
+            height: 150px;
         }
         .image-upload-box:hover {
             border: 1.5px solid #1976d2;
@@ -305,8 +309,8 @@
                     <div class="form-row">
                         <label>대표 이미지</label>
                         <div style="display:flex; gap:32px; width:100%; align-items:flex-start;">
-                            <div style="display:flex; flex-direction:column; align-items:center; width:180px;">
-                                <div class="image-upload-box" style="width:120px; height:200px;">
+                            <div style="display:flex; flex-direction:column; align-items:center; width:120px;">
+                                <div class="image-upload-box portrait">
                                     <div class="image-upload-label">포스터형<br><span>480 × 623</span></div>
                                     <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
                                     <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" />
