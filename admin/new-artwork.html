@@ -17,47 +17,48 @@
             grid-template-columns: 180px 1fr;
             align-items: flex-start;
             margin-bottom: 0;
-            padding: 18px 0;
-            border-bottom: 1px solid #f0f0f0;
-            background: none;
+            padding: 22px 0 18px 0;
+            border-bottom: 1px solid #f3f4f7;
+            background: #fcfdff;
+            transition: background 0.18s;
+        }
+        .form-row:not(:last-child):hover {
+            background: #f7fafd;
         }
         .form-row:last-child {
             border-bottom: none;
         }
         .form-row label {
             min-width: 0;
-            font-weight: 600;
-            font-size: 1.05rem;
-            color: #222;
+            font-weight: 700;
+            font-size: 1.07rem;
+            color: #1a237e;
             margin-top: 0;
             text-align: left;
             align-self: center;
             padding-right: 18px;
+            letter-spacing: -0.01em;
         }
         .form-row input[type="text"],
         .form-row input[type="number"],
         .form-row input[type="date"],
         .form-row textarea,
-        .form-row select,
-        .form-row .reg-radio-group,
-        .form-row .reg-checkbox-group {
+        .form-row select {
             width: 100%;
             box-sizing: border-box;
             border: 1.5px solid #d0d0d0;
-            border-radius: 7px;
-            padding: 10px 13px;
-            font-size: 1.04rem;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 1.06rem;
             background: #fff;
-            transition: border 0.15s;
+            transition: border 0.15s, box-shadow 0.15s;
             outline: none;
+            color: #222;
         }
-        .form-row .reg-radio-group,
-        .form-row .reg-checkbox-group {
-            display: flex;
-            gap: 18px;
-            border: none;
-            padding: 0;
-            background: none;
+        .form-row input::placeholder,
+        .form-row textarea::placeholder {
+            color: #b0b8c1;
+            opacity: 1;
         }
         .form-row input[type="text"]:focus,
         .form-row input[type="number"]:focus,
@@ -65,15 +66,33 @@
         .form-row textarea:focus,
         .form-row select:focus {
             border: 1.5px solid #1976d2;
-        }
-        .form-row textarea {
-            min-height: 90px;
-            resize: vertical;
+            box-shadow: 0 2px 8px 0 rgba(25,118,210,0.07);
+            background: #fafdff;
         }
         .form-row input[type="file"] {
             border: none;
             padding: 0;
             background: none;
+        }
+        .form-row .reg-radio-group,
+        .form-row .reg-checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px 22px;
+            border: none;
+            padding: 0;
+            background: none;
+        }
+        .form-row .reg-radio-group label,
+        .form-row .reg-checkbox-group label {
+            font-weight: 500;
+            color: #333;
+            font-size: 1.01rem;
+            margin-bottom: 2px;
+        }
+        .form-row textarea {
+            min-height: 90px;
+            resize: vertical;
         }
         .image-upload-box {
             background: #f7f7f7;
@@ -88,6 +107,11 @@
             margin-bottom: 0;
             position: relative;
             width: 180px;
+            transition: border 0.15s;
+        }
+        .image-upload-box:hover {
+            border: 1.5px solid #1976d2;
+            background: #fafdff;
         }
         .image-upload-label {
             font-size: 1.01rem;
@@ -137,22 +161,32 @@
         .image-upload-box label[for="thumbnail-upload"]:hover {
             background: #d0e2fa;
         }
+        .reg-tip {
+            color: #7a869a;
+            font-size: 0.98rem;
+            margin-top: 7px;
+            text-align: right;
+            grid-column: 2/3;
+        }
         .reg-btn-row {
             display: flex;
             gap: 18px;
             justify-content: flex-end;
-            margin-top: 32px;
+            margin-top: 38px;
+            padding-top: 18px;
+            border-top: 1.5px solid #f0f1f4;
         }
         .reg-btn {
-            padding: 10px 32px;
-            border-radius: 6px;
+            padding: 11px 36px;
+            border-radius: 7px;
             border: none;
-            font-size: 1.08rem;
-            font-weight: 600;
+            font-size: 1.09rem;
+            font-weight: 700;
             cursor: pointer;
             background: #1976d2;
             color: #fff;
-            transition: background 0.15s;
+            transition: background 0.15s, box-shadow 0.15s;
+            box-shadow: 0 2px 8px 0 rgba(25,118,210,0.07);
         }
         .reg-btn.cancel {
             background: #bbb;
@@ -170,6 +204,7 @@
             .form-row { grid-template-columns: 1fr; padding: 10px 0; }
             .form-row label { padding-right: 0; margin-bottom: 4px; }
             .image-upload-box { width: 100%; min-width: 0; }
+            .reg-tip { text-align: left; }
         }
     </style>
 </head>
