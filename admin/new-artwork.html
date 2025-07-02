@@ -587,9 +587,8 @@
         setupFileOrUrlToggle('landscape-upload', 'landscape-url');
         // 필수 입력 안내 메시지
         function showRequiredAlert(e) {
-            const submitBtn = document.querySelector('.reg-btn.submit');
-            const submitChapterBtn = document.querySelector('.reg-btn.submit-chapter');
-            if (submitBtn.disabled || submitChapterBtn.disabled) {
+            // 버튼이 disabled일 때만 안내
+            if (e.currentTarget.disabled) {
                 alert('모든 필수 입력을 채워주세요.');
                 e.preventDefault();
                 e.stopPropagation();
