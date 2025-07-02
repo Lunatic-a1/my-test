@@ -88,7 +88,7 @@
                     <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${summary}</td>
                     <td>${dateStr}</td>
                     <td>정상</td>
-                    <td><button class="artwork-action-btn">관리</button></td>
+                    <td><button class="artwork-action-btn manage-btn" data-id="${doc.id}">관리</button></td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -104,6 +104,12 @@
     });
     document.getElementById('chapter-add-btn')?.addEventListener('click', function() {
       window.location.href = 'new-artwork-chapter.html';
+    });
+    document.getElementById('artwork-list-tbody').addEventListener('click', function(e) {
+      if (e.target.classList.contains('manage-btn')) {
+        const id = e.target.getAttribute('data-id');
+        window.location.href = `new-artwork.html?edit=${id}`;
+      }
     });
     </script>
     <!-- 추후 artwork-management.js 추가 예정 -->
