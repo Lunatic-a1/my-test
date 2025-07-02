@@ -387,8 +387,62 @@
     <script type="module" src="admin-layout.js"></script>
     <script type="module">
     import { app } from '../scripts/firebase-init.js';
-    import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js';
+    import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js';
     const db = getFirestore(app);
+
+    // --- EDIT MODE: auto-fill if ?edit=ID ---
+    async function tryEditMode() {
+        const params = new URLSearchParams(window.location.search);
+        const editId = params.get('edit');
+        if (!editId) return;
+        const ref = doc(db, 'webtoons', editId);
+        const snap = await getDoc(ref);
+        if (!snap.exists()) return;
+        const data = snap.data();
+        // 제목
+        document.getElementById('title').value = data.title || '';
+        // 형식
+        if (data.type) {
+            const radios = document.querySelectorAll('input[name="type"]');
+            radios.forEach(r => { r.checked = (r.value === data.type); });
+        }
+        // 장르(복수)
+        if (Array.isArray(data.genre)) {
+            const checkboxes = document.querySelectorAll('input[name="genre"]');
+            checkboxes.forEach(cb => { cb.checked = data.genre.includes(cb.value); });
+        }
+        // 요약, 즐거리
+        document.getElementById('summary').value = data.summary || '';
+        document.getElementById('enjoy').value = data.enjoy || '';
+        // 포인트
+        if (data.paidPoint) {
+            const radios = document.querySelectorAll('input[name="paid-point"]');
+            radios.forEach(r => { r.checked = (r.value === data.paidPoint); });
+        }
+        // 이미지 URL
+        if (data.posterUrl) {
+            document.getElementById('poster-url').value = data.posterUrl;
+            document.getElementById('poster-upload').value = '';
+            document.getElementById('poster-upload').disabled = true;
+            // 미리보기
+            const preview = document.getElementById('poster-upload').closest('.image-upload-box').querySelector('.preview-img');
+            preview.src = data.posterUrl;
+            preview.style.display = 'block';
+        }
+        if (data.landscapeUrl) {
+            document.getElementById('landscape-url').value = data.landscapeUrl;
+            document.getElementById('landscape-upload').value = '';
+            document.getElementById('landscape-upload').disabled = true;
+            // 미리보기
+            const preview = document.getElementById('landscape-upload').closest('.image-upload-box').querySelector('.preview-img');
+            preview.src = data.landscapeUrl;
+            preview.style.display = 'block';
+        }
+        // 폼 유효성 체크
+        checkArtworkFormValidity();
+    }
+    document.addEventListener('DOMContentLoaded', tryEditMode);
+
     // 폼 등록 함수
     async function registerArtwork(form) {
         const title = form.querySelector('#title').value.trim();
