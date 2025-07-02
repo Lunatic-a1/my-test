@@ -147,30 +147,29 @@
         .image-upload-box input[type="file"] {
             display: none;
         }
-        .image-upload-box label[for="poster-upload"],
-        .image-upload-box label[for="landscape-upload"] {
+        .image-upload-box label[for] {
             display: inline-block;
-            margin-top: 110px;
-            padding: 7px 20px;
-            background: #fff;
-            color: #1976d2;
-            border: 1.5px solid #bfc8d6;
-            border-radius: 6px;
-            font-size: 1rem;
+            margin-top: 18px;
+            padding: 9px 24px;
+            background: #f7f7f7;
+            color: #444;
+            border-radius: 7px;
+            font-size: 1.04rem;
             font-weight: 500;
             cursor: pointer;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 12px;
+            border: 1.5px solid #e0e0e0;
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+            position: static;
+            left: auto;
+            transform: none;
+            bottom: auto;
             z-index: 2;
             transition: background 0.15s, border 0.15s;
-            box-sizing: border-box;
+            text-align: center;
         }
-        .image-upload-box label[for="poster-upload"]:hover,
-        .image-upload-box label[for="landscape-upload"]:hover {
-            background: #e3eaf5;
-            border: 1.5px solid #1976d2;
+        .image-upload-box label[for]:hover {
+            background: #ededed;
+            border: 1.5px solid #bfc8d6;
         }
         .reg-tip {
             color: #7a869a;
