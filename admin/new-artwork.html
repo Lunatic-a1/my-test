@@ -586,24 +586,21 @@
         setupFileOrUrlToggle('poster-upload', 'poster-url');
         setupFileOrUrlToggle('landscape-upload', 'landscape-url');
         // 필수 입력 안내 메시지
-        function showRequiredAlert(e) {
-            // 버튼이 disabled일 때만 안내 메시지
+        document.querySelector('.reg-btn.submit').addEventListener('click', function(e) {
             if (e.currentTarget.disabled) {
                 alert('모든 필수 입력을 채워주세요.');
                 e.preventDefault();
                 e.stopPropagation();
             }
-        }
-        // 등록 버튼은 submit 이벤트로만 동작하므로 안내만 적용
-        document.querySelector('.reg-btn.submit').addEventListener('click', showRequiredAlert);
-        // 등록 후 1화 올리기 버튼은 enabled일 때만 동작하도록 수정
+        });
+        // 등록 후 1화 올리기 버튼: disabled일 때만 안내, enabled면 아무것도 하지 않음(중복 alert 방지)
         const submitChapterBtn = document.querySelector('.reg-btn.submit-chapter');
         submitChapterBtn.addEventListener('click', function(e) {
             if (submitChapterBtn.disabled) {
                 alert('모든 필수 입력을 채워주세요.');
                 e.preventDefault();
                 e.stopPropagation();
-            } // enabled면 기존 로직대로 동작
+            }
         }, true);
         // 입력 이벤트로 버튼 활성화 체크
         const form = document.querySelector('.artwork-reg-form');
