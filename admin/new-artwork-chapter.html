@@ -227,14 +227,8 @@
                 </div>
                 <div class="form-row">
                     <label>웹툰 이미지 업로드</label>
-                    <div style="display:flex; flex-direction:column; align-items:flex-start; width:100%;">
-                        <div class="image-upload-box" id="webtoon-upload-box" style="width:100%; min-height:180px; flex-direction:row; flex-wrap:wrap; align-items:flex-start; justify-content:flex-start; gap:16px;">
-                            <input type="file" id="webtoon-upload" accept="image/jpeg,image/jpg,image/png" multiple style="display:none;" />
-                            <label for="webtoon-upload" style="min-width:120px; min-height:160px; display:flex; align-items:center; justify-content:center; border:1.5px dashed #bfc8d6; border-radius:8px; background:#f7f7f7; cursor:pointer; font-size:1.05rem; color:#888;">이미지 선택</label>
-                            <div id="webtoon-preview-list" style="display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;"></div>
-                        </div>
-                        <div class="reg-tip" style="margin-top:8px; color:#888; font-size:0.97rem;">* 여러 장의 이미지를 업로드할 수 있습니다. (jpg, png 지원)</div>
-                    </div>
+                    <div id="webtoon-upload-list" style="display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start; width:100%;"></div>
+                    <div class="reg-tip" style="margin-top:8px; color:#888; font-size:0.97rem;">* 이미지를 순서대로 업로드하세요. (jpg, png 지원, 개수 제한 없음)</div>
                 </div>
                 </div>
                 <div class="reg-btn-row">
@@ -287,43 +281,122 @@
     }
     document.getElementById('chapter-number').addEventListener('input', updateChapterTitlePreview);
     document.getElementById('chapter-title').addEventListener('input', updateChapterTitlePreview);
-    // 웹툰 이미지 미리보기
-    const webtoonInput = document.getElementById('webtoon-upload');
-    const webtoonPreviewList = document.getElementById('webtoon-preview-list');
-    webtoonInput.addEventListener('change', function() {
-        webtoonPreviewList.innerHTML = '';
-        const files = Array.from(webtoonInput.files);
-        files.forEach((file, idx) => {
-            if (file && file.type.startsWith('image/')) {
+    // 웹툰 이미지 업로드 동적 박스 구현
+    function createWebtoonUploadBox(idx) {
+        const box = document.createElement('div');
+        box.className = 'webtoon-upload-item';
+        box.style.width = '120px';
+        box.style.height = '160px';
+        box.style.border = '1.5px dashed #bfc8d6';
+        box.style.borderRadius = '8px';
+        box.style.background = '#f7f7f7';
+        box.style.display = 'flex';
+        box.style.flexDirection = 'column';
+        box.style.alignItems = 'center';
+        box.style.justifyContent = 'center';
+        box.style.position = 'relative';
+        box.style.cursor = 'pointer';
+        box.style.overflow = 'hidden';
+        // 파일 input
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/jpeg,image/jpg,image/png';
+        input.style.display = 'none';
+        input.setAttribute('data-idx', idx);
+        // 미리보기
+        const preview = document.createElement('img');
+        preview.style.display = 'none';
+        preview.style.width = '100%';
+        preview.style.height = '100%';
+        preview.style.objectFit = 'cover';
+        preview.style.borderRadius = '8px';
+        preview.style.background = '#fafafa';
+        preview.style.position = 'absolute';
+        preview.style.top = '0';
+        preview.style.left = '0';
+        preview.style.right = '0';
+        preview.style.bottom = '0';
+        preview.style.margin = 'auto';
+        // 순서 넘버
+        const num = document.createElement('div');
+        num.textContent = (idx + 1).toString();
+        num.style.position = 'absolute';
+        num.style.bottom = '6px';
+        num.style.right = '10px';
+        num.style.fontSize = '1.08rem';
+        num.style.fontWeight = 'bold';
+        num.style.color = '#1976d2';
+        num.style.background = 'rgba(255,255,255,0.8)';
+        num.style.padding = '2px 8px';
+        num.style.borderRadius = '12px';
+        // 기본 안내 텍스트
+        const label = document.createElement('div');
+        label.textContent = '이미지 선택';
+        label.style.color = '#888';
+        label.style.fontSize = '1.05rem';
+        label.style.textAlign = 'center';
+        label.style.pointerEvents = 'none';
+        // 클릭시 파일 선택
+        box.addEventListener('click', () => input.click());
+        input.addEventListener('change', function() {
+            if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(ev) {
-                    const wrapper = document.createElement('div');
-                    wrapper.style.display = 'flex';
-                    wrapper.style.flexDirection = 'column';
-                    wrapper.style.alignItems = 'center';
-                    wrapper.style.gap = '4px';
-                    const img = document.createElement('img');
-                    img.src = ev.target.result;
-                    img.style.width = '120px';
-                    img.style.height = '160px';
-                    img.style.objectFit = 'cover';
-                    img.style.borderRadius = '6px';
-                    img.style.background = '#fafafa';
-                    img.style.boxShadow = '0 1px 4px 0 rgba(0,0,0,0.04)';
-                    const num = document.createElement('div');
-                    num.textContent = (idx + 1).toString();
-                    num.style.marginTop = '2px';
-                    num.style.fontSize = '1.08rem';
-                    num.style.fontWeight = 'bold';
-                    num.style.color = '#1976d2';
-                    wrapper.appendChild(img);
-                    wrapper.appendChild(num);
-                    webtoonPreviewList.appendChild(wrapper);
+                    preview.src = ev.target.result;
+                    preview.style.display = 'block';
+                    label.style.display = 'none';
                 };
-                reader.readAsDataURL(file);
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.style.display = 'none';
+                label.style.display = 'block';
             }
         });
-    });
+        box.appendChild(input);
+        box.appendChild(preview);
+        box.appendChild(label);
+        box.appendChild(num);
+        return box;
+    }
+    function createWebtoonAddBox() {
+        const addBox = document.createElement('div');
+        addBox.className = 'webtoon-upload-add';
+        addBox.style.width = '120px';
+        addBox.style.height = '160px';
+        addBox.style.border = '1.5px dashed #bfc8d6';
+        addBox.style.borderRadius = '8px';
+        addBox.style.background = '#f7f7f7';
+        addBox.style.display = 'flex';
+        addBox.style.alignItems = 'center';
+        addBox.style.justifyContent = 'center';
+        addBox.style.fontSize = '2.8rem';
+        addBox.style.color = '#bfc8d6';
+        addBox.style.cursor = 'pointer';
+        addBox.style.userSelect = 'none';
+        addBox.textContent = '+';
+        return addBox;
+    }
+    function renderWebtoonUploadList() {
+        const list = document.getElementById('webtoon-upload-list');
+        list.innerHTML = '';
+        window.webtoonUploadBoxes = window.webtoonUploadBoxes || [];
+        // 항상 최소 1개
+        if (window.webtoonUploadBoxes.length === 0) window.webtoonUploadBoxes.push(createWebtoonUploadBox(0));
+        window.webtoonUploadBoxes.forEach((box, idx) => {
+            // 순서 넘버 갱신
+            const num = box.querySelector('div:last-child');
+            if (num) num.textContent = (idx + 1).toString();
+            list.appendChild(box);
+        });
+        // +박스
+        const addBox = createWebtoonAddBox();
+        addBox.addEventListener('click', () => {
+            window.webtoonUploadBoxes.push(createWebtoonUploadBox(window.webtoonUploadBoxes.length));
+            renderWebtoonUploadList();
+        });
+        list.appendChild(addBox);
+    }
+    document.addEventListener('DOMContentLoaded', renderWebtoonUploadList);
     // 폼 제출 시 공개일 예약 처리
     const chapterForm = document.getElementById('chapter-form');
     chapterForm.addEventListener('submit', async function(e) {
@@ -338,17 +411,25 @@
         today.setHours(0,0,0,0);
         let status = 'published';
         if (date > today) status = 'scheduled';
-        // 웹툰 이미지 base64 배열 저장 (실서비스는 스토리지 업로드 후 URL로 대체)
-        const webtoonFiles = Array.from(document.getElementById('webtoon-upload').files);
-        const images = await Promise.all(webtoonFiles.map(file => new Promise(resolve => {
-            const reader = new FileReader();
-            reader.onload = e => resolve(e.target.result);
-            reader.readAsDataURL(file);
-        })));
+        // 모든 업로드 박스의 파일을 순서대로 배열로 저장
+        const images = await Promise.all((window.webtoonUploadBoxes||[]).map(box => {
+            const input = box.querySelector('input[type="file"]');
+            return new Promise(resolve => {
+                if (input && input.files && input.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = e => resolve(e.target.result);
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    resolve(null);
+                }
+            });
+        }));
+        // null(선택 안한 박스) 제거
+        const filteredImages = images.filter(img => !!img);
         try {
             await addDoc(collection(db, 'artwork-chapter-list'), {
                 artworkId, number, title, comment,
-                images,
+                images: filteredImages,
                 publishDate: dateStr,
                 status,
                 createdAt: serverTimestamp()
