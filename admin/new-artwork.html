@@ -494,34 +494,6 @@
     });
     </script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // ... 기존 코드 ...
-        function setupFileOrUrlToggle(fileInputId, urlInputId) {
-            const fileInput = document.getElementById(fileInputId);
-            const urlInput = document.getElementById(urlInputId);
-            fileInput.addEventListener('change', function() {
-                if (fileInput.files && fileInput.files.length > 0) {
-                    urlInput.value = '';
-                    urlInput.disabled = true;
-                } else {
-                    urlInput.disabled = false;
-                }
-                checkArtworkFormValidity();
-            });
-            urlInput.addEventListener('input', function() {
-                if (urlInput.value.trim() !== '') {
-                    fileInput.value = '';
-                    fileInput.disabled = true;
-                } else {
-                    fileInput.disabled = false;
-                }
-                checkArtworkFormValidity();
-            });
-        }
-        setupFileOrUrlToggle('poster-upload', 'poster-url');
-        setupFileOrUrlToggle('landscape-upload', 'landscape-url');
-    });
-
     function checkArtworkFormValidity() {
         const form = document.querySelector('.artwork-reg-form');
         const summary = document.getElementById('summary');
@@ -545,12 +517,63 @@
         submitBtn.disabled = !allValid;
         submitChapterBtn.disabled = !allValid;
     }
-    </script>
-    <script>
+
+    function setupFileOrUrlToggle(fileInputId, urlInputId, previewSelector) {
+        const fileInput = document.getElementById(fileInputId);
+        const urlInput = document.getElementById(urlInputId);
+        const uploadBox = fileInput.closest('.image-upload-box');
+        const preview = uploadBox ? uploadBox.querySelector('.preview-img') : null;
+        fileInput.addEventListener('change', function() {
+            if (fileInput.files && fileInput.files.length > 0) {
+                urlInput.value = '';
+                urlInput.disabled = true;
+                // File preview
+                const file = fileInput.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(ev) {
+                        preview.src = ev.target.result;
+                        preview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.src = '';
+                    preview.style.display = 'none';
+                }
+            } else {
+                urlInput.disabled = false;
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+            checkArtworkFormValidity();
+        });
+        urlInput.addEventListener('input', function() {
+            if (urlInput.value.trim() !== '') {
+                fileInput.value = '';
+                fileInput.disabled = true;
+                // URL preview
+                preview.src = urlInput.value.trim();
+                preview.style.display = 'block';
+            } else {
+                fileInput.disabled = false;
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+            checkArtworkFormValidity();
+        });
+        // 미리보기 클릭시 파일 선택
+        preview.addEventListener('click', function() {
+            if (!fileInput.disabled) fileInput.click();
+        });
+    }
     document.addEventListener('DOMContentLoaded', function() {
-        // 안내 메시지: 버튼이 비활성일 때 클릭 시
+        setupFileOrUrlToggle('poster-upload', 'poster-url');
+        setupFileOrUrlToggle('landscape-upload', 'landscape-url');
+        // 필수 입력 안내 메시지
         function showRequiredAlert(e) {
-            if (e.currentTarget.disabled) {
+            const submitBtn = document.querySelector('.reg-btn.submit');
+            const submitChapterBtn = document.querySelector('.reg-btn.submit-chapter');
+            if (submitBtn.disabled || submitChapterBtn.disabled) {
                 alert('모든 필수 입력을 채워주세요.');
                 e.preventDefault();
                 e.stopPropagation();
@@ -558,6 +581,14 @@
         }
         document.querySelector('.reg-btn.submit').addEventListener('click', showRequiredAlert);
         document.querySelector('.reg-btn.submit-chapter').addEventListener('click', showRequiredAlert);
+        // 입력 이벤트로 버튼 활성화 체크
+        const form = document.querySelector('.artwork-reg-form');
+        form.addEventListener('input', checkArtworkFormValidity);
+        document.getElementById('poster-upload').addEventListener('change', checkArtworkFormValidity);
+        document.getElementById('landscape-upload').addEventListener('change', checkArtworkFormValidity);
+        document.getElementById('poster-url').addEventListener('input', checkArtworkFormValidity);
+        document.getElementById('landscape-url').addEventListener('input', checkArtworkFormValidity);
+        checkArtworkFormValidity();
     });
     </script>
 </body>
