@@ -523,6 +523,18 @@
         // Either file or URL must be provided for each image
         const posterValid = !!posterFile || posterUrl !== '';
         const landscapeValid = !!landscapeFile || landscapeUrl !== '';
+        // 디버깅용 콘솔 로그
+        console.log({
+            title: form.querySelector('#title').value,
+            summary: summary.value,
+            enjoy: enjoy.value,
+            posterFile,
+            posterUrl,
+            landscapeFile,
+            landscapeUrl,
+            posterValid,
+            landscapeValid
+        });
         const allValid = (
             form.querySelector('#title').value.trim() !== '' &&
             summary.value.trim() !== '' &&
@@ -543,6 +555,8 @@
             if (fileInput.files && fileInput.files.length > 0) {
                 urlInput.value = '';
                 urlInput.disabled = true;
+                // 파일 input의 값이 바뀌면 URL 입력란도 완전히 비움
+                urlInput.dispatchEvent(new Event('input'));
                 // File preview
                 const file = fileInput.files[0];
                 if (file && file.type.startsWith('image/')) {
@@ -567,6 +581,8 @@
             if (urlInput.value.trim() !== '') {
                 fileInput.value = '';
                 fileInput.disabled = true;
+                // URL 입력란 값이 바뀌면 파일 input도 완전히 비움
+                fileInput.dispatchEvent(new Event('change'));
                 // URL preview
                 preview.src = urlInput.value.trim();
                 preview.style.display = 'block';
