@@ -20,6 +20,18 @@
         .reg-btn { padding: 10px 32px; border-radius: 6px; border: none; font-size: 1.08rem; font-weight: 600; cursor: pointer; background: #1976d2; color: #fff; transition: background 0.15s; }
         .reg-btn.cancel { background: #bbb; color: #fff; }
         .reg-btn:active { background: #125ea2; }
+        .form-table {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        @media (max-width: 700px) {
+            .form-table { max-width: 100%; padding: 0 8px; }
+            .form-row label { min-width: 80px; font-size: 0.98rem; }
+        }
     </style>
 </head>
 <body>
@@ -80,76 +92,82 @@
         <div class="section">
             <div class="section-title">새 작품 등록</div>
             <form class="artwork-reg-form">
-                <div class="form-row">
-                    <label for="title">작품명</label>
-                    <input type="text" id="title" placeholder="작품명을 입력해 주세요." required>
-                </div>
-                <div class="form-row">
-                    <label>형식</label>
-                    <div class="reg-radio-group">
-                        <label><input type="radio" name="type" value="에피소드" checked> 에피소드</label>
-                        <label><input type="radio" name="type" value="옴니버스"> 옴니버스</label>
-                        <label><input type="radio" name="type" value="스토리"> 스토리</label>
+                <div class="form-table">
+                    <div class="form-row">
+                        <label for="title">작품명</label>
+                        <input type="text" id="title" placeholder="작품명을 입력해 주세요." required>
                     </div>
-                </div>
-                <div class="form-row">
-                    <label>장르</label>
-                    <div class="reg-checkbox-group">
-                        <label><input type="checkbox" name="genre" value="로맨스" checked> 로맨스</label>
-                        <label><input type="checkbox" name="genre" value="판타지"> 판타지</label>
-                        <label><input type="checkbox" name="genre" value="액션"> 액션</label>
-                        <label><input type="checkbox" name="genre" value="일상"> 일상</label>
-                        <label><input type="checkbox" name="genre" value="스릴러"> 스릴러</label>
-                        <label><input type="checkbox" name="genre" value="개그"> 개그</label>
-                        <label><input type="checkbox" name="genre" value="무협/사극"> 무협/사극</label>
-                        <label><input type="checkbox" name="genre" value="드라마"> 드라마</label>
-                        <label><input type="checkbox" name="genre" value="감성"> 감성</label>
-                        <label><input type="checkbox" name="genre" value="스포츠"> 스포츠</label>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <label for="summary">작품 한 줄 요약</label>
-                    <input type="text" id="summary" maxlength="100" placeholder="작품을 한 줄로 소개해 주세요.">
-                </div>
-                <div class="form-row">
-                    <label for="enjoy">즐거리</label>
-                    <textarea id="enjoy" maxlength="400" placeholder="작품의 즐거리를 작성해 주세요." rows="4"></textarea>
-                </div>
-                <div class="form-row">
-                    <label>대표 이미지</label>
-                    <div style="display:flex; gap:32px; width:100%;">
-                        <div class="image-upload-box">
-                            <div class="image-upload-label">포스터형<br><span>480 × 623</span></div>
-                            <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
-                            <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" />
-                            <label for="poster-upload">파일 선택</label>
-                        </div>
-                        <div class="image-upload-box">
-                            <div class="image-upload-label">가로형<br><span>434 × 330</span></div>
-                            <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
-                            <input type="file" id="landscape-upload" accept="image/jpeg,image/jpg" />
-                            <label for="landscape-upload">파일 선택</label>
+                    <div class="form-row">
+                        <label>형식</label>
+                        <div class="reg-radio-group">
+                            <label><input type="radio" name="type" value="에피소드" checked> 에피소드</label>
+                            <label><input type="radio" name="type" value="옴니버스"> 옴니버스</label>
+                            <label><input type="radio" name="type" value="스토리"> 스토리</label>
                         </div>
                     </div>
-                    <div style="display:flex; gap:32px; margin-top:8px;">
-                        <input type="url" id="poster-url" class="image-url-input" placeholder="포스터 이미지 URL 입력 또는 파일 업로드" style="width:45%;font-size:0.97rem;" />
-                        <input type="url" id="landscape-url" class="image-url-input" placeholder="가로형 이미지 URL 입력 또는 파일 업로드" style="width:45%;font-size:0.97rem;" />
+                    <div class="form-row">
+                        <label>장르</label>
+                        <div class="reg-checkbox-group">
+                            <label><input type="checkbox" name="genre" value="로맨스" checked> 로맨스</label>
+                            <label><input type="checkbox" name="genre" value="판타지"> 판타지</label>
+                            <label><input type="checkbox" name="genre" value="액션"> 액션</label>
+                            <label><input type="checkbox" name="genre" value="일상"> 일상</label>
+                            <label><input type="checkbox" name="genre" value="스릴러"> 스릴러</label>
+                            <label><input type="checkbox" name="genre" value="개그"> 개그</label>
+                            <label><input type="checkbox" name="genre" value="무협/사극"> 무협/사극</label>
+                            <label><input type="checkbox" name="genre" value="드라마"> 드라마</label>
+                            <label><input type="checkbox" name="genre" value="감성"> 감성</label>
+                            <label><input type="checkbox" name="genre" value="스포츠"> 스포츠</label>
+                        </div>
                     </div>
-                    <div class="reg-tip" style="margin-top:8px; color:#888; font-size:0.97rem;">* 파일 용량 1MB 이하 / jpg만 업로드 가능<br>* 가로형 대표 이미지만 업로드하셔도 기타 이미지가 자동 생성됩니다.<br>* 포스터형은 작품 홈에서 대표 이미지로 활용됩니다.</div>
-                </div>
-                <div class="form-row">
-                    <label>회차 유로 사용 포인트</label>
-                    <div class="reg-radio-group">
-                        <label><input type="radio" name="paid-point" value="100" checked> 100포인트</label>
-                        <label><input type="radio" name="paid-point" value="200"> 200포인트</label>
-                        <label><input type="radio" name="paid-point" value="300"> 300포인트</label>
+                    <div class="form-row">
+                        <label for="summary">작품 한 줄 요약</label>
+                        <input type="text" id="summary" maxlength="100" placeholder="작품을 한 줄로 소개해 주세요.">
                     </div>
-                    <div class="reg-tip" style="margin-top:8px; color:#888; font-size:0.97rem;">* 한 회차 열람 시 차감될 포인트를 선택하세요. 전체 회차에 동일하게 적용됩니다.</div>
-                </div>
-                <div class="reg-btn-row">
-                    <button type="button" class="reg-btn cancel">취소</button>
-                    <button type="submit" class="reg-btn submit">등록</button>
-                    <button type="button" class="reg-btn submit-chapter">등록 후 1화 올리기</button>
+                    <div class="form-row">
+                        <label for="enjoy">즐거리</label>
+                        <textarea id="enjoy" maxlength="400" placeholder="작품의 즐거리를 작성해 주세요." rows="4"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <label>대표 이미지</label>
+                        <div style="display:flex; flex-direction:column; gap:8px; width:100%;">
+                            <div style="display:flex; gap:32px; width:100%;">
+                                <div class="image-upload-box">
+                                    <div class="image-upload-label">포스터형<br><span>480 × 623</span></div>
+                                    <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
+                                    <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" />
+                                    <label for="poster-upload">파일 선택</label>
+                                </div>
+                                <div class="image-upload-box">
+                                    <div class="image-upload-label">가로형<br><span>434 × 330</span></div>
+                                    <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
+                                    <input type="file" id="landscape-upload" accept="image/jpeg,image/jpg" />
+                                    <label for="landscape-upload">파일 선택</label>
+                                </div>
+                            </div>
+                            <div style="display:flex; gap:32px; margin-top:8px;">
+                                <input type="url" id="poster-url" class="image-url-input" placeholder="포스터 이미지 URL 입력 또는 파일 업로드" style="width:45%;font-size:0.97rem;" />
+                                <input type="url" id="landscape-url" class="image-url-input" placeholder="가로형 이미지 URL 입력 또는 파일 업로드" style="width:45%;font-size:0.97rem;" />
+                            </div>
+                            <div class="reg-tip" style="margin-top:8px; color:#888; font-size:0.97rem;">* 파일 용량 1MB 이하 / jpg만 업로드 가능<br>* 가로형 대표 이미지만 업로드하셔도 기타 이미지가 자동 생성됩니다.<br>* 포스터형은 작품 홈에서 대표 이미지로 활용됩니다.</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label>회차 유로 사용 포인트</label>
+                        <div style="width:100%">
+                            <div class="reg-radio-group">
+                                <label><input type="radio" name="paid-point" value="100" checked> 100포인트</label>
+                                <label><input type="radio" name="paid-point" value="200"> 200포인트</label>
+                                <label><input type="radio" name="paid-point" value="300"> 300포인트</label>
+                            </div>
+                            <div class="reg-tip" style="margin-top:8px; color:#888; font-size:0.97rem;">* 한 회차 열람 시 차감될 포인트를 선택하세요. 전체 회차에 동일하게 적용됩니다.</div>
+                        </div>
+                    </div>
+                    <div class="reg-btn-row">
+                        <button type="button" class="reg-btn cancel">취소</button>
+                        <button type="submit" class="reg-btn submit">등록</button>
+                        <button type="button" class="reg-btn submit-chapter">등록 후 1화 올리기</button>
+                    </div>
                 </div>
             </form>
         </div>
