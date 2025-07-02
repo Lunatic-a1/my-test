@@ -222,6 +222,23 @@
             .image-upload-box { width: 100%; min-width: 0; }
             .reg-tip { text-align: left; }
         }
+        .action-btn.green {
+            background: #06d66b;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.08rem;
+            font-weight: 600;
+            padding: 13px 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background 0.15s;
+            box-shadow: 0 2px 8px 0 rgba(6,214,107,0.07);
+        }
+        .action-btn.green:hover {
+            background: #04b95c;
+        }
     </style>
 </head>
 <body>
@@ -280,7 +297,17 @@
             <div class="user-info">관리자님 환영합니다!</div>
         </div>
         <div class="section">
-            <div class="section-title">새 작품 등록</div>
+            <div class="section-title-row" style="display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:22px;">
+                <div class="section-title" style="margin-bottom:0;">새 작품 등록</div>
+                <div style="display:flex; gap:14px;">
+                    <button type="button" class="action-btn green">
+                        <span style="font-size:1.25em; vertical-align:middle; margin-right:7px;">＋</span> 신규 회차 등록
+                    </button>
+                    <button type="button" class="action-btn green">
+                        <span style="font-size:1.15em; vertical-align:middle; margin-right:7px;">&#9998;</span> 신규 작품 등록
+                    </button>
+                </div>
+            </div>
             <form class="artwork-reg-form">
                 <div class="form-table">
                 <div class="form-row">
