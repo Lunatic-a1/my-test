@@ -5,6 +5,7 @@
     <title>작품 등록</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../styles/artwork-management.css">
     <style>
         .form-table {
             display: flex;
@@ -297,14 +298,16 @@
             <div class="user-info">관리자님 환영합니다!</div>
         </div>
         <div class="section">
-            <div class="section-title-row" style="display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:22px;">
-                <div class="section-title" style="margin-bottom:0;">새 작품 등록</div>
-                <div style="display:flex; gap:14px;">
-                    <button type="button" class="action-btn green">
-                        <span style="font-size:1.25em; vertical-align:middle; margin-right:7px;">＋</span> 신규 회차 등록
+            <div class="section-header" style="display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:22px;">
+                <h2 class="section-title" style="margin-bottom:0;">새 작품 등록</h2>
+                <div class="section-actions" style="display:flex; gap:14px;">
+                    <button type="button" class="artwork-action-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;margin-right:6px;"><path d="M12 5v14m7-7H5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        신규 회차 등록
                     </button>
-                    <button type="button" class="action-btn green">
-                        <span style="font-size:1.15em; vertical-align:middle; margin-right:7px;">&#9776;</span> 작품 목록
+                    <button type="button" class="artwork-action-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;margin-right:6px;"><path d="M4 6h16M4 12h16M4 18h16" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        작품 목록
                     </button>
                 </div>
             </div>
