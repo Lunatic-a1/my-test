@@ -502,7 +502,14 @@
         const landscapeFile = document.getElementById('landscape-upload').files[0];
         const submitBtn = document.querySelector('.reg-btn.submit');
         const submitChapterBtn = document.querySelector('.reg-btn.submit-chapter');
-        const allValid = form.checkValidity() && posterFile && landscapeFile;
+        // check all required fields
+        const allValid = (
+            form.querySelector('#title').value.trim() !== '' &&
+            summary.value.trim() !== '' &&
+            enjoy.value.trim() !== '' &&
+            !!posterFile &&
+            !!landscapeFile
+        );
         submitBtn.disabled = !allValid;
         submitChapterBtn.disabled = !allValid;
     }
