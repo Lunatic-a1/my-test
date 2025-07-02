@@ -388,6 +388,7 @@
     <script type="module">
     import { app } from '../scripts/firebase-init.js';
     import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js';
+    import { uploadImageToStorage } from '../scripts/storage-upload.js';
     const db = getFirestore(app);
 
     // --- EDIT MODE: auto-fill if ?edit=ID ---
@@ -450,10 +451,23 @@
         const genres = Array.from(form.querySelectorAll('input[name="genre"]:checked')).map(cb => cb.value);
         const summary = form.querySelector('#summary').value.trim();
         const enjoy = form.querySelector('#enjoy').value.trim();
-        const posterUrl = form.querySelector('#poster-url').value.trim();
-        const landscapeUrl = form.querySelector('#landscape-url').value.trim();
         const paidPoint = form.querySelector('input[name="paid-point"]:checked')?.value || '';
-        // 실제 이미지 업로드는 생략, URL만 저장
+        // 이미지 업로드 처리
+        let posterUrl = form.querySelector('#poster-url').value.trim();
+        let landscapeUrl = form.querySelector('#landscape-url').value.trim();
+        const posterFile = document.getElementById('poster-upload').files[0];
+        const landscapeFile = document.getElementById('landscape-upload').files[0];
+        // 파일이 있으면 Storage에 업로드, 없으면 URL 사용
+        if (posterFile) {
+            const ext = posterFile.name.split('.').pop();
+            const path = `artworks/posters/${Date.now()}_${title}.${ext}`;
+            posterUrl = await uploadImageToStorage(posterFile, path);
+        }
+        if (landscapeFile) {
+            const ext = landscapeFile.name.split('.').pop();
+            const path = `artworks/landscapes/${Date.now()}_${title}.${ext}`;
+            landscapeUrl = await uploadImageToStorage(landscapeFile, path);
+        }
         const docData = {
             title,
             type,
