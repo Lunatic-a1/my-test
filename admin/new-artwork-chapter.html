@@ -226,16 +226,16 @@
                     <input type="date" id="chapter-date" required />
                 </div>
                 <div class="form-row">
-                    <label>썸네일 이미지</label>
-                    <div style="display:flex; flex-direction:column; align-items:center; width:180px;">
-                    <div class="image-upload-box">
-                        <div class="image-upload-label">썸네일<br><span>권장: 320 × 320</span></div>
-                        <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
-                        <input type="file" id="thumbnail-upload" accept="image/jpeg,image/jpg,image/png" />
-                        <label for="thumbnail-upload">파일 선택</label>
+                    <label>웹툰 이미지 업로드</label>
+                    <div style="display:flex; flex-direction:column; align-items:flex-start; width:100%;">
+                        <div class="image-upload-box" id="webtoon-upload-box" style="width:100%; min-height:180px; flex-direction:row; flex-wrap:wrap; align-items:flex-start; justify-content:flex-start; gap:16px;">
+                            <input type="file" id="webtoon-upload" accept="image/jpeg,image/jpg,image/png" multiple style="display:none;" />
+                            <label for="webtoon-upload" style="min-width:120px; min-height:160px; display:flex; align-items:center; justify-content:center; border:1.5px dashed #bfc8d6; border-radius:8px; background:#f7f7f7; cursor:pointer; font-size:1.05rem; color:#888;">이미지 선택</label>
+                            <div id="webtoon-preview-list" style="display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;"></div>
+                        </div>
+                        <div class="reg-tip" style="margin-top:8px; color:#888; font-size:0.97rem;">* 여러 장의 이미지를 업로드할 수 있습니다. (jpg, png 지원)</div>
                     </div>
                 </div>
-                    </div>
                 </div>
                 <div class="reg-btn-row">
                     <button type="button" class="reg-btn cancel">취소</button>
@@ -287,24 +287,29 @@
     }
     document.getElementById('chapter-number').addEventListener('input', updateChapterTitlePreview);
     document.getElementById('chapter-title').addEventListener('input', updateChapterTitlePreview);
-    // 썸네일 미리보기
-    document.getElementById('thumbnail-upload').addEventListener('change', e => {
-        const file = e.target.files[0];
-        const box = e.target.closest('.image-upload-box');
-        const preview = box.querySelector('.preview-img');
-        const label = box.querySelector('.image-upload-label');
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = ev => {
-                preview.src = ev.target.result;
-                preview.style.display = 'block';
-                label.style.display = 'none';
-            };
-            reader.readAsDataURL(file);
-        } else {
-            preview.style.display = 'none';
-            label.style.display = 'block';
-        }
+    // 웹툰 이미지 미리보기
+    const webtoonInput = document.getElementById('webtoon-upload');
+    const webtoonPreviewList = document.getElementById('webtoon-preview-list');
+    webtoonInput.addEventListener('change', function() {
+        webtoonPreviewList.innerHTML = '';
+        const files = Array.from(webtoonInput.files);
+        files.forEach(file => {
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    const img = document.createElement('img');
+                    img.src = ev.target.result;
+                    img.style.width = '120px';
+                    img.style.height = '160px';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '6px';
+                    img.style.background = '#fafafa';
+                    img.style.boxShadow = '0 1px 4px 0 rgba(0,0,0,0.04)';
+                    webtoonPreviewList.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
     });
     // 폼 제출 시 공개일 예약 처리
     const chapterForm = document.getElementById('chapter-form');
