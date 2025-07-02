@@ -21,6 +21,7 @@
             border-bottom: 1px solid #f3f4f7;
             background: #fcfdff;
             transition: background 0.18s;
+            position: relative;
         }
         .form-row:not(:last-child):hover {
             background: #f7fafd;
@@ -168,9 +169,13 @@
         .reg-tip {
             color: #7a869a;
             font-size: 0.98rem;
-            margin-top: 7px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
             text-align: right;
-            grid-column: 2/3;
+            max-width: 48%;
+            line-height: 1.6;
         }
         .reg-btn-row {
             display: flex;
@@ -202,6 +207,13 @@
         @media (max-width: 900px) {
             .main { max-width: 98vw; padding: 18px 4vw; }
             .form-row { grid-template-columns: 1fr; }
+            .reg-tip {
+                position: static;
+                transform: none;
+                max-width: 100%;
+                text-align: left;
+                margin-top: 10px;
+            }
         }
         @media (max-width: 600px) {
             .main { padding: 0; border-radius: 0; }
@@ -308,33 +320,27 @@
                 </div>
                 <div class="form-row">
                     <label>대표 이미지</label>
-                    <div style="width:100%;">
-                        <div class="reg-tip" style="margin-bottom:10px; color:#888; font-size:0.97rem; text-align:right;">
-                            * 파일 용량 1MB 이하 / jpg만 업로드 가능<br>
-                            * 가로형 대표 이미지만 업로드하셔도 기타 이미지가 자동 생성됩니다.<br>
-                            * 포스터형은 작품 홈에서 대표 이미지로 활용됩니다.
-                        </div>
-                        <div style="display:flex; gap:32px; align-items:flex-start;">
+                        <div style="display:flex; gap:32px; width:100%; align-items:flex-start;">
                             <div style="display:flex; flex-direction:column; align-items:center; width:120px;">
                                 <div class="image-upload-box portrait">
-                                    <div class="image-upload-label">포스터형<br><span>480 × 623</span></div>
-                                    <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
-                                    <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" />
-                                    <label for="poster-upload">파일 선택</label>
-                                </div>
+                            <div class="image-upload-label">포스터형<br><span>480 × 623</span></div>
+                            <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
+                            <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" />
+                            <label for="poster-upload">파일 선택</label>
+                        </div>
                                 <input type="url" id="poster-url" class="image-url-input" placeholder="포스터 이미지 URL 입력 또는 파일 업로드" style="width:100%;font-size:0.97rem;margin-top:10px;" />
                             </div>
                             <div style="display:flex; flex-direction:column; align-items:center; width:180px;">
-                                <div class="image-upload-box">
-                                    <div class="image-upload-label">가로형<br><span>434 × 330</span></div>
-                                    <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
-                                    <input type="file" id="landscape-upload" accept="image/jpeg,image/jpg" />
-                                    <label for="landscape-upload">파일 선택</label>
-                                </div>
-                                <input type="url" id="landscape-url" class="image-url-input" placeholder="가로형 이미지 URL 입력 또는 파일 업로드" style="width:100%;font-size:0.97rem;margin-top:10px;" />
-                            </div>
+                        <div class="image-upload-box">
+                            <div class="image-upload-label">가로형<br><span>434 × 330</span></div>
+                            <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
+                            <input type="file" id="landscape-upload" accept="image/jpeg,image/jpg" />
+                            <label for="landscape-upload">파일 선택</label>
                         </div>
+                                <input type="url" id="landscape-url" class="image-url-input" placeholder="가로형 이미지 URL 입력 또는 파일 업로드" style="width:100%;font-size:0.97rem;margin-top:10px;" />
                     </div>
+                    </div>
+                    <div class="reg-tip" style="margin-top:8px; color:#888; font-size:0.97rem;">* 파일 용량 1MB 이하 / jpg만 업로드 가능<br>* 가로형 대표 이미지만 업로드하셔도 기타 이미지가 자동 생성됩니다.<br>* 포스터형은 작품 홈에서 대표 이미지로 활용됩니다.</div>
                 </div>
                 <div class="form-row">
                     <label>회차 유로 사용 포인트</label>
