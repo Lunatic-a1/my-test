@@ -293,10 +293,15 @@
     webtoonInput.addEventListener('change', function() {
         webtoonPreviewList.innerHTML = '';
         const files = Array.from(webtoonInput.files);
-        files.forEach(file => {
+        files.forEach((file, idx) => {
             if (file && file.type.startsWith('image/')) {
                 const reader = new FileReader();
                 reader.onload = function(ev) {
+                    const wrapper = document.createElement('div');
+                    wrapper.style.display = 'flex';
+                    wrapper.style.flexDirection = 'column';
+                    wrapper.style.alignItems = 'center';
+                    wrapper.style.gap = '4px';
                     const img = document.createElement('img');
                     img.src = ev.target.result;
                     img.style.width = '120px';
@@ -305,7 +310,15 @@
                     img.style.borderRadius = '6px';
                     img.style.background = '#fafafa';
                     img.style.boxShadow = '0 1px 4px 0 rgba(0,0,0,0.04)';
-                    webtoonPreviewList.appendChild(img);
+                    const num = document.createElement('div');
+                    num.textContent = (idx + 1).toString();
+                    num.style.marginTop = '2px';
+                    num.style.fontSize = '1.08rem';
+                    num.style.fontWeight = 'bold';
+                    num.style.color = '#1976d2';
+                    wrapper.appendChild(img);
+                    wrapper.appendChild(num);
+                    webtoonPreviewList.appendChild(wrapper);
                 };
                 reader.readAsDataURL(file);
             }
@@ -325,9 +338,17 @@
         today.setHours(0,0,0,0);
         let status = 'published';
         if (date > today) status = 'scheduled';
+        // 웹툰 이미지 base64 배열 저장 (실서비스는 스토리지 업로드 후 URL로 대체)
+        const webtoonFiles = Array.from(document.getElementById('webtoon-upload').files);
+        const images = await Promise.all(webtoonFiles.map(file => new Promise(resolve => {
+            const reader = new FileReader();
+            reader.onload = e => resolve(e.target.result);
+            reader.readAsDataURL(file);
+        })));
         try {
             await addDoc(collection(db, 'artwork-chapter-list'), {
                 artworkId, number, title, comment,
+                images,
                 publishDate: dateStr,
                 status,
                 createdAt: serverTimestamp()
