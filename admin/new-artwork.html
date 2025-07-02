@@ -240,6 +240,33 @@
         .action-btn.green:hover {
             background: #04b95c;
         }
+        .upload-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #00e676;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.01rem;
+            font-weight: 600;
+            padding: 8px 22px;
+            cursor: pointer;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 14px;
+            transition: background 0.15s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .upload-btn:hover {
+            background: #00c853;
+        }
+        .upload-btn .icon {
+            font-size: 1.15em;
+            margin-right: 7px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
@@ -356,7 +383,7 @@
                             <div class="image-upload-label">포스터형<br><span>480 × 623</span></div>
                             <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
                             <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" />
-                            <label for="poster-upload">파일 선택</label>
+                            <label for="poster-upload" class="upload-btn"><span class="icon">⬆</span> 파일 선택</label>
                         </div>
                                 <input type="url" id="poster-url" class="image-url-input" placeholder="포스터 이미지 URL 입력 또는 파일 업로드" style="width:100%;font-size:0.97rem;margin-top:10px;" />
                             </div>
@@ -365,7 +392,7 @@
                             <div class="image-upload-label">가로형<br><span>434 × 330</span></div>
                             <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
                             <input type="file" id="landscape-upload" accept="image/jpeg,image/jpg" />
-                            <label for="landscape-upload">파일 선택</label>
+                            <label for="landscape-upload" class="upload-btn"><span class="icon">⬆</span> 파일 선택</label>
                         </div>
                                 <input type="url" id="landscape-url" class="image-url-input" placeholder="가로형 이미지 URL 입력 또는 파일 업로드" style="width:100%;font-size:0.97rem;margin-top:10px;" />
                     </div>
