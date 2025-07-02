@@ -421,6 +421,20 @@
     // 등록 후 1화 올리기 버튼
     document.querySelector('.reg-btn.submit-chapter')?.addEventListener('click', async function() {
         const form = document.querySelector('.artwork-reg-form');
+        const posterFile = document.getElementById('poster-upload').files[0];
+        const landscapeFile = document.getElementById('landscape-upload').files[0];
+        const posterUrl = document.getElementById('poster-url').value.trim();
+        const landscapeUrl = document.getElementById('landscape-url').value.trim();
+        if (!(posterFile || posterUrl)) {
+            alert('포스터 이미지는 파일 업로드 또는 URL 입력 중 하나가 필요합니다.');
+            document.getElementById('poster-upload').focus();
+            return;
+        }
+        if (!(landscapeFile || landscapeUrl)) {
+            alert('가로형 이미지는 파일 업로드 또는 URL 입력 중 하나가 필요합니다.');
+            document.getElementById('landscape-upload').focus();
+            return;
+        }
         if (form.checkValidity()) {
             this.disabled = true;
             try {
@@ -441,13 +455,15 @@
         const form = e.target;
         const posterFile = document.getElementById('poster-upload').files[0];
         const landscapeFile = document.getElementById('landscape-upload').files[0];
-        if (!posterFile) {
-            alert('포스터 이미지는 필수입니다.');
+        const posterUrl = document.getElementById('poster-url').value.trim();
+        const landscapeUrl = document.getElementById('landscape-url').value.trim();
+        if (!(posterFile || posterUrl)) {
+            alert('포스터 이미지는 파일 업로드 또는 URL 입력 중 하나가 필요합니다.');
             document.getElementById('poster-upload').focus();
             return;
         }
-        if (!landscapeFile) {
-            alert('가로형 이미지는 필수입니다.');
+        if (!(landscapeFile || landscapeUrl)) {
+            alert('가로형 이미지는 파일 업로드 또는 URL 입력 중 하나가 필요합니다.');
             document.getElementById('landscape-upload').focus();
             return;
         }
