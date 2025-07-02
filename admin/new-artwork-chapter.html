@@ -242,6 +242,7 @@
     <script type="module">
     import { app } from '../scripts/firebase-init.js';
     import { getFirestore, collection, getDocs, query, orderBy, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js';
+    import { uploadImageToStorage } from '../scripts/storage-upload.js';
     const db = getFirestore(app);
     // 작품 목록 동적 렌더링
     async function populateArtworkSelect() {
@@ -411,25 +412,28 @@
         today.setHours(0,0,0,0);
         let status = 'published';
         if (date > today) status = 'scheduled';
-        // 모든 업로드 박스의 파일을 순서대로 배열로 저장
-        const images = await Promise.all((window.webtoonUploadBoxes||[]).map(box => {
+        // 모든 업로드 박스의 파일을 순서대로 Storage에 업로드 후 URL 배열로 저장
+        const images = [];
+        for (let i = 0; i < (window.webtoonUploadBoxes||[]).length; i++) {
+            const box = window.webtoonUploadBoxes[i];
             const input = box.querySelector('input[type="file"]');
-            return new Promise(resolve => {
-                if (input && input.files && input.files[0]) {
-                    const reader = new FileReader();
-                    reader.onload = e => resolve(e.target.result);
-                    reader.readAsDataURL(input.files[0]);
-                } else {
-                    resolve(null);
+            if (input && input.files && input.files[0]) {
+                const file = input.files[0];
+                const ext = file.name.split('.').pop();
+                const path = `chapters/${artworkId}/${Date.now()}_${i}.${ext}`;
+                try {
+                    const url = await uploadImageToStorage(file, path);
+                    images.push(url);
+                } catch (err) {
+                    alert(`이미지 업로드 실패: ${i+1}번째 이미지`);
+                    return;
                 }
-            });
-        }));
-        // null(선택 안한 박스) 제거
-        const filteredImages = images.filter(img => !!img);
+            }
+        }
         try {
             await addDoc(collection(db, 'artwork-chapter-list'), {
                 artworkId, number, title, comment,
-                images: filteredImages,
+                images,
                 publishDate: dateStr,
                 status,
                 createdAt: serverTimestamp()
