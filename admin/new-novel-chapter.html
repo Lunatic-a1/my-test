@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>신규 회차 등록</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        .form-table {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 100%;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            align-items: flex-start;
+            margin-bottom: 0;
+            padding: 22px 0 18px 0;
+            border-bottom: 1px solid #f3f4f7;
+            background: #fcfdff;
+            transition: background 0.18s;
+            position: relative;
+        }
+        .form-row:not(:last-child):hover {
+            background: #f7fafd;
+        }
+        .form-row:last-child {
+            border-bottom: none;
+        }
+        .form-row label {
+            min-width: 0;
+            font-weight: normal;
+            font-size: 1.05rem;
+            color: inherit;
+            margin-top: 0;
+            text-align: left;
+            align-self: center;
+            padding-right: 18px;
+            letter-spacing: -0.01em;
+        }
+        .form-row input[type="text"],
+        .form-row input[type="number"],
+        .form-row input[type="date"],
+        .form-row input[type="url"],
+        .form-row textarea,
+        .form-row select {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1.5px solid #d0d0d0;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 1.06rem;
+            background: #fff;
+            transition: border 0.15s, box-shadow 0.15s;
+            outline: none;
+            color: #222;
+        }
+        .form-row input::placeholder,
+        .form-row textarea::placeholder {
+            color: inherit;
+            opacity: 1;
+        }
+        .form-row input[type="text"]:focus,
+        .form-row input[type="number"]:focus,
+        .form-row input[type="date"]:focus,
+        .form-row input[type="url"]:focus,
+        .form-row textarea:focus,
+        .form-row select:focus {
+            border: 1.5px solid #1976d2;
+            box-shadow: 0 2px 8px 0 rgba(25,118,210,0.07);
+            background: #fafdff;
+        }
+        .form-row input[type="file"] {
+            border: none;
+            padding: 0;
+            background: none;
+        }
+        .form-row textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+        .image-upload-box {
+            background: #f7f7f7;
+            border: 1.5px dashed #bfc8d6;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            height: 150px;
+            margin-bottom: 0;
+            position: relative;
+            width: 180px;
+            transition: border 0.15s;
+        }
+        .image-upload-box:hover {
+            border: 1.5px solid #1976d2;
+            background: #fafdff;
+        }
+        .image-upload-label {
+            font-size: 1.01rem;
+            font-weight: 500;
+            color: #888;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .image-upload-label span {
+            font-size: 0.92rem;
+            color: #b0b0b0;
+            font-weight: 400;
+        }
+        .preview-img {
+            display: none;
+            max-width: 80%;
+            max-height: 120px;
+            object-fit: contain;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            margin: auto;
+            z-index: 1;
+            background: #fafafa;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+            cursor: pointer;
+        }
+        .image-upload-box input[type="file"] {
+            display: none;
+        }
+        .image-upload-box label[for] {
+            padding: 6px 16px;
+            font-size: 0.97rem;
+            border-radius: 5px;
+        }
+        .image-upload-box label[for]:hover {
+            background: #ededed;
+            border: 1.5px solid #bfc8d6;
+        }
+        .reg-btn-row {
+            display: flex;
+            gap: 18px;
+            justify-content: flex-end;
+            margin-top: 38px;
+            padding-top: 18px;
+            border-top: 1.5px solid #f0f1f4;
+        }
+        .reg-btn {
+            padding: 11px 36px;
+            border-radius: 7px;
+            border: none;
+            font-size: 1.09rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: #1976d2;
+            color: #fff;
+            transition: background 0.15s, box-shadow 0.15s;
+            box-shadow: 0 2px 8px 0 rgba(25,118,210,0.07);
+        }
+        .reg-btn.cancel {
+            background: #bbb;
+            color: #fff;
+        }
+        .reg-btn:active {
+            background: #125ea2;
+        }
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            font-size: 1.5rem;
+            gap: 0.2em;
+            justify-content: flex-start;
+        }
+        .star-rating input { display: none; }
+        .star-rating label { color: #ccc; cursor: pointer; }
+        .star-rating input:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: #ffc107; }
+        @media (max-width: 900px) {
+            .main { max-width: 98vw; padding: 18px 4vw; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .main { padding: 0; border-radius: 0; }
+            .form-row { grid-template-columns: 1fr; padding: 10px 0; }
+            .form-row label { padding-right: 0; margin-bottom: 4px; }
+            .image-upload-box { width: 100%; min-width: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <h1>신규 회차 등록</h1>
+            <div class="user-info">관리자님 환영합니다!</div>
+        </div>
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">회차 정보 입력</h2>
+            </div>
+            <form id="chapter-form">
+                <div class="form-table">
+                <div class="form-row">
+                    <label for="artwork-select">작품 선택</label>
+                    <select id="artwork-select" required>
+                        <option value="">작품을 선택하세요</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="chapter-number">회차수</label>
+                    <input type="number" id="chapter-number" min="1" step="1" placeholder="회차 번호를 입력해 주세요." required />
+                </div>
+                <div class="form-row">
+                    <label for="chapter-title">회차 제목</label>
+                    <input type="text" id="chapter-title" placeholder="회차 제목을 입력해 주세요. (선택)" />
+                </div>
+                <div class="form-row" style="background:none; border-bottom:none; padding:0 0 10px 0;">
+                    <div></div>
+                    <div style="color:#1976d2; font-size:1.05rem;" id="chapter-title-preview"></div>
+                </div>
+                <div class="form-row">
+                    <label for="chapter-content">회차 본문</label>
+                    <textarea id="chapter-content" placeholder="회차 본문을 입력하거나 이미지를 업로드해 주세요."></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="chapter-comment">작가의 말/크리에이터의 말</label>
+                    <textarea id="chapter-comment" placeholder="작가의 말 또는 크리에이터의 말을 입력해 주세요. (선택)"></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="chapter-date">공개일</label>
+                    <input type="date" id="chapter-date" required />
+                </div>
+                <div class="form-row">
+                    <label>썸네일 이미지</label>
+                    <div style="display:flex; flex-direction:column; align-items:center; width:180px;">
+                    <div class="image-upload-box">
+                        <div class="image-upload-label">썸네일<br><span>권장: 320 × 320</span></div>
+                        <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
+                        <input type="file" id="thumbnail-upload" accept="image/jpeg,image/jpg,image/png" />
+                        <label for="thumbnail-upload">파일 선택</label>
+                    </div>
+                </div>
+                    </div>
+                </div>
+                <div class="reg-btn-row">
+                    <button type="button" class="reg-btn cancel">취소</button>
+                    <button type="submit" class="reg-btn submit">등록</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="admin-layout.js"></script>
+    <script type="module">
+    import { app } from '../scripts/firebase-init.js';
+    import { getFirestore, collection, getDocs, query, orderBy, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js';
+    const db = getFirestore(app);
+    // 작품 목록 동적 렌더링
+    async function populateArtworkSelect() {
+        const select = document.getElementById('artwork-select');
+        select.innerHTML = '<option value="">로딩 중...</option>';
+        try {
+            const q = query(collection(db, 'webtoons'), orderBy('createdAt', 'desc'));
+            const snapshot = await getDocs(q);
+            if (snapshot.empty) {
+                select.innerHTML = '<option value="" disabled>등록된 작품이 없습니다</option>';
+                return;
+            }
+            select.innerHTML = '<option value="">작품을 선택하세요</option>';
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const option = document.createElement('option');
+                option.value = doc.id;
+                option.textContent = data.title || doc.id;
+                select.appendChild(option);
+            });
+        } catch (err) {
+            select.innerHTML = '<option value="" disabled>작품 목록을 불러올 수 없습니다</option>';
+        }
+    }
+    populateArtworkSelect();
+    // 회차 제목 미리보기
+    function updateChapterTitlePreview() {
+        const num = document.getElementById('chapter-number').value;
+        const title = document.getElementById('chapter-title').value.trim();
+        const preview = document.getElementById('chapter-title-preview');
+        if (!num) { preview.textContent = ''; return; }
+        if (!title) {
+            preview.textContent = `${num}화`;
+        } else {
+            preview.textContent = `${num}${Number(num) < 100 ? '. ' : ': '}${title}`;
+        }
+    }
+    document.getElementById('chapter-number').addEventListener('input', updateChapterTitlePreview);
+    document.getElementById('chapter-title').addEventListener('input', updateChapterTitlePreview);
+    // 썸네일 미리보기
+    document.getElementById('thumbnail-upload').addEventListener('change', e => {
+        const file = e.target.files[0];
+        const box = e.target.closest('.image-upload-box');
+        const preview = box.querySelector('.preview-img');
+        const label = box.querySelector('.image-upload-label');
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = ev => {
+                preview.src = ev.target.result;
+                preview.style.display = 'block';
+                label.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            preview.style.display = 'none';
+            label.style.display = 'block';
+        }
+    });
+    // 폼 제출 시 공개일 예약 처리
+    const chapterForm = document.getElementById('chapter-form');
+    chapterForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const artworkId = document.getElementById('artwork-select').value;
+        const number = document.getElementById('chapter-number').value;
+        const title = document.getElementById('chapter-title').value;
+        const content = document.getElementById('chapter-content').value;
+        const comment = document.getElementById('chapter-comment').value;
+        const dateStr = document.getElementById('chapter-date').value;
+        const date = new Date(dateStr);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        let status = 'published';
+        if (date > today) status = 'scheduled';
+        try {
+            await addDoc(collection(db, 'artwork-chapter-list'), {
+                artworkId, number, title, content, comment,
+                publishDate: dateStr,
+                status,
+                createdAt: serverTimestamp()
+            });
+            alert('회차가 등록되었습니다.');
+            window.location.href = '/admin/artwork-list.html';
+        } catch (err) {
+            alert('등록 중 오류가 발생했습니다.');
+        }
+    });
+    document.querySelector('.reg-btn.cancel')?.addEventListener('click', () => {
+        window.location.href = '/admin/artwork-list.html';
+    });
+    </script>
+</body>
+</html> 
