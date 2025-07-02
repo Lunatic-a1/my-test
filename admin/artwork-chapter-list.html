@@ -13,9 +13,14 @@
             <h1>회차 관리</h1>
             <div class="user-info">관리자님 환영합니다!</div>
         </div>
-        <!-- 작품 정보 표시 영역 -->
-        <div id="artwork-info" style="display:flex; align-items:center; gap:24px; margin:24px 0 0 0; padding:18px 0 0 0;"></div>
         <div class="section">
+            <div style="display:flex; align-items:center; gap:32px; margin-bottom:18px;">
+                <div id="artwork-info" style="display:flex; align-items:center; gap:24px;"></div>
+                <button id="artwork-edit-btn" class="artwork-action-btn" style="height:40px; font-size:1.05rem;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;margin-right:6px;"><path d="M16.862 5.487a2.06 2.06 0 0 1 2.915 2.914l-9.193 9.193-3.09.343a.75.75 0 0 1-.83-.83l.343-3.09 9.193-9.193Zm0 0 2.651 2.651" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    수정
+                </button>
+            </div>
             <div class="section-header">
                 <h2 class="section-title">회차 목록</h2>
                 <div class="search-container">
@@ -141,6 +146,10 @@
         const id = e.target.getAttribute('data-id');
         alert('회차 관리 기능은 추후 구현 예정입니다. (회차 ID: ' + id + ')');
       }
+    });
+    document.getElementById('artwork-edit-btn').addEventListener('click', function() {
+        const artworkId = getArtworkId();
+        window.location.href = `new-artwork.html?edit=${artworkId}`;
     });
     </script>
 </body>
