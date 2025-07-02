@@ -232,14 +232,14 @@
                 <div class="form-row">
                     <label>썸네일 이미지</label>
                     <div style="display:flex; flex-direction:column; align-items:center; width:180px;">
-                        <div class="image-upload-box">
-                            <div class="image-upload-label">썸네일<br><span>권장: 320 × 320</span></div>
-                            <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
-                            <input type="file" id="thumbnail-upload" accept="image/jpeg,image/jpg,image/png" />
-                            <label for="thumbnail-upload">파일 선택</label>
-                        </div>
+                    <div class="image-upload-box">
+                        <div class="image-upload-label">썸네일<br><span>권장: 320 × 320</span></div>
+                        <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
+                        <input type="file" id="thumbnail-upload" accept="image/jpeg,image/jpg,image/png" />
+                        <label for="thumbnail-upload">파일 선택</label>
                     </div>
                 </div>
+                    </div>
                 </div>
                 <div class="reg-btn-row">
                     <button type="button" class="reg-btn cancel">취소</button>
@@ -326,7 +326,7 @@
         let status = 'published';
         if (date > today) status = 'scheduled';
         try {
-            await addDoc(collection(db, 'chapters'), {
+            await addDoc(collection(db, 'artwork-chapter-list'), {
                 artworkId, number, title, content, comment,
                 publishDate: dateStr,
                 status,
