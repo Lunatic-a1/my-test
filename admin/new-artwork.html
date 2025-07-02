@@ -332,11 +332,11 @@
                 </div>
                 <div class="form-row">
                     <label for="summary">작품 한 줄 요약</label>
-                    <input type="text" id="summary" maxlength="100" placeholder="작품을 한 줄로 소개해 주세요.">
+                    <input type="text" id="summary" maxlength="100" placeholder="작품을 한 줄로 소개해 주세요." required>
                 </div>
                 <div class="form-row">
                     <label for="enjoy">즐거리</label>
-                    <textarea id="enjoy" maxlength="400" placeholder="작품의 즐거리를 작성해 주세요." rows="4"></textarea>
+                    <textarea id="enjoy" maxlength="400" placeholder="작품의 즐거리를 작성해 주세요." rows="4" required></textarea>
                 </div>
                 <div class="form-row">
                     <label>대표 이미지</label>
@@ -345,7 +345,7 @@
                                 <div class="image-upload-box portrait">
                             <div class="image-upload-label">포스터형<br><span>480 × 623</span></div>
                             <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
-                            <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" />
+                            <input type="file" id="poster-upload" accept="image/jpeg,image/jpg" required />
                             <label for="poster-upload">파일 선택</label>
                         </div>
                                 <input type="url" id="poster-url" class="image-url-input" placeholder="포스터 이미지 URL 입력 또는 파일 업로드" style="width:100%;font-size:0.97rem;margin-top:10px;" />
@@ -354,7 +354,7 @@
                         <div class="image-upload-box">
                             <div class="image-upload-label">가로형<br><span>434 × 330</span></div>
                             <img class="preview-img" style="display:none; width:80%; margin-bottom:8px;" />
-                            <input type="file" id="landscape-upload" accept="image/jpeg,image/jpg" />
+                            <input type="file" id="landscape-upload" accept="image/jpeg,image/jpg" required />
                             <label for="landscape-upload">파일 선택</label>
                         </div>
                                 <input type="url" id="landscape-url" class="image-url-input" placeholder="가로형 이미지 URL 입력 또는 파일 업로드" style="width:100%;font-size:0.97rem;margin-top:10px;" />
@@ -378,8 +378,8 @@
                 </div>
                 <div class="reg-btn-row">
                     <button type="button" class="reg-btn cancel">취소</button>
-                    <button type="submit" class="reg-btn submit">등록</button>
-                    <button type="button" class="reg-btn submit-chapter">등록 후 1화 올리기</button>
+                    <button type="submit" class="reg-btn submit" disabled>등록</button>
+                    <button type="button" class="reg-btn submit-chapter" disabled>등록 후 1화 올리기</button>
                 </div>
             </form>
         </div>
@@ -439,6 +439,18 @@
     document.querySelector('.artwork-reg-form')?.addEventListener('submit', async function(e) {
         e.preventDefault();
         const form = e.target;
+        const posterFile = document.getElementById('poster-upload').files[0];
+        const landscapeFile = document.getElementById('landscape-upload').files[0];
+        if (!posterFile) {
+            alert('포스터 이미지는 필수입니다.');
+            document.getElementById('poster-upload').focus();
+            return;
+        }
+        if (!landscapeFile) {
+            alert('가로형 이미지는 필수입니다.');
+            document.getElementById('landscape-upload').focus();
+            return;
+        }
         if (form.checkValidity()) {
             try {
                 await registerArtwork(form);
@@ -479,6 +491,27 @@
         }
         handleImagePreview('poster-upload');
         handleImagePreview('landscape-upload');
+    });
+    </script>
+    <script>
+    function checkArtworkFormValidity() {
+        const form = document.querySelector('.artwork-reg-form');
+        const summary = document.getElementById('summary');
+        const enjoy = document.getElementById('enjoy');
+        const posterFile = document.getElementById('poster-upload').files[0];
+        const landscapeFile = document.getElementById('landscape-upload').files[0];
+        const submitBtn = document.querySelector('.reg-btn.submit');
+        const submitChapterBtn = document.querySelector('.reg-btn.submit-chapter');
+        const allValid = form.checkValidity() && posterFile && landscapeFile;
+        submitBtn.disabled = !allValid;
+        submitChapterBtn.disabled = !allValid;
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('.artwork-reg-form');
+        form.addEventListener('input', checkArtworkFormValidity);
+        document.getElementById('poster-upload').addEventListener('change', checkArtworkFormValidity);
+        document.getElementById('landscape-upload').addEventListener('change', checkArtworkFormValidity);
+        checkArtworkFormValidity();
     });
     </script>
 </body>
